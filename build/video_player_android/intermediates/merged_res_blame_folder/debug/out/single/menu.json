@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/merged_res/debug/menu/example_menu.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/menu/example_menu.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\video_player_android\\intermediates\\merged_res\\debug\\menu\\example_menu2.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\98d5b95dea84d2a82d769525b5de12af\\transformed\\core-1.7.0\\res\\menu\\example_menu2.xml"
     },
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/merged_res/debug/menu/example_menu2.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/menu/example_menu2.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\video_player_android\\intermediates\\merged_res\\debug\\menu\\example_menu.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\98d5b95dea84d2a82d769525b5de12af\\transformed\\core-1.7.0\\res\\menu\\example_menu.xml"
     }
 ]

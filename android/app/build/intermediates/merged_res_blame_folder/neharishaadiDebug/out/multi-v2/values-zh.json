@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/android/app/build/intermediates/incremental/mergeNeharishaadiDebugResources/merged.dir/values-zh/values-zh.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\android\\app\\build\\intermediates\\incremental\\mergeNeharishaadiDebugResources\\merged.dir\\values-zh\\values-zh.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/721597451550a3d8930b73b01b05cb8a/transformed/jetified-ucrop-2.2.7/res/values-zh/values-zh.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\721597451550a3d8930b73b01b05cb8a\\transformed\\jetified-ucrop-2.2.7\\res\\values-zh\\values-zh.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

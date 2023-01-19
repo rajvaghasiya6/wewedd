@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/build/url_launcher_android/intermediates/merged_res/debug/values-es/values-es.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\url_launcher_android\\intermediates\\merged_res\\debug\\values-es\\values-es.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/values-es/values-es.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\values-es\\values-es.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/build/url_launcher_android/intermediates/incremental/mergeDebugResources/merged.dir/values-es/values-es.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\url_launcher_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es\\values-es.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/values-es/values-es.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\values-es\\values-es.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

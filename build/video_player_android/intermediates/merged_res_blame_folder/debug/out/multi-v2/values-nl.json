@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/incremental/mergeDebugResources/merged.dir/values-nl/values-nl.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\video_player_android\\intermediates\\merged_res\\debug\\values-nl\\values-nl.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/values-nl/values-nl.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\7ad3d862d01a3b033089bd9289a20d21\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-nl\\values-nl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,190,254,321,398,467,556,639",
+                        "endColumns": "70,63,63,66,76,68,88,82,71",
+                        "endOffsets": "121,185,249,316,393,462,551,634,706"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\98d5b95dea84d2a82d769525b5de12af\\transformed\\core-1.7.0\\res\\values-nl\\values-nl.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,25 +28,25 @@
                         "startOffsets": "711",
                         "endColumns": "100",
                         "endOffsets": "807"
-                    }
-                },
-                {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/7ad3d862d01a3b033089bd9289a20d21/transformed/jetified-exoplayer-core-2.18.1/res/values-nl/values-nl.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,126,190,254,321,398,467,556,639",
-                        "endColumns": "70,63,63,66,76,68,88,82,71",
-                        "endOffsets": "121,185,249,316,393,462,551,634,706"
                     }
                 }
             ]
         },
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/merged_res/debug/values-nl/values-nl.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\video_player_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-nl\\values-nl.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/values-nl/values-nl.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\7ad3d862d01a3b033089bd9289a20d21\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-nl\\values-nl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,190,254,321,398,467,556,639",
+                        "endColumns": "70,63,63,66,76,68,88,82,71",
+                        "endOffsets": "121,185,249,316,393,462,551,634,706"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\98d5b95dea84d2a82d769525b5de12af\\transformed\\core-1.7.0\\res\\values-nl\\values-nl.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -50,16 +60,6 @@
                         "startOffsets": "711",
                         "endColumns": "100",
                         "endOffsets": "807"
-                    }
-                },
-                {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/7ad3d862d01a3b033089bd9289a20d21/transformed/jetified-exoplayer-core-2.18.1/res/values-nl/values-nl.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,126,190,254,321,398,467,556,639",
-                        "endColumns": "70,63,63,66,76,68,88,82,71",
-                        "endOffsets": "121,185,249,316,393,462,551,634,706"
                     }
                 }
             ]

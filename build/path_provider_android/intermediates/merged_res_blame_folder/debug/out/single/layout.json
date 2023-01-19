@@ -1,26 +1,26 @@
 [
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/path_provider_android/intermediates/merged_res/debug/layout/notification_template_part_chronometer.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/layout/notification_template_part_chronometer.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\path_provider_android\\intermediates\\merged_res\\debug\\layout\\custom_dialog.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\layout\\custom_dialog.xml"
     },
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/path_provider_android/intermediates/merged_res/debug/layout/notification_template_icon_group.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/layout/notification_template_icon_group.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\path_provider_android\\intermediates\\merged_res\\debug\\layout\\notification_action.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\layout\\notification_action.xml"
     },
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/path_provider_android/intermediates/merged_res/debug/layout/notification_template_part_time.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/layout/notification_template_part_time.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\path_provider_android\\intermediates\\merged_res\\debug\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\layout\\notification_template_icon_group.xml"
     },
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/path_provider_android/intermediates/merged_res/debug/layout/custom_dialog.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/layout/custom_dialog.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\path_provider_android\\intermediates\\merged_res\\debug\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/path_provider_android/intermediates/merged_res/debug/layout/notification_action.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/layout/notification_action.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\path_provider_android\\intermediates\\merged_res\\debug\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\layout\\notification_action_tombstone.xml"
     },
     {
-        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/path_provider_android/intermediates/merged_res/debug/layout/notification_action_tombstone.xml",
-        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/layout/notification_action_tombstone.xml"
+        "merged": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\path_provider_android\\intermediates\\merged_res\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\layout\\notification_template_part_chronometer.xml"
     }
 ]

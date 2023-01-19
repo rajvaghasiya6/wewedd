@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "wewedd",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "wewedd (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "wewedd (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+        },
+        {
+            "name": "neharishaadi",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "neharishaadi",
+                "-t",
+                "lib/main_neharishaadi.dart"
+            ]
+        },
+    ]
+}

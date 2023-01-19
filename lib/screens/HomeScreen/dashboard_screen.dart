@@ -6,27 +6,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/navigation.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/show_notification.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/providers/dashboard_provider.dart';
-import 'package:wedding/providers/event_provider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/screens/EventScreen/event_screen.dart';
-import 'package:wedding/screens/GalleryScreen/gallery_screen.dart';
-import 'package:wedding/screens/NotificationScreen/notification_screen.dart';
-import 'package:wedding/screens/ProfileScreen/profile_screen.dart';
-import 'package:wedding/screens/VideoScreen/video_screen.dart';
-import 'package:wedding/screens/WardrobeScreen/wardrobe_screen.dart';
-import 'package:wedding/screens/webview_screen/in_app_webview.dart';
-import 'package:wedding/screens/webview_screen/webview_screen.dart';
-import 'package:wedding/widgets/countdown.dart';
-import 'package:wedding/widgets/loader.dart';
-import 'package:wedding/widgets/user_button.dart';
 
+import '../../general/color_constants.dart';
+import '../../general/navigation.dart';
+import '../../general/shared_preferences.dart';
+import '../../general/show_notification.dart';
+import '../../general/string_constants.dart';
+import '../../general/text_styles.dart';
+import '../../providers/dashboard_provider.dart';
+import '../../providers/event_provider.dart';
+import '../../providers/theme_provider.dart';
+import '../../widgets/countdown.dart';
+import '../../widgets/loader.dart';
+import '../../widgets/user_button.dart';
+import '../EventScreen/event_screen.dart';
+import '../GalleryScreen/gallery_screen.dart';
+import '../NotificationScreen/notification_screen.dart';
+import '../ProfileScreen/profile_screen.dart';
+import '../VideoScreen/video_screen.dart';
+import '../WardrobeScreen/wardrobe_screen.dart';
+import '../webview_screen/in_app_webview.dart';
+import '../webview_screen/webview_screen.dart';
 import 'home_components/clay_icon.dart';
 import 'home_screen.dart';
 
@@ -56,16 +56,14 @@ class _DashboardScreenState extends State<DashboardScreen>
   void initState() {
     super.initState();
     ShowNotification.initialize();
-    WidgetsBinding.instance!.addPostFrameCallback((_) => _loadData());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _loadData());
     _loadEvents();
   }
-
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(const AssetImage("assets/thumbnail.jpeg"),context);
-
+    precacheImage(const AssetImage("assets/thumbnail.jpeg"), context);
   }
 
   _loadData() async {
@@ -441,8 +439,15 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                                           .center,
                                                                   children: [
                                                                     Image.asset(
-                                                                        "assets/thumbnail.jpeg",fit: BoxFit.fill,height: 1080,width: 1920,),
-                                                                    Icon(
+                                                                      "assets/thumbnail.jpeg",
+                                                                      fit: BoxFit
+                                                                          .fill,
+                                                                      height:
+                                                                          1080,
+                                                                      width:
+                                                                          1920,
+                                                                    ),
+                                                                    const Icon(
                                                                       CupertinoIcons
                                                                           .play,
                                                                       size: 30,

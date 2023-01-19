@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/android/app/build/intermediates/incremental/mergeDemoDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\android\\app\\build\\intermediates\\incremental\\mergeDemoDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/e7988b24fe7b4c94a0f40efea449e3e1/transformed/media-1.1.0/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\e7988b24fe7b4c94a0f40efea449e3e1\\transformed\\media-1.1.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/9151440e432764aef23216ee3ffc1fd0/transformed/appcompat-1.5.1/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\9151440e432764aef23216ee3ffc1fd0\\transformed\\appcompat-1.5.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

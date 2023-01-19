@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/build/image_picker/intermediates/merged_res/debug/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\image_picker\\intermediates\\merged_res\\debug\\values-en-rCA\\values-en-rCA.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/values-en-rCA/values-en-rCA.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/Users/rajvaghasiya/Downloads/wedding-master/build/image_picker/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\image_picker\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rCA\\values-en-rCA.xml",
             "map": [
                 {
-                    "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/3c0be6b9a834dbecfbfbe061caecd3da/transformed/core-1.6.0/res/values-en-rCA/values-en-rCA.xml",
+                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\3c0be6b9a834dbecfbfbe061caecd3da\\transformed\\core-1.6.0\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
