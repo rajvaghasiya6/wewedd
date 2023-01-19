@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/merged_res/debug/drawable/notification_tile_bg.xml",
+        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/merged_res/debug/drawable/notification_bg.xml",
+        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/merged_res/debug/drawable/notification_bg_low.xml",
+        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/rajvaghasiya/Downloads/wedding-master/build/video_player_android/intermediates/merged_res/debug/drawable/notification_icon_background.xml",
+        "source": "/Users/rajvaghasiya/.gradle/caches/transforms-3/98d5b95dea84d2a82d769525b5de12af/transformed/core-1.7.0/res/drawable/notification_icon_background.xml"
+    }
+]

@@ -1,0 +1,8 @@
+com/magugi/volume_watcher/VolumeWatcherPlugin.java
+ com.magugi.volume_watcher.VolumeWatcherPlugin
+com/magugi/volume_watcher/VolumeChangeObserver.java
+ com.magugi.volume_watcher.VolumeChangeObserver
+ com.magugi.volume_watcher.VolumeChangeObserver$VolumeBroadcastReceiver
+ com.magugi.volume_watcher.VolumeChangeObserver$VolumeChangeListener
+com/magugi/volume_watcher/BuildConfig.java
+ com.magugi.volume_watcher.BuildConfig

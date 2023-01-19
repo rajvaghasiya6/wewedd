@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.neharishaadi.wedding",
+  "variantName": "neharishaadiDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 9,
+      "versionName": "1.0.9",
+      "outputFile": "app-neharishaadi-debug.apk"
+    }
+  ],
+  "elementType": "File"
+}
