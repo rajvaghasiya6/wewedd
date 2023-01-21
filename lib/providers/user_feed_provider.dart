@@ -3,13 +3,12 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/guest_feed_model.dart';
-import 'package:wedding/models/response_model.dart';
-import 'package:wedding/providers/user_provider.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/guest_feed_model.dart';
+import '../models/response_model.dart';
+import 'user_provider.dart';
 
 class UserFeedProvider with ChangeNotifier {
   bool isLoadedGuestFeed = false;
@@ -68,7 +67,7 @@ class UserFeedProvider with ChangeNotifier {
         ResponseClass(success: false, message: "Something went wrong");
     try {
       Response response = await dio.get(url, queryParameters: {
-        "marriage_id": marriageId,
+        "marriage_id": sharedPrefs.marriageId,
         "guest_id": sharedPrefs.guestId
       });
       if (response.statusCode == 200) {

@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/providers/theme_provider.dart';
+
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../providers/theme_provider.dart';
 
 class UserButton extends StatelessWidget {
   final double size;
@@ -39,34 +41,34 @@ class UserButton extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: CachedNetworkImage(
-                imageUrl: '${StringConstants.apiUrl}$url',
-                height: size * 0.59,
-                width: size * 0.59,
-                fit: BoxFit.cover,
-                errorWidget: (_, __, error) => Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: SvgPicture.asset(
-                    "icons/user_icon.svg",
-                    height: size * 0.44,
-                    width: size * 0.44,
-                  ),
-                ),
-                placeholder: (context, url) => const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                ),
-              ),
+              child: sharedPrefs.guestProfileImage != ''
+                  ? CachedNetworkImage(
+                      imageUrl: '${StringConstants.apiUrl}$url',
+                      height: size * 0.59,
+                      width: size * 0.59,
+                      fit: BoxFit.cover,
+                      errorWidget: (_, __, error) => Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: SvgPicture.asset(
+                          "icons/user_icon.svg",
+                          height: size * 0.44,
+                          width: size * 0.44,
+                        ),
+                      ),
+                      placeholder: (context, url) => const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      ),
+                    )
+                  : SvgPicture.asset(
+                      "icons/user_icon.svg",
+                      height: size * 0.44,
+                      width: size * 0.44,
+                    ),
             ),
           ),
-          if (url == null)
-            SvgPicture.asset(
-              "icons/user_icon.svg",
-              height: size * 0.44,
-              width: size * 0.44,
-            ),
         ],
       ),
     );

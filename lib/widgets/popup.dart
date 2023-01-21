@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:wedding/general/navigation.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/screens/AuthenticationScreens/login_screen.dart';
+
+import '../general/navigation.dart';
+import '../general/shared_preferences.dart';
+import '../general/text_styles.dart';
+import '../screens/HashtagSearchScreen/hashtag_search_screen.dart';
 
 class Popup extends StatelessWidget {
   final String message;
 
-  const Popup({required this.message, Key? key})
-      : super(key: key);
+  const Popup({required this.message, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,10 @@ class Popup extends StatelessWidget {
           child: const Text("No"),
         ),
         TextButton(
-          onPressed: (){
-            sharedPrefs.logout().then((value) {
+          onPressed: () {
+            sharedPrefs.logout(context).then((value) {
               if (value == true) {
-                nextScreenCloseOthers(
-                    context, const LoginScreen());
+                nextScreenCloseOthers(context, HashtagSearchScreen());
               }
             });
           },

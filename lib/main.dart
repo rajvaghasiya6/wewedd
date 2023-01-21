@@ -5,23 +5,24 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/models/theme_model.dart';
-import 'package:wedding/providers/dashboard_provider.dart';
-import 'package:wedding/providers/event_provider.dart';
-import 'package:wedding/providers/feed_provider.dart';
-import 'package:wedding/providers/galleryProvider.dart';
-import 'package:wedding/providers/notification_provider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/providers/user_feed_provider.dart';
-import 'package:wedding/providers/user_provider.dart';
-import 'package:wedding/providers/wardrobe_provider.dart';
-import 'package:wedding/widgets/splash.dart';
+
 import 'general/shared_preferences.dart';
+import 'models/theme_model.dart';
+import 'providers/dashboard_provider.dart';
+import 'providers/event_provider.dart';
+import 'providers/feed_provider.dart';
+import 'providers/galleryProvider.dart';
 import 'providers/guest_provider.dart';
 import 'providers/network_provider.dart';
+import 'providers/notification_provider.dart';
+import 'providers/theme_provider.dart';
+import 'providers/user_feed_provider.dart';
+import 'providers/user_provider.dart';
+import 'providers/wardrobe_provider.dart';
+import 'widgets/splash.dart';
 
-/*Marriage Id*/
-late String marriageId;
+// /*Marriage Id*/
+// late String marriageId;
 
 void mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();

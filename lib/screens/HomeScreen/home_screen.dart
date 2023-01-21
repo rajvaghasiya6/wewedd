@@ -1,9 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/providers/user_provider.dart';
-import 'package:wedding/screens/FeedScreen/feed_screen.dart';
-import 'package:wedding/screens/HomeScreen/dashboard_screen.dart';
+
+import '../../providers/dashboard_provider.dart';
+import '../../providers/theme_provider.dart';
+import '../../providers/user_provider.dart';
+import '../FeedScreen/feed_screen.dart';
+import 'dashboard_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static final GlobalKey<_HomeScreenState> pageControl = GlobalKey();
@@ -39,6 +42,24 @@ class _HomeScreenState extends State<HomeScreen> {
     messaging.getToken().then((value) {
       if (value != null) {
         context.read<UserProvider>().updateFcmToken(token: value);
+      }
+    });
+
+    context.read<DashboardProvider>().getDashboard().then((value) {
+      if (value.success == true) {
+        if (value.data != null) {
+          context.read<DashboardProvider>().dashboardModel = value.data!;
+          value.data!.isDark
+              ? context.read<ThemeProvider>().setDark()
+              : context.read<ThemeProvider>().setLight();
+          context.read<ThemeProvider>().gradient = LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color(int.parse("0xff" + value.data!.secondaryColor.first)),
+                Color(int.parse("0xff" + value.data!.secondaryColor.last)),
+              ]);
+        }
       }
     });
   }

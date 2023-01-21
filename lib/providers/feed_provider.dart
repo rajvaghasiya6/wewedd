@@ -3,14 +3,13 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/comment_model.dart';
-import 'package:wedding/models/feed_model.dart';
-import 'package:wedding/models/response_model.dart';
-import 'package:wedding/providers/user_provider.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/comment_model.dart';
+import '../models/feed_model.dart';
+import '../models/response_model.dart';
+import 'user_provider.dart';
 
 class FeedProvider with ChangeNotifier {
   bool isFeedLoaded = false;
@@ -23,7 +22,7 @@ class FeedProvider with ChangeNotifier {
     String url = StringConstants.apiUrl + StringConstants.viewFeed;
 
     var data = {
-      "marriage_id": marriageId,
+      "marriage_id": sharedPrefs.marriageId,
       "guest_id": sharedPrefs.guestId,
       "page": page,
       "limit": 10
@@ -45,7 +44,7 @@ class FeedProvider with ChangeNotifier {
         List feedList = response.data["data"];
         if (response.data["pagination"] != null) {
           Pagination pagination =
-          Pagination.fromJson(response.data["pagination"]);
+              Pagination.fromJson(response.data["pagination"]);
           responseClass.pagination = pagination;
         }
         List<FeedModel> list =
@@ -181,8 +180,7 @@ class FeedProvider with ChangeNotifier {
   Future<ResponseClass> addFeed({required FormData formData}) async {
     String url = StringConstants.apiUrl + StringConstants.addFeed;
 
-    formData.fields
-        .add(MapEntry("marriage_id", marriageId));
+    formData.fields.add(MapEntry("marriage_id", sharedPrefs.marriageId));
     formData.fields.add(MapEntry("guest_id", sharedPrefs.guestId));
     //body Data
     var data = formData;
@@ -212,13 +210,12 @@ class FeedProvider with ChangeNotifier {
       }
       isUploading = false;
       notifyListeners();
-      Fluttertoast.showToast(
-          msg: StringConstants.errorMessage);
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
       return responseClass;
     } catch (e) {
       isUploading = false;
       notifyListeners();
-        log("add feed error ->" + e.toString());
+      log("add feed error ->" + e.toString());
       return responseClass;
     }
   }

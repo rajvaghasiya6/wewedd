@@ -1,12 +1,13 @@
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/response_model.dart';
-import 'package:wedding/providers/user_provider.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/response_model.dart';
+import 'user_provider.dart';
 
 class GalleryProvider with ChangeNotifier {
   bool isLoaded = false;
@@ -21,7 +22,7 @@ class GalleryProvider with ChangeNotifier {
         ResponseClass(success: false, message: "Something went wrong");
     try {
       Response response = await dio.get(url, queryParameters: {
-        "marriage_id": marriageId,
+        "marriage_id": sharedPrefs.marriageId,
         "event_id": eventId,
         "page": page,
         "limit": 15

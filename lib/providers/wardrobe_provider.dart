@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/response_model.dart';
-import 'package:wedding/models/wardrobe_model.dart';
-import 'package:wedding/providers/user_provider.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/response_model.dart';
+import '../models/wardrobe_model.dart';
+import 'user_provider.dart';
 
 class WardrobeProvider with ChangeNotifier {
   bool isLoaded = false;
@@ -17,7 +17,7 @@ class WardrobeProvider with ChangeNotifier {
   Future<ResponseClass<List<WardrobeModel>>> getWardrobe() async {
     String url = StringConstants.apiUrl +
         StringConstants.getAllEventWardrobeForGuest +
-        "/$marriageId";
+        "/${sharedPrefs.marriageId}";
 
     //Response
     ResponseClass<List<WardrobeModel>> responseClass = ResponseClass(

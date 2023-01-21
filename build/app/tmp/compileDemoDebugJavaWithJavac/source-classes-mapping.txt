@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/neharishaadi/wedding/BuildConfig.java
- com.neharishaadi.wedding.BuildConfig

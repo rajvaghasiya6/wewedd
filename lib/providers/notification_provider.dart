@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/notification_model.dart';
-import 'package:wedding/models/response_model.dart';
-import 'package:wedding/providers/user_provider.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/notification_model.dart';
+import '../models/response_model.dart';
+import 'user_provider.dart';
 
 class NotificationProvider with ChangeNotifier {
   bool isLoaded = false;
@@ -19,7 +19,7 @@ class NotificationProvider with ChangeNotifier {
     String url = StringConstants.apiUrl + StringConstants.getAllNotification;
 
     var data = {
-      "marriage_id": marriageId,
+      "marriage_id": sharedPrefs.marriageId,
       // "guest_id": sharedPrefs.guestId,
       "page": page,
       "limit": 10

@@ -1,14 +1,14 @@
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/registration_model.dart';
-import 'package:wedding/models/response_model.dart';
-import 'package:wedding/models/user_model.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/registration_model.dart';
+import '../models/response_model.dart';
+import '../models/user_model.dart';
 
 Dio dio = Dio();
 
@@ -59,8 +59,7 @@ class UserProvider extends ChangeNotifier {
       }
       isLoading = false;
       notifyListeners();
-      Fluttertoast.showToast(
-          msg: StringConstants.errorMessage);
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
       return responseClass;
     } catch (e) {
       isLoading = false;
@@ -78,7 +77,7 @@ class UserProvider extends ChangeNotifier {
 
     //body Data
     var data = {
-      "marriage_id": marriageId,
+      "marriage_id": sharedPrefs.marriageId,
       "guest_mobile_number": mobileNo
     };
 
@@ -125,8 +124,7 @@ class UserProvider extends ChangeNotifier {
       }
       isLoading = false;
       notifyListeners();
-      Fluttertoast.showToast(
-          msg: StringConstants.errorMessage);
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
       return responseClass;
     } catch (e) {
       isLoading = false;
@@ -143,7 +141,7 @@ class UserProvider extends ChangeNotifier {
 
     //body Data
     var data = {
-      "marriage_id": marriageId,
+      "marriage_id": sharedPrefs.marriageId,
       "guest_mobile_number": mobileNo
     };
 
@@ -182,8 +180,7 @@ class UserProvider extends ChangeNotifier {
       }
       isLoading = false;
       notifyListeners();
-      Fluttertoast.showToast(
-          msg: StringConstants.errorMessage);
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
       return responseClass;
     } catch (e) {
       isLoading = false;
@@ -241,8 +238,7 @@ class UserProvider extends ChangeNotifier {
       }
       isLoading = false;
       notifyListeners();
-      Fluttertoast.showToast(
-          msg: StringConstants.errorMessage);
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
       return responseClass;
     } catch (e) {
       isLoading = false;
@@ -258,8 +254,7 @@ class UserProvider extends ChangeNotifier {
     String loginUrl =
         StringConstants.apiUrl + StringConstants.updateGuestDetails;
 
-    formData.fields
-        .add(MapEntry("marriage_id", marriageId));
+    formData.fields.add(MapEntry("marriage_id", sharedPrefs.marriageId));
     formData.fields.add(MapEntry("guest_id", sharedPrefs.guestId));
     //body Data
     var data = formData;
@@ -296,8 +291,7 @@ class UserProvider extends ChangeNotifier {
       }
       isLoading = false;
       notifyListeners();
-      Fluttertoast.showToast(
-          msg: StringConstants.errorMessage);
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
       return responseClass;
     } catch (e) {
       isLoading = false;
@@ -354,10 +348,10 @@ class UserProvider extends ChangeNotifier {
 
     //Response
     ResponseClass responseClass =
-    ResponseClass(success: false, message: "Something went wrong", data: 0);
-    var data={
-      "marriage_id" : marriageId,
-      "guest_id" : sharedPrefs.guestId,
+        ResponseClass(success: false, message: "Something went wrong", data: 0);
+    var data = {
+      "marriage_id": sharedPrefs.marriageId,
+      "guest_id": sharedPrefs.guestId,
       "fcm_token_guest": token
     };
     try {

@@ -4,12 +4,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/dashboard_model.dart';
-import 'package:wedding/models/response_model.dart';
-import 'package:wedding/providers/user_provider.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/dashboard_model.dart';
+import '../models/response_model.dart';
+import 'user_provider.dart';
 
 class DashboardProvider extends ChangeNotifier {
   bool isLoaded = false;
@@ -18,7 +18,7 @@ class DashboardProvider extends ChangeNotifier {
   Future<ResponseClass<DashboardModel>> getDashboard() async {
     String url = StringConstants.apiUrl +
         StringConstants.getMarriagesInformation +
-        "/$marriageId";
+        "/${sharedPrefs.marriageId}";
 
     //Response
     ResponseClass<DashboardModel> responseClass = ResponseClass(

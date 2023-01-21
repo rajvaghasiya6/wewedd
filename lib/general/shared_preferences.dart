@@ -1,11 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wedding/general/string_constants.dart';
+
+import '../providers/theme_provider.dart';
+import 'string_constants.dart';
 
 class SharedPrefs {
   static SharedPreferences? _sharedPrefs;
 
-  Future<bool> logout() async {
+  Future<bool> logout(BuildContext context) async {
     _sharedPrefs!.clear();
+    context.read<ThemeProvider>().setDark();
     if (sharedPrefs.guestId.isEmpty) {
       return true;
     } else {
@@ -35,6 +40,9 @@ class SharedPrefs {
   String get primaryTheme =>
       _sharedPrefs!.getString(StringConstants.primaryTheme) ?? "";
 
+  String get marriageId =>
+      _sharedPrefs!.getString(StringConstants.marriageId) ?? "";
+
   //setter
   set mobileNo(String value) {
     _sharedPrefs!.setString(StringConstants.mobileNo, value);
@@ -58,6 +66,10 @@ class SharedPrefs {
 
   set primaryTheme(String value) {
     _sharedPrefs!.setString(StringConstants.primaryTheme, value);
+  }
+
+  set marriageId(String value) {
+    _sharedPrefs!.setString(StringConstants.marriageId, value);
   }
 
   /*--------------- Check Is Login or Not --------------------*/

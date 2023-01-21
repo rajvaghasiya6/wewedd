@@ -5,15 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/navigation.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/providers/user_provider.dart';
-import 'package:wedding/screens/AuthenticationScreens/otp_screen.dart';
-import 'package:wedding/screens/HomeScreen/home_screen.dart';
-import 'package:wedding/widgets/mytextformfield.dart';
-import 'package:wedding/widgets/rounded_elevatedbutton.dart';
+
+import '../../general/color_constants.dart';
+import '../../general/navigation.dart';
+import '../../general/shared_preferences.dart';
+import '../../general/text_styles.dart';
+import '../../providers/user_provider.dart';
+import '../../widgets/mytextformfield.dart';
+import '../../widgets/rounded_elevatedbutton.dart';
+import '../HomeScreen/home_screen.dart';
+import 'otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

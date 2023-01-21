@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/models/events_model.dart';
-import 'package:wedding/providers/user_provider.dart';
 
-import '../main.dart';
+import '../general/shared_preferences.dart';
+import '../general/string_constants.dart';
+import '../models/events_model.dart';
+import 'user_provider.dart';
 
 class EventProvider with ChangeNotifier {
   bool isLoaded = false;
@@ -17,7 +17,7 @@ class EventProvider with ChangeNotifier {
   getEvents() async {
     String url = StringConstants.apiUrl +
         StringConstants.getAllEventForGuest +
-        "/$marriageId";
+        "/${sharedPrefs.marriageId}";
 
     try {
       Response response = await dio.get(

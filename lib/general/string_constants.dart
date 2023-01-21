@@ -31,6 +31,7 @@ class StringConstants {
   static String guestProfileImage = "guest_profile_image";
   static String guestIdProof = "guest_id_proof";
   static String primaryTheme = "primary_theme";
+  static String marriageId = "marriage_id";
   static String errorMessage =
       "Something went wrong, please try after sometime";
 }

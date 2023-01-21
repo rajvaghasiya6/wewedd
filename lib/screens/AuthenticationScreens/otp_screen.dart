@@ -66,7 +66,7 @@ class _OTPScreenState extends State<OTPScreen> {
     sharedPrefs.guestProfileImage = widget.loginData!.guestProfileImage;
     sharedPrefs.guestIdProof = widget.loginData!.guestIdProof;
     sharedPrefs.guestName = widget.loginData!.guestName;
-    nextScreenCloseOthers(context, HomeScreen());
+    nextScreen(context, HomeScreen());
   }
 
   @override

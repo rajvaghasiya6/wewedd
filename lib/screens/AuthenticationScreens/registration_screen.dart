@@ -9,20 +9,19 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:r_dotted_line_border/r_dotted_line_border.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/navigation.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/providers/dashboard_provider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/providers/user_provider.dart';
-import 'package:wedding/screens/AuthenticationScreens/login_screen.dart';
-import 'package:wedding/screens/ContactAdminScreen/contact_admin.dart';
-import 'package:wedding/screens/HomeScreen/home_screen.dart';
-import 'package:wedding/widgets/mytextformfield.dart';
-import 'package:wedding/widgets/rounded_elevatedbutton.dart';
 
-import '../../main.dart';
+import '../../general/color_constants.dart';
+import '../../general/navigation.dart';
+import '../../general/shared_preferences.dart';
+import '../../general/text_styles.dart';
+import '../../providers/dashboard_provider.dart';
+import '../../providers/theme_provider.dart';
+import '../../providers/user_provider.dart';
+import '../../widgets/mytextformfield.dart';
+import '../../widgets/rounded_elevatedbutton.dart';
+import '../ContactAdminScreen/contact_admin.dart';
+import '../HomeScreen/home_screen.dart';
+import 'login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   final String? mobile;
@@ -47,7 +46,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   _registerUser() async {
     if (_formKey.currentState!.validate()) {
       FormData data = FormData.fromMap({
-        "marriage_id": marriageId,
+        "marriage_id": sharedPrefs.marriageId,
         "guest_mobile_number": widget.mobile,
         "guest_name": name.text,
       });

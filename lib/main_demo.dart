@@ -1,6 +1,6 @@
-import 'package:wedding/main.dart';
+import 'main.dart';
 
 void main() {
-  marriageId = "612202261232_9727402784";
+  //marriageId = "612202261232_9727402784";
   mainCommon();
 }
