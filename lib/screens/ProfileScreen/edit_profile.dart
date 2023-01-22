@@ -3,11 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/providers/user_provider.dart';
+
+import '../../general/color_constants.dart';
+import '../../general/shared_preferences.dart';
+import '../../general/text_styles.dart';
+import '../../providers/theme_provider.dart';
+import '../../providers/user_provider.dart';
 
 editProfileDialog(BuildContext context) {
   showModalBottomSheet(
@@ -60,6 +61,11 @@ class _EditProfileDialogueState extends State<EditProfileDialogue> {
         Fluttertoast.showToast(msg: "Fail to Update Details");
       }
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override

@@ -4,15 +4,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'general/shared_preferences.dart';
+import 'hiveModels/recent_search_model.dart';
 import 'models/theme_model.dart';
 import 'providers/dashboard_provider.dart';
 import 'providers/event_provider.dart';
 import 'providers/feed_provider.dart';
 import 'providers/galleryProvider.dart';
 import 'providers/guest_provider.dart';
+import 'providers/hashtag_search_provider.dart';
 import 'providers/network_provider.dart';
 import 'providers/notification_provider.dart';
 import 'providers/theme_provider.dart';
@@ -28,6 +31,9 @@ void mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();
   await sharedPrefs.init();
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+  Hive.registerAdapter(RecentSearchAdapter());
+  await Hive.openBox<RecentSearch>('recent_search');
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
 
   runApp(
@@ -54,6 +60,9 @@ class MyApp extends StatelessWidget {
               ),
               ChangeNotifierProvider(
                 create: (context) => EventProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (context) => HashtagSearchProvider(),
               ),
               StreamProvider(
                   create: (context) =>

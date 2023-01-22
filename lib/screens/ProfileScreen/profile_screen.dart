@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -9,27 +10,27 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/custom_icons.dart';
-import 'package:wedding/general/navigation.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/providers/dashboard_provider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/providers/user_feed_provider.dart';
-import 'package:wedding/providers/user_provider.dart';
-import 'package:wedding/screens/ProfileScreen/edit_profile.dart';
-import 'package:wedding/screens/ProfileScreen/profile_tabs/profile_all_tab.dart';
-import 'package:wedding/screens/ProfileScreen/profile_tabs/profile_approved_tab.dart';
-import 'package:wedding/screens/ProfileScreen/profile_tabs/profile_pending_tab.dart';
-import 'package:wedding/screens/ViewId/viewid_image.dart';
-import 'package:wedding/screens/ViewId/viewid_pdf.dart';
-import 'package:wedding/widgets/GradientTabIndicator.dart';
-import 'package:wedding/widgets/popup.dart';
-import 'package:wedding/widgets/user_button.dart';
 
+import '../../general/color_constants.dart';
+import '../../general/custom_icons.dart';
+import '../../general/navigation.dart';
+import '../../general/shared_preferences.dart';
+import '../../general/string_constants.dart';
+import '../../general/text_styles.dart';
+import '../../providers/dashboard_provider.dart';
+import '../../providers/theme_provider.dart';
+import '../../providers/user_feed_provider.dart';
+import '../../providers/user_provider.dart';
+import '../../widgets/GradientTabIndicator.dart';
+import '../../widgets/popup.dart';
+import '../../widgets/user_button.dart';
+import '../ViewId/viewid_image.dart';
+import '../ViewId/viewid_pdf.dart';
 import 'bookmark_screen.dart';
+import 'edit_profile.dart';
+import 'profile_tabs/profile_all_tab.dart';
+import 'profile_tabs/profile_approved_tab.dart';
+import 'profile_tabs/profile_pending_tab.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -129,81 +130,151 @@ class _ProfileScreenState extends State<ProfileScreen>
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        return Wrap(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+        return Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Padding(
+              padding: const EdgeInsets.all(25),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  GestureDetector(
-                    onTap: () async {
-                      pickedImage = await getFromCamera();
-                      _cropImage(true);
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            pickedImage = await getFromGallery();
+                            _cropImage(true);
 
-                      if (pickedImage == null) {
-                        Fluttertoast.showToast(msg: "failed to pick image");
-                      }
-                      setState(() {});
-
-                      Navigator.of(context).pop();
-                    },
-                    child: const ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(right: 10.0, left: 15),
-                        child: Icon(Icons.camera_alt_outlined),
-                      ),
-                      title: Text(
-                        "Take Photo",
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15),
-                    child: Divider(),
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      pickedImage = await getFromGallery();
-                      _cropImage(true);
-
-                      if (pickedImage == null) {
-                        Fluttertoast.showToast(msg: "failed to pick image");
-                      }
-                      setState(() {});
-                      Navigator.of(context).pop();
-                    },
-                    child: const ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(right: 10.0, left: 15),
-                        child: Icon(Icons.image),
-                      ),
-                      title: Text(
-                        "Choose from Gallery",
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 25.0, bottom: 5),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if(Navigator.canPop(context)){
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: const Text(
-                          "Cancel",
+                            if (pickedImage == null) {
+                              Fluttertoast.showToast(
+                                  msg: "failed to pick image");
+                            }
+                            setState(() {});
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: timeGrey,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.image),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Choose from",
+                                        softWrap: true,
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        "gallery",
+                                        softWrap: true,
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            pickedImage = await getFromCamera();
+                            _cropImage(true);
+
+                            if (pickedImage == null) {
+                              Fluttertoast.showToast(
+                                  msg: "failed to pick image");
+                            }
+                            setState(() {});
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: timeGrey,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.camera_alt_outlined),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Take  a",
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        "Photo ",
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: lightBlack)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 18),
+                              child: Text(
+                                "  Cancel",
+                                style: poppinsNormal.copyWith(
+                                    color: lightBlack, fontSize: 15),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            )
-          ],
-        );
+            ));
       },
     );
   }

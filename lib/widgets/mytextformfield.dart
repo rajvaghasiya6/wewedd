@@ -97,7 +97,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             filled: true,
             // fillColor: white.withOpacity(0.8),
             hintText: widget.hintText ?? "",
-            hintStyle: poppinsLight.copyWith(color: grey, fontSize: 11),
+            hintStyle: poppinsNormal.copyWith(color: grey, fontSize: 13),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: widget.contentPadding ??
                 const EdgeInsets.only(left: 20, right: 8, top: 20, bottom: 20),
@@ -129,24 +129,24 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
                 : const Text(""),
             errorMaxLines: 2,
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
                 width: 0,
                 style: BorderStyle.none,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.0),
+              borderRadius: BorderRadius.circular(10),
             ),
             disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
                 width: 0,
                 style: BorderStyle.none,
               ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
                 width: 0,
                 style: BorderStyle.none,
@@ -154,7 +154,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             ),
 
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
                 width: 0,
                 color: Colors.red,

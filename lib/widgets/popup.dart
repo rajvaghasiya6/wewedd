@@ -32,7 +32,7 @@ class Popup extends StatelessWidget {
           onPressed: () {
             sharedPrefs.logout(context).then((value) {
               if (value == true) {
-                nextScreenCloseOthers(context, HashtagSearchScreen());
+                nextScreenCloseOthers(context, const HashtagSearchScreen());
               }
             });
           },

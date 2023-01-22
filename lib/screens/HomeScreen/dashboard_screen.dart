@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../general/color_constants.dart';
 import '../../general/navigation.dart';
@@ -16,7 +17,6 @@ import '../../general/text_styles.dart';
 import '../../providers/dashboard_provider.dart';
 import '../../providers/event_provider.dart';
 import '../../providers/theme_provider.dart';
-import '../../widgets/countdown.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/user_button.dart';
 import '../EventScreen/event_screen.dart';
@@ -39,16 +39,8 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen>
     with AutomaticKeepAliveClientMixin<DashboardScreen> {
-  List banners = [];
-
-  List bottomBanner = [];
-
   final CarouselController _controller = CarouselController();
-
   int _current = 0;
-
-  Duration? duration;
-
   @override
   bool get wantKeepAlive => true;
 
@@ -56,30 +48,17 @@ class _DashboardScreenState extends State<DashboardScreen>
   void initState() {
     super.initState();
     ShowNotification.initialize();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _loadData());
+    Future.delayed(const Duration(milliseconds: 0)).then((value) {
+      context.read<DashboardProvider>().getDashboard();
+    });
     _loadEvents();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(const AssetImage("assets/thumbnail.jpeg"), context);
-  }
 
-  _loadData() async {
-    await Provider.of<DashboardProvider>(context, listen: false)
-        .getDashboard()
-        .then((value) {
-      if (value.success == true) {
-        if (value.data != null) {
-          setState(() {
-            duration = value.data!.weddingDate.difference(DateTime.now());
-            banners = value.data!.banner;
-            bottomBanner = value.data!.invitationCard;
-          });
-        }
-      }
-    });
+    precacheImage(const AssetImage("assets/thumbnail.jpeg"), context);
   }
 
   _loadEvents() {
@@ -101,6 +80,8 @@ class _DashboardScreenState extends State<DashboardScreen>
     super.build(context);
     var theme = context.watch<ThemeProvider>().darkTheme;
     var dashboard = context.watch<DashboardProvider>();
+    var dashboardData = context.watch<DashboardProvider>().dashboardModel;
+    var isCountdown = context.watch<DashboardProvider>().isCountdown;
     return Container(
       decoration: BoxDecoration(
         gradient: greyToWhite,
@@ -115,9 +96,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                     )
                   : RefreshIndicator(
                       onRefresh: () async {
-                        await _loadData();
+                        await context.read<DashboardProvider>().getDashboard();
                       },
                       child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -174,41 +156,39 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 ],
                               ),
                             ),
-                            if (duration != null)
-                              if (!duration!.isNegative)
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20.0),
-                                  child: Container(
-                                    height: 180,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.84,
-                                    padding: const EdgeInsets.only(
-                                        top: 25,
-                                        left: 30,
-                                        bottom: 25,
-                                        right: 30),
-                                    decoration: BoxDecoration(
-                                        color: theme ? white : black,
-                                        gradient:
-                                            theme ? blackToBlack : greyToWhite,
-                                        borderRadius: BorderRadius.circular(10),
-                                        boxShadow: [
-                                          if (!theme)
-                                            const BoxShadow(
-                                                color: Color(0x66a9aaaf),
-                                                spreadRadius: 8,
-                                                blurRadius: 8,
-                                                offset: Offset(3, 3),
-                                                blurStyle: BlurStyle.normal),
-                                          if (!theme)
-                                            const BoxShadow(
-                                                color: Color(0xd3ffffff),
-                                                spreadRadius: 15,
-                                                blurRadius: 15,
-                                                offset: Offset(-3, -3),
-                                                blurStyle: BlurStyle.normal),
-                                        ]),
-                                    child: Row(
+                            //  if (date != null)
+                            // if (!date!.isNegative)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Container(
+                                height: 180,
+                                width: MediaQuery.of(context).size.width * 0.84,
+                                padding: const EdgeInsets.only(
+                                    top: 25, left: 30, bottom: 25, right: 30),
+                                decoration: BoxDecoration(
+                                    color: theme ? white : black,
+                                    gradient:
+                                        theme ? blackToBlack : greyToWhite,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      if (!theme)
+                                        const BoxShadow(
+                                            color: Color(0x66a9aaaf),
+                                            spreadRadius: 8,
+                                            blurRadius: 8,
+                                            offset: Offset(3, 3),
+                                            blurStyle: BlurStyle.normal),
+                                      if (!theme)
+                                        const BoxShadow(
+                                            color: Color(0xd3ffffff),
+                                            spreadRadius: 15,
+                                            blurRadius: 15,
+                                            offset: Offset(-3, -3),
+                                            blurStyle: BlurStyle.normal),
+                                    ]),
+                                child: Column(
+                                  children: [
+                                    Row(
                                       children: [
                                         Column(
                                           crossAxisAlignment:
@@ -236,8 +216,6 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                         color: timeGrey),
                                               ),
                                             ),
-                                            const Spacer(),
-                                            CountDown(duration: duration!),
                                           ],
                                         ),
                                         const Spacer(),
@@ -286,9 +264,48 @@ class _DashboardScreenState extends State<DashboardScreen>
                                         ),
                                       ],
                                     ),
-                                  ),
+                                    const Spacer(),
+                                    DateTime.parse(dashboardData!.weddingDate)
+                                            .difference(DateTime.now())
+                                            .isNegative
+                                        ? const Text('Wedding Over')
+                                        : Row(
+                                            children: [
+                                              isCountdown
+                                                  ? SlideCountdownSeparated(
+                                                      height: 45,
+                                                      width: 45,
+                                                      decoration: BoxDecoration(
+                                                          color: grey
+                                                              .withOpacity(0.2),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      duration: (DateTime.parse(
+                                                              dashboardData
+                                                                  .weddingDate)
+                                                          .difference(
+                                                              DateTime.now())),
+                                                    )
+                                                  : const SizedBox(),
+                                              const Spacer(),
+                                              Switch(
+                                                activeColor: white,
+                                                value: isCountdown,
+                                                onChanged: (bool value) {
+                                                  context
+                                                      .read<DashboardProvider>()
+                                                      .isCountdownChange();
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                  ],
                                 ),
-                            banners.isEmpty
+                              ),
+                            ),
+                            dashboardData.banner.isEmpty
                                 ? Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: Text(
@@ -337,7 +354,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                                               autoPlay: true,
                                               enlargeCenterPage: true,
                                             ),
-                                            itemCount: banners.length,
+                                            itemCount:
+                                                dashboardData.banner.length,
                                             itemBuilder: (context, itemIndex,
                                                 realIndex) {
                                               return Container(
@@ -409,8 +427,9 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             6.0),
-                                                    child: isVideo(
-                                                            banners.elementAt(
+                                                    child: isVideo(dashboardData
+                                                            .banner
+                                                            .elementAt(
                                                                 itemIndex))
                                                         ? GestureDetector(
                                                             behavior:
@@ -421,7 +440,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                                 context,
                                                                 VideoScreen(
                                                                     url:
-                                                                        "${StringConstants.apiUrl}${banners.elementAt(itemIndex)}"),
+                                                                        "${StringConstants.apiUrl}${dashboardData.banner.elementAt(itemIndex)}"),
                                                               );
                                                             },
                                                             child: Container(
@@ -459,7 +478,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                           )
                                                         : CachedNetworkImage(
                                                             imageUrl:
-                                                                "${StringConstants.apiUrl}${banners.elementAt(itemIndex)}",
+                                                                "${StringConstants.apiUrl}${dashboardData.banner.elementAt(itemIndex)}",
                                                             fit:
                                                                 BoxFit.fitWidth,
                                                             placeholder:
@@ -562,7 +581,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 )
                               ],
                             ),
-                            bottomBanner.isEmpty
+                            dashboardData.invitationCard.isEmpty
                                 ? const SizedBox()
                                 : Padding(
                                     padding: const EdgeInsets.only(
@@ -583,7 +602,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                         enlargeStrategy:
                                             CenterPageEnlargeStrategy.height,
                                       ),
-                                      items: bottomBanner.map((
+                                      items: dashboardData.invitationCard.map((
                                         bannerData,
                                       ) {
                                         return Builder(
@@ -742,8 +761,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                                   ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children:
-                                  bottomBanner.asMap().entries.map((entry) {
+                              children: dashboardData.invitationCard
+                                  .asMap()
+                                  .entries
+                                  .map((entry) {
                                 return GestureDetector(
                                   onTap: () =>
                                       _controller.animateToPage(entry.key),

@@ -14,6 +14,11 @@ import 'user_provider.dart';
 class DashboardProvider extends ChangeNotifier {
   bool isLoaded = false;
   DashboardModel? dashboardModel;
+  bool isCountdown = true;
+  isCountdownChange() {
+    isCountdown = !isCountdown;
+    notifyListeners();
+  }
 
   Future<ResponseClass<DashboardModel>> getDashboard() async {
     String url = StringConstants.apiUrl +

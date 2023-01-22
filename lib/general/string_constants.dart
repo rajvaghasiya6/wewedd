@@ -1,8 +1,8 @@
 class StringConstants {
   /*Api url*/
   //static const String apiUrl = "http://34.222.156.42:8081/";
-  static const String apiUrl = "https://api.wewed.in/";
-
+  //static const String apiUrl = "https://api.wewed.in/";
+  static const String apiUrl = "http://103.120.178.188:8080/";
   /*API NAMES*/
   static const String guestRegistration = "guest_registration";
   static const String guestLogin = "guest_login";

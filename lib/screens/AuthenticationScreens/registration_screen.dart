@@ -166,85 +166,156 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        return Wrap(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+        return Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Padding(
+              padding: const EdgeInsets.all(25),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  GestureDetector(
-                    onTap: () async {
-                      pickedImageFirst = await getFromCamera();
-                      _cropImage(true);
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            pickedImageFirst = await getFromGallery();
+                            _cropImage(true);
 
-                      if (pickedImageFirst == null) {
-                        Fluttertoast.showToast(msg: "failed to pick image");
-                      } else {
-                        pickedPdf = null;
-                      }
-                      setState(() {});
-
-                      Navigator.of(context).pop();
-                    },
-                    child: const ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(right: 10.0, left: 15),
-                        child: Icon(Icons.camera_alt_outlined),
-                      ),
-                      title: Text(
-                        "Take Photo",
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15),
-                    child: Divider(),
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      pickedImageFirst = await getFromGallery();
-                      _cropImage(true);
-
-                      if (pickedImageFirst == null) {
-                        Fluttertoast.showToast(msg: "failed to pick image");
-                      } else {
-                        pickedPdf = null;
-                      }
-                      setState(() {});
-                      Navigator.of(context).pop();
-                    },
-                    child: const ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(right: 10.0, left: 15),
-                        child: Icon(Icons.image),
-                      ),
-                      title: Text(
-                        "Choose from Gallery",
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 25.0, bottom: 5),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (Navigator.canPop(context)) {
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: const Text(
-                          "Cancel",
+                            if (pickedImageFirst == null) {
+                              Fluttertoast.showToast(
+                                  msg: "failed to pick image");
+                            } else {
+                              pickedPdf = null;
+                            }
+                            setState(() {});
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: timeGrey,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.image),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Choose from",
+                                        softWrap: true,
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        "gallery",
+                                        softWrap: true,
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            pickedImageFirst = await getFromCamera();
+                            _cropImage(true);
+
+                            if (pickedImageFirst == null) {
+                              Fluttertoast.showToast(
+                                  msg: "failed to pick image");
+                            } else {
+                              pickedPdf = null;
+                            }
+                            setState(() {});
+
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: timeGrey,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.camera_alt_outlined),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Take  a",
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        "Photo ",
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: lightBlack)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 18),
+                              child: Text(
+                                "  Cancel",
+                                style: poppinsNormal.copyWith(
+                                    color: lightBlack, fontSize: 15),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            )
-          ],
-        );
+            ));
       },
     );
   }
@@ -253,83 +324,156 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        return Wrap(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+        return Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Padding(
+              padding: const EdgeInsets.all(25),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  GestureDetector(
-                    onTap: () async {
-                      pickedImageSecond = await getFromCamera();
-                      _cropImage(false);
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            pickedImageSecond = await getFromGallery();
+                            _cropImage(false);
 
-                      if (pickedImageSecond == null) {
-                        Fluttertoast.showToast(msg: "failed to pick image");
-                      } else {
-                        pickedPdf = null;
-                      }
-                      setState(() {});
-                      Navigator.of(context).pop();
-                    },
-                    child: const ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(right: 10.0, left: 15),
-                        child: Icon(Icons.camera_alt_outlined),
-                      ),
-                      title: Text(
-                        "Take Photo",
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15),
-                    child: Divider(),
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      pickedImageSecond = await getFromGallery();
-                      _cropImage(false);
-                      if (pickedImageSecond == null) {
-                        Fluttertoast.showToast(msg: "failed to pick image");
-                      } else {
-                        pickedPdf = null;
-                      }
-                      setState(() {});
-                      Navigator.of(context).pop();
-                    },
-                    child: const ListTile(
-                      leading: Padding(
-                        padding: EdgeInsets.only(right: 10.0, left: 15),
-                        child: Icon(Icons.image),
-                      ),
-                      title: Text(
-                        "Choose from Gallery",
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 25.0, bottom: 5),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (Navigator.canPop(context)) {
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: const Text(
-                          "Cancel",
+                            if (pickedImageSecond == null) {
+                              Fluttertoast.showToast(
+                                  msg: "failed to pick image");
+                            } else {
+                              pickedPdf = null;
+                            }
+                            setState(() {});
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: timeGrey,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.image),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Choose from",
+                                        softWrap: true,
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        "gallery",
+                                        softWrap: true,
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            pickedImageSecond = await getFromCamera();
+                            _cropImage(false);
+
+                            if (pickedImageSecond == null) {
+                              Fluttertoast.showToast(
+                                  msg: "failed to pick image");
+                            } else {
+                              pickedPdf = null;
+                            }
+                            setState(() {});
+
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: timeGrey,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.camera_alt_outlined),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Take  a",
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        "Photo ",
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: lightBlack)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 18),
+                              child: Text(
+                                "  Cancel",
+                                style: poppinsNormal.copyWith(
+                                    color: lightBlack, fontSize: 15),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            )
-          ],
-        );
+            ));
       },
     );
   }

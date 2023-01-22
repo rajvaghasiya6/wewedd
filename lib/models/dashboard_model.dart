@@ -46,7 +46,7 @@ class DashboardModel {
   final String fcmTokenMarriage;
   final String marriageId;
   final String marriageName;
-  final DateTime weddingDate;
+  final String weddingDate;
 
   factory DashboardModel.fromJson(Map<String, dynamic> json) => DashboardModel(
         marriageLogo: json["marriage_logo"],
@@ -69,7 +69,7 @@ class DashboardModel {
         fcmTokenMarriage: json["fcm_token_marriage"],
         marriageId: json["marriage_id"],
         marriageName: json["marriage_name"],
-        weddingDate: DateTime.parse(json["wedding_date"],),
+        weddingDate: json["wedding_date"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -91,6 +91,6 @@ class DashboardModel {
         "fcm_token_marriage": fcmTokenMarriage,
         "marriage_id": marriageId,
         "marriage_name": marriageName,
-        "wedding_date": weddingDate.toIso8601String(),
+        "wedding_date": weddingDate,
       };
 }
