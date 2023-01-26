@@ -10,6 +10,8 @@ import '../../general/color_constants.dart';
 import '../../general/text_styles.dart';
 import '../../widgets/mytextformfield.dart';
 import 'AddWeddingComponent/add_siblings_widget.dart';
+import 'AddWeddingComponent/textfield_with_image.dart';
+import 'AddWeddingComponent/upload_image_list.dart';
 
 class AddWeddingScreen extends StatefulWidget {
   const AddWeddingScreen({Key? key}) : super(key: key);
@@ -33,11 +35,28 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
 
   TextEditingController groomMotherNameController = TextEditingController();
 
+  TextEditingController weddingDateController = TextEditingController();
+
+  TextEditingController weddingVenueController = TextEditingController();
+
   List<String> brideSibling = [];
+  List<String> brideRelative = [];
 
   List<String> groomSibling = [];
+  List<String> groomRelative = [];
 
   File? pickedImage;
+  File? brideImage;
+  File? brideFatherImage;
+  File? brideMotherImage;
+
+  File? groomImage;
+  File? groomFatherImage;
+  File? groomMotherImage;
+
+  List<File> inviteImage = [];
+  List<File> coupleImage = [];
+
   Future<File?> _cropImage(bool isFirst) async {
     File? croppedFile = await ImageCropper.cropImage(
         sourcePath: pickedImage!.path,
@@ -297,7 +316,9 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                               child: Text(
                                 "+",
                                 style: poppinsNormal.copyWith(
-                                    color: white, fontSize: 50),
+                                    color: eventGrey,
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                           ),
@@ -363,51 +384,30 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
               const SizedBox(
                 height: 30,
               ),
-              MyTextFormField(
-                hintText: "Enter Bride's Name",
-                lable: "Bride's Name",
-                controller: brideNameController,
-                maxLength: 10,
-                keyboardType: TextInputType.phone,
-                validator: (phone) {
-                  if (phone!.isEmpty) {
-                    return "Please Enter Bride's Name";
-                  }
-                  return null;
-                },
-              ),
+              TextFieldWithImage(
+                  nameController: brideNameController,
+                  newImage: brideImage,
+                  hintText: "Enter Bride's Name",
+                  lable: "Bride's Name",
+                  validatorMsg: "Please Enter Bride's Name"),
               const SizedBox(
                 height: 30,
               ),
-              MyTextFormField(
-                hintText: "Enter Bride's Father Name",
-                lable: "Bride's Father Name",
-                controller: brideFatherNameController,
-                maxLength: 10,
-                keyboardType: TextInputType.phone,
-                validator: (phone) {
-                  if (phone!.isEmpty) {
-                    return "Please Enter Bride's Father Name";
-                  }
-                  return null;
-                },
-              ),
+              TextFieldWithImage(
+                  nameController: brideFatherNameController,
+                  newImage: brideFatherImage,
+                  hintText: "Enter Bride's Father Name",
+                  lable: "Bride's Father Name",
+                  validatorMsg: "Please Enter Bride's Father Name"),
               const SizedBox(
                 height: 30,
               ),
-              MyTextFormField(
-                hintText: "Enter Bride's Mother Name",
-                lable: "Bride's Name",
-                controller: brideMotherNameController,
-                maxLength: 10,
-                keyboardType: TextInputType.phone,
-                validator: (phone) {
-                  if (phone!.isEmpty) {
-                    return "Please Enter Bride's Mother Name";
-                  }
-                  return null;
-                },
-              ),
+              TextFieldWithImage(
+                  nameController: brideMotherNameController,
+                  newImage: brideMotherImage,
+                  hintText: "Enter Bride's Mother Name",
+                  lable: "Bride's Name",
+                  validatorMsg: "Please Enter Bride's Mother Name"),
               const SizedBox(
                 height: 30,
               ),
@@ -421,7 +421,7 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: grey)),
+                            border: Border.all(color: grey, width: 0.5)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 18),
                           child: Text(
@@ -495,57 +495,9 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
               const SizedBox(
                 height: 30,
               ),
-              MyTextFormField(
-                hintText: "Enter Groom's Name",
-                lable: "Groom's Name",
-                controller: brideNameController,
-                maxLength: 10,
-                keyboardType: TextInputType.phone,
-                validator: (phone) {
-                  if (phone!.isEmpty) {
-                    return "Please Enter Groom's Name";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              MyTextFormField(
-                hintText: "Enter Groom's Father Name",
-                lable: "Groom's Father Name",
-                controller: groomFatherNameController,
-                maxLength: 10,
-                keyboardType: TextInputType.phone,
-                validator: (phone) {
-                  if (phone!.isEmpty) {
-                    return "Please Enter Groom's Father Name";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              MyTextFormField(
-                hintText: "Enter Groom's Mother Name",
-                lable: "Groom's Mother Name",
-                controller: groomMotherNameController,
-                maxLength: 10,
-                keyboardType: TextInputType.phone,
-                validator: (phone) {
-                  if (phone!.isEmpty) {
-                    return "Please Enter Groom's Mother Name";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 30,
-              ),
               GestureDetector(
                 onTap: () {
-                  addSiblingDialog(context, groomSibling);
+                  addSiblingDialog(context, brideRelative);
                 },
                 child: Row(
                   children: [
@@ -553,7 +505,118 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: grey)),
+                            border: Border.all(color: grey, width: 0.5)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          child: Text(
+                            "  + Add Bride's Relative",
+                            style: poppinsNormal.copyWith(
+                                color: grey, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              brideRelative.isNotEmpty
+                  ? const SizedBox(
+                      height: 15,
+                    )
+                  : const SizedBox(),
+              brideRelative.isNotEmpty
+                  ? ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: brideRelative.length,
+                      itemBuilder: ((context, index) {
+                        return Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: timeGrey,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(18),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        brideRelative[index],
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 15),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          brideRelative.removeAt(index);
+                                          setState(() {
+                                            brideRelative;
+                                          });
+                                        },
+                                        child: const Icon(
+                                          Icons.remove_circle,
+                                          color: Colors.red,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      }),
+                      separatorBuilder: ((context, index) {
+                        return const SizedBox(
+                          height: 15,
+                        );
+                      }),
+                    )
+                  : const SizedBox(),
+              const SizedBox(
+                height: 30,
+              ),
+              TextFieldWithImage(
+                  nameController: groomNameController,
+                  newImage: groomImage,
+                  hintText: "Enter Groom's Name",
+                  lable: "Groom's Name",
+                  validatorMsg: "Please Enter Groom's Name"),
+              const SizedBox(
+                height: 30,
+              ),
+              TextFieldWithImage(
+                  nameController: groomFatherNameController,
+                  newImage: groomFatherImage,
+                  hintText: "Enter Groom's Father Name",
+                  lable: "Groom's Father Name",
+                  validatorMsg: "Please Enter Groom's Father Name"),
+              const SizedBox(
+                height: 30,
+              ),
+              TextFieldWithImage(
+                  nameController: groomMotherNameController,
+                  newImage: groomMotherImage,
+                  hintText: "Enter Groom's Mother Name",
+                  lable: "Groom's Name",
+                  validatorMsg: "Please Enter Groom's Mother Name"),
+              const SizedBox(
+                height: 30,
+              ),
+              GestureDetector(
+                onTap: () {
+                  addSiblingDialog(context, brideSibling);
+                },
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: grey, width: 0.5)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 18),
                           child: Text(
@@ -567,12 +630,12 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                   ],
                 ),
               ),
-              brideSibling.isNotEmpty
+              groomSibling.isNotEmpty
                   ? const SizedBox(
                       height: 15,
                     )
                   : const SizedBox(),
-              brideSibling.isNotEmpty
+              groomSibling.isNotEmpty
                   ? ListView.separated(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -624,6 +687,197 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                       }),
                     )
                   : const SizedBox(),
+              const SizedBox(
+                height: 30,
+              ),
+              GestureDetector(
+                onTap: () {
+                  addSiblingDialog(context, groomRelative);
+                },
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: grey, width: 0.5)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          child: Text(
+                            "  + Add Groom's Relative",
+                            style: poppinsNormal.copyWith(
+                                color: grey, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              groomRelative.isNotEmpty
+                  ? const SizedBox(
+                      height: 15,
+                    )
+                  : const SizedBox(),
+              groomRelative.isNotEmpty
+                  ? ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: groomRelative.length,
+                      itemBuilder: ((context, index) {
+                        return Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: timeGrey,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(18),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        groomRelative[index],
+                                        style: poppinsNormal.copyWith(
+                                            color: white, fontSize: 15),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          groomRelative.removeAt(index);
+                                          setState(() {
+                                            groomRelative;
+                                          });
+                                        },
+                                        child: const Icon(
+                                          Icons.remove_circle,
+                                          color: Colors.red,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      }),
+                      separatorBuilder: ((context, index) {
+                        return const SizedBox(
+                          height: 15,
+                        );
+                      }),
+                    )
+                  : const SizedBox(),
+              const SizedBox(
+                height: 30,
+              ),
+              MyTextFormField(
+                hintText: "Enter Wedding Date",
+                lable: "Wedding Date",
+                controller: brideMotherNameController,
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Please EnterWedding Date";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              MyTextFormField(
+                hintText: "Enter Wedding Time",
+                lable: "Wedding Time",
+                controller: weddingDateController,
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Please Enter Wedding Time";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              MyTextFormField(
+                hintText: "Enter Wedding Venue",
+                lable: "Wedding Venue",
+                controller: weddingVenueController,
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Please Enter Wedding Venue";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              MyTextFormField(
+                hintText: "Enter Wedding Venue",
+                lable: "Wedding Venue",
+                controller: weddingVenueController,
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Please Enter Wedding Venue";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: grey, width: 0.5)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          child: Text(
+                            "  + Add New Event",
+                            style: poppinsNormal.copyWith(
+                                color: grey, fontSize: 15),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    const Text("Upload\nInvite"),
+                    const SizedBox(
+                      width: 40,
+                    ),
+                    UploadImageList(imageList: inviteImage),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const Text("upload minimum 5 couple images"),
+              const SizedBox(
+                height: 15,
+              ),
+              UploadImageList(imageList: coupleImage),
             ],
           ),
         ),

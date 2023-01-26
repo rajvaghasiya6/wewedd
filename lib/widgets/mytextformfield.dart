@@ -25,6 +25,8 @@ class MyTextFormField extends StatefulWidget {
   bool? isEnableInteractiveSelection;
   late bool isEnable = true;
   late Widget? icon;
+  late Widget? suffix;
+  late Widget? suffixIcon;
   late int? maxLines;
   late int? minLines;
   List<TextInputFormatter>? inputFormatters;
@@ -47,6 +49,8 @@ class MyTextFormField extends StatefulWidget {
       this.readOnly = false,
       this.isEnableInteractiveSelection,
       this.icon,
+      this.suffix,
+      this.suffixIcon,
       this.maxLines,
       this.minLines,
       this.contentPadding,
@@ -100,33 +104,15 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             hintStyle: poppinsNormal.copyWith(color: grey, fontSize: 13),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             contentPadding: widget.contentPadding ??
-                const EdgeInsets.only(left: 20, right: 8, top: 20, bottom: 20),
+                const EdgeInsets.only(left: 20, right: 0, top: 20, bottom: 20),
             counterText: "",
             errorStyle: TextStyle(
                 color: Colors.red.shade500,
                 fontWeight: FontWeight.w500,
                 fontSize: 12),
             prefixIcon: widget.icon,
-            suffixIcon: widget.showEye
-                ? GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        widget.isPassword = !widget.isPassword;
-                      });
-                    },
-                    child: widget.isPassword
-                        ? Icon(
-                            Icons.remove_red_eye_outlined,
-                            color: hintText,
-                            size: 21,
-                          )
-                        : Icon(
-                            Icons.visibility_off,
-                            color: hintText,
-                            size: 21,
-                          ),
-                  )
-                : const Text(""),
+            suffix: widget.suffix,
+            suffixIcon: widget.suffixIcon,
             errorMaxLines: 2,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),

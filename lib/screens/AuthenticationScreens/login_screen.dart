@@ -3,17 +3,14 @@ import 'dart:developer';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
 import '../../general/navigation.dart';
-import '../../general/shared_preferences.dart';
 import '../../general/text_styles.dart';
 import '../../providers/user_provider.dart';
 import '../../widgets/mytextformfield.dart';
 import '../../widgets/rounded_elevatedbutton.dart';
-import '../HomeScreen/home_screen.dart';
 import 'otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -35,28 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
       Provider.of<UserProvider>(context, listen: false)
           .getUserData(mobileNo: number.text)
           .then((value) {
-        if (number.text == "0123456789") {
-          log("hello");
-          if (value.data != null) {
-            sharedPrefs.mobileNo = value.data!.guestMobileNumber;
-            sharedPrefs.guestId = value.data!.guestId;
-            sharedPrefs.guestProfileImage = value.data!.guestProfileImage;
-            sharedPrefs.guestIdProof = value.data!.guestIdProof;
-            sharedPrefs.guestName = value.data!.guestName;
-            nextScreenCloseOthers(context, HomeScreen());
-          } else {
-            Fluttertoast.showToast(
-                msg: "Something went wrong, please try after sometime");
-          }
-        } else {
-          nextScreen(
-              context,
-              OTPScreen(
-                loginData: value.data,
-                mobile: number.text,
-                isRegister: value.success,
-              ));
-        }
+        nextScreen(
+            context,
+            OTPScreen(
+              loginData: value.data,
+              mobile: number.text,
+              isRegister: value.success,
+            ));
       }, onError: (e) {
         log("$e");
       });

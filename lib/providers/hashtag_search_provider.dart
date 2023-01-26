@@ -12,6 +12,7 @@ import 'user_provider.dart';
 
 class HashtagSearchProvider extends ChangeNotifier {
   bool isLoaded = false;
+  bool isLoading = false;
   MarriageDetail? marriageDetail;
 
   Future<ResponseClass<MarriageDetail>> getHashtagSearchData(
@@ -23,13 +24,15 @@ class HashtagSearchProvider extends ChangeNotifier {
         success: false, message: "Something went wrong", data: marriageDetail);
     try {
       isLoaded = true;
+      isLoading = true;
+      notifyListeners();
       Response response = await dio.post(url, data: {"text": hashtag});
       if (response.statusCode == 200) {
         responseClass.success = response.data["is_success"];
         responseClass.message = response.data["message"];
         responseClass.data = MarriageDetail.fromJson(response.data["data"][0]);
         marriageDetail = responseClass.data;
-
+        isLoading = false;
         isLoaded = false;
         notifyListeners();
       }
@@ -37,19 +40,24 @@ class HashtagSearchProvider extends ChangeNotifier {
     } on DioError catch (e) {
       log(e.toString());
       isLoaded = false;
-      notifyListeners();
+      isLoading = false;
       Fluttertoast.showToast(msg: StringConstants.errorMessage);
+      notifyListeners();
+
       return responseClass;
     } on SocketException catch (e) {
       isLoaded = false;
+      isLoading = false;
+      Fluttertoast.showToast(msg: "No internet");
       notifyListeners();
       if (kDebugMode) {
         log("search error->" + e.toString());
       }
-      Fluttertoast.showToast(msg: "No internet");
+
       return responseClass;
     } catch (e) {
       isLoaded = false;
+      isLoading = false;
       notifyListeners();
       if (kDebugMode) {
         log("search error ->" + e.toString());
