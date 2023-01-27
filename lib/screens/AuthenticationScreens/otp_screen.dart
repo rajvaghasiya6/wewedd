@@ -11,22 +11,22 @@ import 'package:wedding/general/color_constants.dart';
 import 'package:wedding/general/navigation.dart';
 import 'package:wedding/general/shared_preferences.dart';
 import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/models/user_model.dart';
 import 'package:wedding/providers/theme_provider.dart';
 import 'package:wedding/providers/user_provider.dart';
 import 'package:wedding/screens/AuthenticationScreens/registration_screen.dart';
-import 'package:wedding/screens/ContactAdminScreen/contact_admin.dart';
-import 'package:wedding/screens/HomeScreen/home_screen.dart';
+import 'package:wedding/screens/HashtagSearchScreen/hashtag_search_screen.dart';
 import 'package:wedding/widgets/rounded_elevatedbutton.dart';
 
 class OTPScreen extends StatefulWidget {
   bool isRegister;
-  UserModel? loginData;
+  String userId;
+  String userName;
   String mobile;
 
   OTPScreen(
       {Key? key,
-      required this.loginData,
+      required this.userId,
+      required this.userName,
       required this.mobile,
       required this.isRegister})
       : super(key: key);
@@ -39,7 +39,7 @@ class _OTPScreenState extends State<OTPScreen> {
   TextEditingController smsController = TextEditingController();
   bool hasErr = false;
   String msg = "";
-  String otp = "1234567";
+  String otp = "";
 
   @override
   void initState() {
@@ -61,12 +61,9 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 
   sharedPrefsData() {
-    sharedPrefs.mobileNo = widget.loginData!.guestMobileNumber;
-    sharedPrefs.guestId = widget.loginData!.guestId;
-    sharedPrefs.guestProfileImage = widget.loginData!.guestProfileImage;
-    sharedPrefs.guestIdProof = widget.loginData!.guestIdProof;
-    sharedPrefs.guestName = widget.loginData!.guestName;
-    nextScreen(context, HomeScreen());
+    sharedPrefs.mobileNo = widget.mobile;
+    sharedPrefs.userId = widget.userId;
+    sharedPrefs.userName = widget.userName;
   }
 
   @override
@@ -137,7 +134,10 @@ class _OTPScreenState extends State<OTPScreen> {
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
                       InkWell(
-                        onTap: sendSMS,
+                        onTap: () {
+                          sendSMS();
+                          smsController.clear();
+                        },
                         borderRadius: BorderRadius.circular(6),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -178,11 +178,8 @@ class _OTPScreenState extends State<OTPScreen> {
                               mobile: widget.mobile,
                             ));
                       } else {
-                        if (widget.loginData!.guestStatus == "Approved") {
-                          sharedPrefsData();
-                        } else {
-                          nextScreenCloseOthers(context, const ContactAdmin());
-                        }
+                        sharedPrefsData();
+                        nextScreen(context, const HashtagSearchScreen());
                       }
                     } else {
                       setState(() {

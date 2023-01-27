@@ -122,7 +122,7 @@ class _EditProfileDialogueState extends State<EditProfileDialogue> {
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     width: 0,
-                    color: theme ? white : black,
+                    color: black,
                     style: BorderStyle.solid,
                   ),
                 ),

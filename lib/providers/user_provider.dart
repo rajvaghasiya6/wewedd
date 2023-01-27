@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../general/shared_preferences.dart';
 import '../general/string_constants.dart';
-import '../models/registration_model.dart';
 import '../models/response_model.dart';
 import '../models/user_model.dart';
 
@@ -18,17 +17,18 @@ Dio dio = Dio(options);
 
 class UserProvider extends ChangeNotifier {
   UserModel? user;
-  RegistrationModel? register;
+
   bool isLoading = false;
 
-  Future<ResponseClass<RegistrationModel>> registerUser(
-      {required FormData formData}) async {
-    String url = StringConstants.apiUrl + StringConstants.guestRegistration;
+  Future<ResponseClass> registerUser({required FormData formData}) async {
+    String url = StringConstants.apiUrl + StringConstants.userRegistration;
     //body Data
 
     //Response
-    ResponseClass<RegistrationModel> responseClass = ResponseClass(
-        success: false, message: "Something went wrong", data: register);
+    ResponseClass responseClass = ResponseClass(
+      success: false,
+      message: "Something went wrong",
+    );
     try {
       isLoading = true;
       notifyListeners();
@@ -44,7 +44,7 @@ class UserProvider extends ChangeNotifier {
       if (response.statusCode == 201) {
         responseClass.success = response.data["is_success"];
         responseClass.message = response.data["message"];
-        responseClass.data = RegistrationModel.fromJson(response.data["data"]);
+        responseClass.data = response.data["data"];
         isLoading = false;
         notifyListeners();
       }
@@ -70,6 +70,99 @@ class UserProvider extends ChangeNotifier {
       notifyListeners();
       if (kDebugMode) {
         log("registerUser error ->" + e.toString());
+      }
+      return responseClass;
+    }
+  }
+
+  Future<ResponseClass<String>> sendOTP(Map<String, dynamic> data) async {
+    String url = StringConstants.apiUrl + StringConstants.sms;
+
+    ResponseClass<String> responseClass = ResponseClass(
+        success: false, message: "Something went wrong", data: "");
+    try {
+      Response response = await dio.post(url, data: data, options: Options(
+        validateStatus: (status) {
+          return status == 200 || status == 400;
+        },
+      ));
+      if (response.statusCode == 200) {
+        responseClass.success = response.data["is_success"];
+        responseClass.message = response.data["message"];
+        responseClass.data = response.data["data"];
+
+        notifyListeners();
+      }
+      if (response.statusCode == 400) {
+        Fluttertoast.showToast(msg: response.data["message"]);
+      }
+
+      return responseClass;
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        log(e.toString());
+      }
+
+      notifyListeners();
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
+      return responseClass;
+    } catch (e) {
+      notifyListeners();
+      if (kDebugMode) {
+        log("otp error ->" + e.toString());
+      }
+      return responseClass;
+    }
+  }
+
+  Future<ResponseClass> userLogin({required String mobileNo}) async {
+    String loginUrl = StringConstants.apiUrl + StringConstants.userLogin;
+
+    //body Data
+    var data = {"mobile_number": mobileNo};
+
+    //Response
+    ResponseClass responseClass = ResponseClass(
+        success: false, message: "Something went wrong", data: '');
+    try {
+      isLoading = true;
+      notifyListeners();
+      Response response = await dio.post(
+        loginUrl,
+        data: data,
+        options: Options(validateStatus: (status) {
+          return status == 401 || status == 200;
+        }),
+      );
+      if (response.statusCode == 200) {
+        responseClass.success = response.data["is_success"];
+        responseClass.message = response.data["message"];
+        responseClass.data = response.data["data"];
+
+        isLoading = false;
+        notifyListeners();
+      }
+      if (response.statusCode == 401) {
+        responseClass.success = response.data["is_success"];
+        responseClass.message = response.data["message"];
+        Fluttertoast.showToast(msg: responseClass.message);
+        isLoading = false;
+        notifyListeners();
+      }
+      return responseClass;
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        log(e.toString());
+      }
+      isLoading = false;
+      notifyListeners();
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
+      return responseClass;
+    } catch (e) {
+      isLoading = false;
+      notifyListeners();
+      if (kDebugMode) {
+        log("login error ->" + e.toString());
       }
       return responseClass;
     }
@@ -220,9 +313,9 @@ class UserProvider extends ChangeNotifier {
             responseClass.data?.guestStatus == "Approved") {
           sharedPrefs.mobileNo = user!.guestMobileNumber;
           sharedPrefs.guestId = user!.guestId;
-          sharedPrefs.guestProfileImage = user!.guestProfileImage;
-          sharedPrefs.guestIdProof = user!.guestIdProof;
-          sharedPrefs.guestName = user!.guestName;
+          // sharedPrefs.guestProfileImage = user!.guestProfileImage;
+          // sharedPrefs.guestIdProof = user!.guestIdProof;
+          // sharedPrefs.guestName = user!.guestName;
         }
         isLoading = false;
         notifyListeners();
@@ -302,46 +395,6 @@ class UserProvider extends ChangeNotifier {
       notifyListeners();
       if (kDebugMode) {
         log("update user error ->" + e.toString());
-      }
-      return responseClass;
-    }
-  }
-
-  Future<ResponseClass<String>> sendOTP(Map<String, dynamic> data) async {
-    String url = StringConstants.apiUrl + StringConstants.sms;
-
-    ResponseClass<String> responseClass = ResponseClass(
-        success: false, message: "Something went wrong", data: "");
-    try {
-      Response response = await dio.post(url, data: data, options: Options(
-        validateStatus: (status) {
-          return status == 200 || status == 400;
-        },
-      ));
-      if (response.statusCode == 200) {
-        responseClass.success = response.data["is_success"];
-        responseClass.message = response.data["message"];
-        responseClass.data = response.data["data"];
-
-        notifyListeners();
-      }
-      if (response.statusCode == 400) {
-        Fluttertoast.showToast(msg: response.data["message"]);
-      }
-
-      return responseClass;
-    } on DioError catch (e) {
-      if (kDebugMode) {
-        log(e.toString());
-      }
-
-      notifyListeners();
-      Fluttertoast.showToast(msg: StringConstants.errorMessage);
-      return responseClass;
-    } catch (e) {
-      notifyListeners();
-      if (kDebugMode) {
-        log("otp error ->" + e.toString());
       }
       return responseClass;
     }

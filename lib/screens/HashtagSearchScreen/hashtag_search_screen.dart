@@ -11,9 +11,9 @@ import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
 import '../../providers/hashtag_search_provider.dart';
 import '../../widgets/loader.dart';
+import '../../widgets/user_button.dart';
 import '../AddWedding/add_wedding_screen.dart';
-import '../AuthenticationScreens/login_screen.dart';
-import '../HomeScreen/home_screen.dart';
+import '../ProfileScreen/admin_profile.dart';
 
 class HashtagSearchScreen extends StatefulWidget {
   const HashtagSearchScreen({Key? key}) : super(key: key);
@@ -32,15 +32,15 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
   @override
   bool get wantKeepAlive => true;
 
-  checkLoginStatus(BuildContext context) async {
-    sharedPrefs.isLogin().then((value) {
-      if (value) {
-        nextScreen(context, HomeScreen());
-      } else {
-        nextScreen(context, const LoginScreen());
-      }
-    });
-  }
+  // checkLoginStatus(BuildContext context) async {
+  //   sharedPrefs.isLogin().then((value) {
+  //     if (value) {
+  //       nextScreen(context, HomeScreen());
+  //     } else {
+  //       nextScreen(context, const LoginScreen());
+  //     }
+  //   });
+  // }
 
   searchHashtag(BuildContext context, String hashtag) {
     if (searchController.text.trim() != '') {
@@ -58,7 +58,7 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
                 searchTime: DateTime.now());
             dataBox.put(value.data!.marriageId, recentSearch);
 
-            checkLoginStatus(context);
+            // checkLoginStatus(context);
           } else {
             Fluttertoast.showToast(msg: 'No hashtag');
           }
@@ -104,18 +104,16 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
                               vertical: 20,
                             ),
                             child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  // sharedPrefs.guestId != ''
-                                  //     ? UserButton(
-                                  //         url: sharedPrefs.guestProfileImage,
-                                  //         size: 45,
-                                  //         pushScreen: () {
-                                  //           nextScreen(
-                                  //               context, const ProfileScreen());
-                                  //         },
-                                  //       )
-                                  //     : Container(),
+                                  UserButton(
+                                    url: sharedPrefs.guestProfileImage,
+                                    size: 45,
+                                    pushScreen: () {
+                                      nextScreen(context, const AdminProfile());
+                                    },
+                                  ),
                                   ElevatedButton(
                                       onPressed: () {
                                         nextScreen(
@@ -131,11 +129,11 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 14),
+                                            vertical: 12),
                                         child: Text(
                                           "+ Add New Wedding",
                                           style: poppinsNormal.copyWith(
-                                              color: white, fontSize: 16),
+                                              color: grey, fontSize: 14),
                                         ),
                                       ))
                                 ]),
@@ -244,7 +242,7 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
                                           onTap: () {
                                             sharedPrefs.marriageId =
                                                 data!.marriageId;
-                                            checkLoginStatus(context);
+                                            //checkLoginStatus(context);
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(

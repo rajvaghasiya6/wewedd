@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../general/navigation.dart';
 import '../general/shared_preferences.dart';
 import '../general/text_styles.dart';
-import '../screens/HashtagSearchScreen/hashtag_search_screen.dart';
+import '../screens/AuthenticationScreens/login_screen.dart';
 
 class Popup extends StatelessWidget {
   final String message;
@@ -32,7 +32,7 @@ class Popup extends StatelessWidget {
           onPressed: () {
             sharedPrefs.logout(context).then((value) {
               if (value == true) {
-                nextScreenCloseOthers(context, const HashtagSearchScreen());
+                nextScreenCloseOthers(context, const LoginScreen());
               }
             });
           },

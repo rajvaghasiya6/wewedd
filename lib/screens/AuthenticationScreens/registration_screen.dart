@@ -19,8 +19,7 @@ import '../../providers/theme_provider.dart';
 import '../../providers/user_provider.dart';
 import '../../widgets/mytextformfield.dart';
 import '../../widgets/rounded_elevatedbutton.dart';
-import '../ContactAdminScreen/contact_admin.dart';
-import '../HomeScreen/home_screen.dart';
+import '../HashtagSearchScreen/hashtag_search_screen.dart';
 import 'login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -46,9 +45,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   _registerUser() async {
     if (_formKey.currentState!.validate()) {
       FormData data = FormData.fromMap({
-        "marriage_id": sharedPrefs.marriageId,
-        "guest_mobile_number": widget.mobile,
-        "guest_name": name.text,
+        "mobile_number": widget.mobile,
+        "name": name.text,
       });
       if (isIdRequire) {
         if (pickedImageFirst == null &&
@@ -61,7 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       if (pickedImageFirst != null) {
         data.files.add(
           MapEntry(
-            "guest_id_proof",
+            "user_id_proof",
             await MultipartFile.fromFile(pickedImageFirst!.path),
           ),
         );
@@ -69,7 +67,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       if (pickedImageSecond != null) {
         data.files.add(
           MapEntry(
-            "guest_id_proof",
+            "user_id_proof",
             await MultipartFile.fromFile(pickedImageSecond!.path),
           ),
         );
@@ -77,7 +75,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       if (pickedPdf != null) {
         data.files.add(
           MapEntry(
-            "guest_id_proof",
+            "user_id_proof",
             await MultipartFile.fromFile(pickedPdf!.path),
           ),
         );
@@ -87,18 +85,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           .then((value) {
         if (value.success == true) {
           if (value.data != null) {
-            if (value.data!.guestStatus.toLowerCase() == "approved") {
-              sharedPrefs.mobileNo = value.data!.guestMobileNumber;
-              sharedPrefs.guestId = value.data!.guestId;
-              sharedPrefs.guestProfileImage = value.data!.guestProfileImage;
-              sharedPrefs.guestIdProof = value.data!.guestIdProof;
-              sharedPrefs.guestName = value.data!.guestName;
-              nextScreenCloseOthers(context, HomeScreen());
-            } else {
-              nextScreenCloseOthers(context, const ContactAdmin());
-            }
-          } else {
-            Fluttertoast.showToast(msg: "Something went wrong");
+            sharedPrefs.userId = widget.mobile!;
+            print(
+                'registration data ${value.data} ,${value.message},${value.success}');
+            nextScreenCloseOthers(context, const HashtagSearchScreen());
           }
         }
       });

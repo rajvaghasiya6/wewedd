@@ -11,7 +11,7 @@ class SharedPrefs {
   Future<bool> logout(BuildContext context) async {
     _sharedPrefs!.clear();
     context.read<ThemeProvider>().setDark();
-    if (sharedPrefs.guestId.isEmpty) {
+    if (sharedPrefs.userId.isEmpty) {
       return true;
     } else {
       return false;
@@ -27,6 +27,11 @@ class SharedPrefs {
       _sharedPrefs!.getString(StringConstants.mobileNo) ?? "";
 
   String get guestId => _sharedPrefs!.getString(StringConstants.guestId) ?? "";
+
+  String get userId => _sharedPrefs!.getString(StringConstants.userId) ?? "";
+
+  String get userName =>
+      _sharedPrefs!.getString(StringConstants.userName) ?? "";
 
   String get guestName =>
       _sharedPrefs!.getString(StringConstants.guestName) ?? "";
@@ -52,6 +57,14 @@ class SharedPrefs {
     _sharedPrefs!.setString(StringConstants.guestId, value);
   }
 
+  set userId(String value) {
+    _sharedPrefs!.setString(StringConstants.userId, value);
+  }
+
+  set userName(String value) {
+    _sharedPrefs!.setString(StringConstants.userName, value);
+  }
+
   set guestName(String value) {
     _sharedPrefs!.setString(StringConstants.guestName, value);
   }
@@ -74,8 +87,8 @@ class SharedPrefs {
 
   /*--------------- Check Is Login or Not --------------------*/
   Future<bool> isLogin() async {
-    String guestId = sharedPrefs.guestId;
-    if (guestId == "" || guestId.isEmpty) {
+    String userId = sharedPrefs.userId;
+    if (userId == "" || userId.isEmpty) {
       return false;
     } else {
       return true;

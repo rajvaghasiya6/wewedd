@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../general/navigation.dart';
 import '../general/shared_preferences.dart';
+import '../screens/AuthenticationScreens/login_screen.dart';
 import '../screens/HashtagSearchScreen/hashtag_search_screen.dart';
-import '../screens/HomeScreen/home_screen.dart';
 import 'loader.dart';
 
 class Splash extends StatefulWidget {
@@ -22,9 +22,10 @@ class _SplashState extends State<Splash> {
         const Duration(seconds: 3),
         () => nextScreenReplace(
             context,
-            sharedPrefs.marriageId == ''
-                ? HashtagSearchScreen()
-                : HomeScreen()));
+            (sharedPrefs.userId == '' && sharedPrefs.mobileNo == '') ||
+                    (sharedPrefs.userId.isEmpty && sharedPrefs.mobileNo.isEmpty)
+                ? const LoginScreen()
+                : const HashtagSearchScreen()));
   }
 
   // checkLoginStatus() async {

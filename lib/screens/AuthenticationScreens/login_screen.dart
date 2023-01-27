@@ -30,15 +30,17 @@ class _LoginScreenState extends State<LoginScreen> {
   _loginUser() async {
     if (_formKey.currentState!.validate()) {
       Provider.of<UserProvider>(context, listen: false)
-          .getUserData(mobileNo: number.text)
+          .userLogin(mobileNo: number.text)
           .then((value) {
         nextScreen(
             context,
             OTPScreen(
-              loginData: value.data,
               mobile: number.text,
               isRegister: value.success,
+              userId: value.data['_id'],
+              userName: value.data['name'],
             ));
+        print('login detail ${value.data}');
       }, onError: (e) {
         log("$e");
       });

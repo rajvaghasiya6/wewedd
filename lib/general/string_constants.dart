@@ -5,7 +5,9 @@ class StringConstants {
   static const String apiUrl = "http://103.120.178.188:8080/";
   /*API NAMES*/
   static const String guestRegistration = "guest_registration";
+  static const String userRegistration = "user_registration";
   static const String guestLogin = "guest_login";
+  static const String userLogin = "user_login";
   static String getMarriagesInformation = "get_marriages_information";
   static String getAllEventForGuest = "get_all_event_for_guest";
   static String getAllGallery = "get_gallery_for_guest";
@@ -27,6 +29,8 @@ class StringConstants {
   /*SharedPreference Keys*/
   static String mobileNo = "mobileNo";
   static String guestId = "guest_id";
+  static String userId = "user_id";
+  static String userName = "user_name";
   static String guestName = "guest_name";
   static String guestProfileImage = "guest_profile_image";
   static String guestIdProof = "guest_id_proof";
