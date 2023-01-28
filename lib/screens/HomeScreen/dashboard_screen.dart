@@ -111,13 +111,21 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  UserButton(
-                                    url: sharedPrefs.guestProfileImage,
-                                    size: 45,
-                                    pushScreen: () {
-                                      nextScreen(
-                                          context, const ProfileScreen());
-                                    },
+                                  Row(
+                                    children: [
+                                      BackButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                      ),
+                                      UserButton(
+                                        url: sharedPrefs.guestProfileImage,
+                                        size: 45,
+                                        pushScreen: () {
+                                          nextScreen(
+                                              context, const ProfileScreen());
+                                        },
+                                      ),
+                                    ],
                                   ),
                                   Row(
                                     children: [

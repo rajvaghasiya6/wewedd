@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     messaging = FirebaseMessaging.instance;
     messaging.getToken().then((value) {
+      print(value);
       if (value != null) {
         context.read<UserProvider>().updateFcmToken(token: value);
       }
@@ -52,12 +53,21 @@ class _HomeScreenState extends State<HomeScreen> {
           value.data!.isDark
               ? context.read<ThemeProvider>().setDark()
               : context.read<ThemeProvider>().setLight();
-          context.read<ThemeProvider>().gradient = LinearGradient(
+          context.read<ThemeProvider>().gradient = const LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [
-                Color(int.parse("0xff" + value.data!.secondaryColor.first)),
-                Color(int.parse("0xff" + value.data!.secondaryColor.last)),
+              colors:
+                  //  value.data?.secondaryColor != null
+                  //     ? [
+                  //         Color(
+                  //             int.parse("0xff" + value.data!.secondaryColor.first)),
+                  //         Color(
+                  //             int.parse("0xff" + value.data!.secondaryColor.last)),
+                  //       ]
+                  //     :
+                  [
+                Color(0xfff3686d),
+                Color(0xffed2831),
               ]);
         }
       }

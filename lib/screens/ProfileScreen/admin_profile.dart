@@ -8,16 +8,21 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../general/color_constants.dart';
 import '../../general/custom_icons.dart';
+import '../../general/navigation.dart';
 import '../../general/shared_preferences.dart';
+import '../../general/string_constants.dart';
 import '../../general/text_styles.dart';
 import '../../providers/theme_provider.dart';
+import '../../providers/user_provider.dart';
 import '../../widgets/popup.dart';
 import '../../widgets/user_button.dart';
+import '../ViewId/viewid_image.dart';
+import '../ViewId/viewid_pdf.dart';
 import 'edit_profile.dart';
+import 'profile_tabs/hosted_wedding_card.dart';
 
 class AdminProfile extends StatefulWidget {
   const AdminProfile({Key? key}) : super(key: key);
@@ -26,27 +31,18 @@ class AdminProfile extends StatefulWidget {
   State<AdminProfile> createState() => _AdminProfileState();
 }
 
-class _AdminProfileState extends State<AdminProfile>
-    with AutomaticKeepAliveClientMixin<AdminProfile> {
-  @override
-  bool get wantKeepAlive => true;
-
+class _AdminProfileState extends State<AdminProfile> {
   bool isViewId = true;
   File? pickedImage;
 
   @override
   void initState() {
     super.initState();
-    // if (context.read<DashboardProvider>().dashboardModel != null) {
-    //   isViewId =
-    //       context.read<DashboardProvider>().dashboardModel!.isGuestsIdProof;
-    // }
-    // Future.delayed(const Duration(milliseconds: 0)).then((value) {
-    //   context.read<UserProvider>().getUserData(mobileNo: sharedPrefs.mobileNo);
-    // });
-    // Future.delayed(const Duration(milliseconds: 0)).then((value) {
-    //   context.read<UserFeedProvider>().getGuestFeed(type: "All");
-    // });
+    Future.delayed(const Duration(milliseconds: 0)).then((value) {
+      context
+          .read<UserProvider>()
+          .userHostedMarriages(mobileNo: sharedPrefs.mobileNo);
+    });
   }
 
   Future<void> _cropImage(bool isFirst) async {
@@ -266,9 +262,9 @@ class _AdminProfileState extends State<AdminProfile>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     var theme = context.watch<ThemeProvider>().darkTheme;
-    //  var user = context.watch<UserProvider>().user;
+    var isLoading = context.watch<UserProvider>().ishostedLoading;
+    var hostedMarriages = context.watch<UserProvider>().hostedMarriages;
     return Container(
       decoration: BoxDecoration(
         gradient: greyToWhite,
@@ -434,34 +430,35 @@ class _AdminProfileState extends State<AdminProfile>
                                   if (isViewId)
                                     InkWell(
                                       onTap: () {
-                                        // if (user != null) {
-                                        //   if (user.guestIdProof.first
-                                        //           .split(".")
-                                        //           .last ==
-                                        //       "pdf") {
-                                        //     nextScreen(
-                                        //         context,
-                                        //         ViewIdPdf(
-                                        //             url:
-                                        //                 StringConstants.apiUrl +
-                                        //                     user.guestIdProof
-                                        //                         .first));
-                                        //   } else {
-                                        //     nextScreen(
-                                        //         context,
-                                        //         ViewIdImages(
-                                        //           urlFirst: StringConstants
-                                        //                   .apiUrl +
-                                        //               user.guestIdProof.first,
-                                        //           urlSecond: user.guestIdProof
-                                        //                       .length >
-                                        //                   1
-                                        //               ? StringConstants.apiUrl +
-                                        //                   user.guestIdProof.last
-                                        //               : null,
-                                        //         ));
-                                        //   }
-                                        // }
+                                        if (sharedPrefs.userIdProof.first
+                                                .split(".")
+                                                .last ==
+                                            "pdf") {
+                                          nextScreen(
+                                              context,
+                                              ViewIdPdf(
+                                                url: StringConstants.apiUrl +
+                                                    sharedPrefs
+                                                        .userIdProof.first,
+                                              ));
+                                        } else {
+                                          nextScreen(
+                                              context,
+                                              ViewIdImages(
+                                                urlFirst:
+                                                    StringConstants.apiUrl +
+                                                        sharedPrefs
+                                                            .userIdProof.first,
+                                                urlSecond: sharedPrefs
+                                                            .userIdProof
+                                                            .length >
+                                                        1
+                                                    ? StringConstants.apiUrl +
+                                                        sharedPrefs
+                                                            .userIdProof.last
+                                                    : null,
+                                              ));
+                                        }
                                       },
                                       child: Container(
                                         height: 40,
@@ -500,122 +497,46 @@ class _AdminProfileState extends State<AdminProfile>
                     ),
                   ];
                 },
-                body: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Wedding Hosted",
-                        style: poppinsBold.copyWith(color: white, fontSize: 16),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: grey.withOpacity(0.1),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 60,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: lightBlack,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 30,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "data!.hashtag",
-                                        style: poppinsBold.copyWith(
-                                            color: white, fontSize: 16),
-                                      ),
-                                      const SizedBox(
-                                        height: 14,
-                                      ),
-                                      Text(
-                                        "data.weddingName",
-                                        style: poppinsNormal.copyWith(
-                                            color: grey, fontSize: 12),
-                                      ),
-                                      const SizedBox(
-                                        height: 14,
-                                      ),
-                                      Text(
-                                        "data.weddingDate",
-                                        style: poppinsNormal.copyWith(
-                                            color: grey, fontSize: 10),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 18,
-                              ),
-                              const Divider(thickness: 1),
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                body: isLoading
+                    ? const CupertinoActivityIndicator()
+                    : Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: hostedMarriages.isEmpty
+                            ? Text(
+                                "No Wedding Hosted",
+                                style: poppinsBold.copyWith(
+                                    color: white, fontSize: 16),
+                              )
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "200 guest registered",
+                                    "Wedding Hosted",
                                     style: poppinsBold.copyWith(
-                                        color: white.withOpacity(0.5),
-                                        fontSize: 14),
+                                        color: white, fontSize: 16),
                                   ),
-                                  GradientText(
-                                    "3 new guest request",
-                                    colors: const [
-                                      Color(0xfff3686d),
-                                      Color(0xffed2831),
-                                    ],
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  ListView.separated(
+                                    separatorBuilder: (_, index) =>
+                                        const SizedBox(
+                                      height: 16,
+                                    ),
+                                    itemCount: hostedMarriages.length,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (_, index) {
+                                      return HostedWeddingCard(
+                                        hostedMarriage: hostedMarriages[index],
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              Container(
-                                height: 40,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(2),
-                                    color: black),
-                                child: AutoSizeText(
-                                  "Share invite details with guest",
-                                  style: gilroyBold.copyWith(
-                                    fontSize: 10,
-                                    color: theme ? white : eventGrey,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )),
+                      )),
           ),
         ),
       ),

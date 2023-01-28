@@ -8,9 +8,10 @@ class StringConstants {
   static const String userRegistration = "user_registration";
   static const String guestLogin = "guest_login";
   static const String userLogin = "user_login";
+  static String getAllGallery = "get_gallery_for_guest";
   static String getMarriagesInformation = "get_marriages_information";
   static String getAllEventForGuest = "get_all_event_for_guest";
-  static String getAllGallery = "get_gallery_for_guest";
+  static String userHostedMarriages = "user_hosted_marriages";
   static String getAllEventWardrobeForGuest =
       "get_all_event_wardrobe_for_guest";
   static String viewFeed = "view_feed";
@@ -31,6 +32,7 @@ class StringConstants {
   static String guestId = "guest_id";
   static String userId = "user_id";
   static String userName = "user_name";
+  static String userIdProof = "guest_id_proof";
   static String guestName = "guest_name";
   static String guestProfileImage = "guest_profile_image";
   static String guestIdProof = "guest_id_proof";

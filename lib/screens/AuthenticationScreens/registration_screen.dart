@@ -85,7 +85,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           .then((value) {
         if (value.success == true) {
           if (value.data != null) {
-            sharedPrefs.userId = widget.mobile!;
+            sharedPrefs.mobileNo = widget.mobile!;
+            sharedPrefs.userId = value.data['_id'];
+            sharedPrefs.userName = value.data['name'];
+            sharedPrefs.userIdProof =
+                List<String>.from(value.data['user_id_proof']);
             print(
                 'registration data ${value.data} ,${value.message},${value.success}');
             nextScreenCloseOthers(context, const HashtagSearchScreen());

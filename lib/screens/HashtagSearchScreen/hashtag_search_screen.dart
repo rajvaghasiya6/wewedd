@@ -5,15 +5,19 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
+import '../../general/helper_functions.dart';
 import '../../general/navigation.dart';
 import '../../general/shared_preferences.dart';
 import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
+import '../../models/marriage_detail_model.dart';
 import '../../providers/hashtag_search_provider.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/user_button.dart';
 import '../AddWedding/add_wedding_screen.dart';
+import '../HomeScreen/home_screen.dart';
 import '../ProfileScreen/admin_profile.dart';
+import 'searched_marriages.dart';
 
 class HashtagSearchScreen extends StatefulWidget {
   const HashtagSearchScreen({Key? key}) : super(key: key);
@@ -26,21 +30,11 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
     with AutomaticKeepAliveClientMixin<HashtagSearchScreen> {
   TextEditingController searchController = TextEditingController();
   final Box<RecentSearch> dataBox = Hive.box('recent_search');
-
+  List<MarriageDetail> searchMarriages = [];
   bool isRecentSearch = true;
 
   @override
   bool get wantKeepAlive => true;
-
-  // checkLoginStatus(BuildContext context) async {
-  //   sharedPrefs.isLogin().then((value) {
-  //     if (value) {
-  //       nextScreen(context, HomeScreen());
-  //     } else {
-  //       nextScreen(context, const LoginScreen());
-  //     }
-  //   });
-  // }
 
   searchHashtag(BuildContext context, String hashtag) {
     if (searchController.text.trim() != '') {
@@ -48,20 +42,12 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
           .getHashtagSearchData(hashtag)
           .then((value) {
         if (value.success == true) {
-          if (value.data != null && value.message != '0 marriage found') {
-            sharedPrefs.marriageId = value.data!.marriageId;
-            RecentSearch recentSearch = RecentSearch(
-                hashtag: value.data!.weddingHashtag,
-                marriageId: value.data!.marriageId,
-                weddingName: value.data!.marriageName,
-                weddingDate: value.data!.weddingDate,
-                searchTime: DateTime.now());
-            dataBox.put(value.data!.marriageId, recentSearch);
-
-            // checkLoginStatus(context);
-          } else {
-            Fluttertoast.showToast(msg: 'No hashtag');
-          }
+          searchMarriages = [];
+          value.data.forEach((val) {
+            searchMarriages.add(MarriageDetail.fromJson(val));
+          });
+          nextScreen(
+              context, SearchedMarriages(searchMarriages: searchMarriages));
         }
       });
     } else {
@@ -240,9 +226,11 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
 
                                         return GestureDetector(
                                           onTap: () {
+                                            sharedPrefs.marriageId = '';
                                             sharedPrefs.marriageId =
                                                 data!.marriageId;
-                                            //checkLoginStatus(context);
+
+                                            nextScreen(context, HomeScreen());
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -294,7 +282,8 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
                                                         height: 14,
                                                       ),
                                                       Text(
-                                                        data.weddingDate,
+                                                        format(DateTime.parse(
+                                                            data.weddingDate)),
                                                         style: poppinsNormal
                                                             .copyWith(
                                                                 color: grey,

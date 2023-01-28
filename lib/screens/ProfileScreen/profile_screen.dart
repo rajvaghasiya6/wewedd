@@ -12,7 +12,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
-import '../../general/custom_icons.dart';
 import '../../general/navigation.dart';
 import '../../general/shared_preferences.dart';
 import '../../general/string_constants.dart';
@@ -22,7 +21,6 @@ import '../../providers/theme_provider.dart';
 import '../../providers/user_feed_provider.dart';
 import '../../providers/user_provider.dart';
 import '../../widgets/GradientTabIndicator.dart';
-import '../../widgets/popup.dart';
 import '../../widgets/user_button.dart';
 import '../ViewId/viewid_image.dart';
 import '../ViewId/viewid_pdf.dart';
@@ -331,25 +329,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ),
                       ),
-                      actions: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10, top: 7),
-                          child: IconButton(
-                            icon: const Icon(
-                              CustomIcons.logout,
-                              size: 17,
-                            ),
-                            onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) => const Popup(
-                                        message:
-                                            "Are you sure you want to Logout?",
-                                      ));
-                            },
-                          ),
-                        ),
-                      ],
                     ),
                     SliverAppBar(
                       elevation: 0,

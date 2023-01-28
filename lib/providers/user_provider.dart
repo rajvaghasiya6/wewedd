@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../general/shared_preferences.dart';
 import '../general/string_constants.dart';
+import '../models/hosted_marriages.dart';
 import '../models/response_model.dart';
 import '../models/user_model.dart';
 
@@ -17,8 +18,9 @@ Dio dio = Dio(options);
 
 class UserProvider extends ChangeNotifier {
   UserModel? user;
-
+  bool ishostedLoading = false;
   bool isLoading = false;
+  List<HostedMarriages> hostedMarriages = [];
 
   Future<ResponseClass> registerUser({required FormData formData}) async {
     String url = StringConstants.apiUrl + StringConstants.userRegistration;
@@ -163,6 +165,54 @@ class UserProvider extends ChangeNotifier {
       notifyListeners();
       if (kDebugMode) {
         log("login error ->" + e.toString());
+      }
+      return responseClass;
+    }
+  }
+
+  Future<ResponseClass<List<HostedMarriages>>> userHostedMarriages(
+      {required String mobileNo}) async {
+    String url = StringConstants.apiUrl + StringConstants.userHostedMarriages;
+
+    //body Data
+    var data = {"mobile_number": mobileNo};
+
+    //Response
+    ResponseClass<List<HostedMarriages>> responseClass = ResponseClass(
+        success: false, message: "Something went wrong", data: hostedMarriages);
+    try {
+      ishostedLoading = true;
+      notifyListeners();
+      Response response = await dio.post(
+        url,
+        data: data,
+      );
+      if (response.statusCode == 200) {
+        responseClass.success = response.data["is_success"];
+
+        List weddingList = response.data["data"];
+        List<HostedMarriages> list =
+            weddingList.map((e) => HostedMarriages.fromJson(e)).toList();
+        responseClass.data = list;
+        hostedMarriages = list;
+        ishostedLoading = false;
+        notifyListeners();
+      }
+
+      return responseClass;
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        log(e.toString());
+      }
+      ishostedLoading = false;
+      notifyListeners();
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
+      return responseClass;
+    } catch (e) {
+      ishostedLoading = false;
+      notifyListeners();
+      if (kDebugMode) {
+        log("userHostedMarriages error ->" + e.toString());
       }
       return responseClass;
     }
@@ -408,7 +458,7 @@ class UserProvider extends ChangeNotifier {
         ResponseClass(success: false, message: "Something went wrong", data: 0);
     var data = {
       "marriage_id": sharedPrefs.marriageId,
-      "guest_id": sharedPrefs.guestId,
+      "guest_id": sharedPrefs.userId,
       "fcm_token_guest": token
     };
     try {

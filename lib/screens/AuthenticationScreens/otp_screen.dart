@@ -22,13 +22,15 @@ class OTPScreen extends StatefulWidget {
   String userId;
   String userName;
   String mobile;
+  List<String> userIdProof;
 
   OTPScreen(
       {Key? key,
       required this.userId,
       required this.userName,
       required this.mobile,
-      required this.isRegister})
+      required this.isRegister,
+      required this.userIdProof})
       : super(key: key);
 
   @override
@@ -64,6 +66,7 @@ class _OTPScreenState extends State<OTPScreen> {
     sharedPrefs.mobileNo = widget.mobile;
     sharedPrefs.userId = widget.userId;
     sharedPrefs.userName = widget.userName;
+    sharedPrefs.userIdProof = widget.userIdProof;
   }
 
   @override
@@ -179,7 +182,8 @@ class _OTPScreenState extends State<OTPScreen> {
                             ));
                       } else {
                         sharedPrefsData();
-                        nextScreen(context, const HashtagSearchScreen());
+                        nextScreenCloseOthers(
+                            context, const HashtagSearchScreen());
                       }
                     } else {
                       setState(() {

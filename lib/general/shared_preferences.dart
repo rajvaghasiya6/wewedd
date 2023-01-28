@@ -33,6 +33,9 @@ class SharedPrefs {
   String get userName =>
       _sharedPrefs!.getString(StringConstants.userName) ?? "";
 
+  List<String> get userIdProof =>
+      _sharedPrefs!.getStringList(StringConstants.userIdProof) ?? [];
+
   String get guestName =>
       _sharedPrefs!.getString(StringConstants.guestName) ?? "";
 
@@ -63,6 +66,10 @@ class SharedPrefs {
 
   set userName(String value) {
     _sharedPrefs!.setString(StringConstants.userName, value);
+  }
+
+  set userIdProof(List<String> value) {
+    _sharedPrefs!.setStringList(StringConstants.userIdProof, value);
   }
 
   set guestName(String value) {
