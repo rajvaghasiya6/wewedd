@@ -458,7 +458,7 @@ class UserProvider extends ChangeNotifier {
         ResponseClass(success: false, message: "Something went wrong", data: 0);
     var data = {
       "marriage_id": sharedPrefs.marriageId,
-      "guest_id": sharedPrefs.userId,
+      "guest_id": sharedPrefs.guestId,
       "fcm_token_guest": token
     };
     try {

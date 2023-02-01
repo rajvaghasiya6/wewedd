@@ -22,10 +22,14 @@ class _UploadImageListState extends State<UploadImageList> {
         sourcePath: newImage!.path,
         aspectRatioPresets: Platform.isAndroid
             ? [
-                CropAspectRatioPreset.square,
+                CropAspectRatioPreset.original,
+                CropAspectRatioPreset.ratio16x9,
+                CropAspectRatioPreset.ratio3x2,
               ]
             : [
-                CropAspectRatioPreset.square,
+                CropAspectRatioPreset.original,
+                CropAspectRatioPreset.ratio16x9,
+                CropAspectRatioPreset.ratio3x2,
               ],
         androidUiSettings: const AndroidUiSettings(
           toolbarTitle: '',

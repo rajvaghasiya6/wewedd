@@ -46,24 +46,6 @@ class _AddSiblingDialogueState extends State<AddSiblingDialogue> {
       Fluttertoast.showToast(msg: 'Enter Name ');
     }
   }
-  // _updateUser() {
-  //   Provider.of<UserProvider>(context, listen: false)
-  //       .updateUser(
-  //           formData:
-  //               FormData.fromMap({"guest_name": textEditingController.text}))
-  //       .then((value) {
-  //     if (value.success) {
-  //       Provider.of<UserProvider>(context, listen: false)
-  //           .getUserData(mobileNo: sharedPrefs.mobileNo);
-  //       Fluttertoast.showToast(msg: "User Update Success");
-  //       if (Navigator.canPop(context)) {
-  //         Navigator.pop(context);
-  //       }
-  //     } else {
-  //       Fluttertoast.showToast(msg: "Fail to Update Details");
-  //     }
-  //   });
-  // }
 
   @override
   void dispose() {

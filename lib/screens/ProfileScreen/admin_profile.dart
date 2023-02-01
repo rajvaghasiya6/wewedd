@@ -500,15 +500,16 @@ class _AdminProfileState extends State<AdminProfile> {
                 body: isLoading
                     ? const CupertinoActivityIndicator()
                     : Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(20),
                         child: hostedMarriages.isEmpty
-                            ? Text(
-                                "No Wedding Hosted",
-                                style: poppinsBold.copyWith(
-                                    color: white, fontSize: 16),
+                            ? Center(
+                                child: Text(
+                                  "No Wedding Hosted",
+                                  style: poppinsNormal.copyWith(
+                                      color: grey, fontSize: 14),
+                                ),
                               )
-                            : Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            : ListView(
                                 children: [
                                   Text(
                                     "Wedding Hosted",

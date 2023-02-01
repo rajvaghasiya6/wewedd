@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'general/shared_preferences.dart';
 import 'hiveModels/recent_search_model.dart';
 import 'models/theme_model.dart';
+import 'providers/add_wedding_provider.dart';
 import 'providers/dashboard_provider.dart';
 import 'providers/event_provider.dart';
 import 'providers/feed_provider.dart';
@@ -88,6 +89,9 @@ class MyApp extends StatelessWidget {
               ),
               ChangeNotifierProvider(
                 create: (context) => GuestProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (context) => AddWeddingProvider(),
               ),
             ],
             child: MaterialApp(

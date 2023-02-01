@@ -28,9 +28,10 @@ class TextFieldWithImage extends StatefulWidget {
 }
 
 class _TextFieldWithImageState extends State<TextFieldWithImage> {
+  File? image;
   Future<File?> _cropImage() async {
     File? croppedFile = await ImageCropper.cropImage(
-        sourcePath: widget.newImage!.path,
+        sourcePath: image!.path,
         aspectRatioPresets: Platform.isAndroid
             ? [
                 CropAspectRatioPreset.square,
@@ -51,9 +52,9 @@ class _TextFieldWithImageState extends State<TextFieldWithImage> {
           title: '',
         ));
     if (croppedFile != null) {
-      widget.newImage = croppedFile;
+      image = croppedFile;
     }
-    return croppedFile;
+    return image;
   }
 
   Future<File?> getFromGallery() async {
@@ -73,17 +74,14 @@ class _TextFieldWithImageState extends State<TextFieldWithImage> {
       controller: widget.nameController,
       suffixIcon: GestureDetector(
         onTap: () async {
-          widget.newImage = await getFromGallery();
-          if (widget.newImage != null) {
-            widget.newImage = await _cropImage();
-          }
-
-          if (widget.newImage == null) {
-            Fluttertoast.showToast(msg: "failed to pick image");
-          } else {
+          image = await getFromGallery();
+          if (image != null) {
+            image = await _cropImage();
             setState(() {
-              widget.newImage;
+              widget.newImage = image;
             });
+          } else {
+            Fluttertoast.showToast(msg: "failed to pick image");
           }
         },
         child: Padding(

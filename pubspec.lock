@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  badges:
+    dependency: "direct main"
+    description:
+      name: badges
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -527,6 +534,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  gradient_borders:
+    dependency: "direct main"
+    description:
+      name: gradient_borders
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   graphs:
     dependency: transitive
     description:

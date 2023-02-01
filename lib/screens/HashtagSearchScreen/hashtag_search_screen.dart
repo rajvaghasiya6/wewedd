@@ -226,11 +226,23 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
 
                                         return GestureDetector(
                                           onTap: () {
-                                            sharedPrefs.marriageId = '';
-                                            sharedPrefs.marriageId =
-                                                data!.marriageId;
+                                            Provider.of<HashtagSearchProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .accessWedding(data!.marriageId,
+                                                    sharedPrefs.mobileNo)
+                                                .then((value) {
+                                              if (value.success == true) {
+                                                sharedPrefs.guestId =
+                                                    value.data;
+                                                sharedPrefs.marriageId = '';
+                                                sharedPrefs.marriageId =
+                                                    data.marriageId;
 
-                                            nextScreen(context, HomeScreen());
+                                                nextScreen(
+                                                    context, HomeScreen());
+                                              }
+                                            });
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -262,7 +274,7 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        data!.hashtag,
+                                                        '#${data!.hashtag}',
                                                         style: poppinsBold
                                                             .copyWith(
                                                                 color: white,

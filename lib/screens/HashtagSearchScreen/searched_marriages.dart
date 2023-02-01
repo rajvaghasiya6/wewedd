@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
 import '../../general/helper_functions.dart';
@@ -8,6 +10,7 @@ import '../../general/shared_preferences.dart';
 import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
 import '../../models/marriage_detail_model.dart';
+import '../../providers/hashtag_search_provider.dart';
 import '../HomeScreen/home_screen.dart';
 
 class SearchedMarriages extends StatefulWidget {
@@ -57,23 +60,37 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                   itemBuilder: (_, index) {
                     return GestureDetector(
                       onTap: () {
-                        sharedPrefs.marriageId = '';
-                        sharedPrefs.marriageId =
-                            widget.searchMarriages[index].marriageId;
-                        RecentSearch recentSearch = RecentSearch(
-                            hashtag:
-                                widget.searchMarriages[index].weddingHashtag,
-                            marriageId:
+                        Provider.of<HashtagSearchProvider>(context,
+                                listen: false)
+                            .accessWedding(
                                 widget.searchMarriages[index].marriageId,
-                            weddingName:
-                                widget.searchMarriages[index].marriageName,
-                            weddingDate:
-                                widget.searchMarriages[index].weddingDate,
-                            searchTime: DateTime.now());
-                        dataBox.put(widget.searchMarriages[index].marriageId,
-                            recentSearch);
+                                sharedPrefs.mobileNo)
+                            .then((value) {
+                          if (value.success == true) {
+                            sharedPrefs.marriageId = '';
+                            sharedPrefs.marriageId =
+                                widget.searchMarriages[index].marriageId;
+                            sharedPrefs.guestId = value.data;
+                            RecentSearch recentSearch = RecentSearch(
+                                hashtag: widget
+                                    .searchMarriages[index].weddingHashtag,
+                                marriageId:
+                                    widget.searchMarriages[index].marriageId,
+                                weddingName:
+                                    widget.searchMarriages[index].marriageName,
+                                weddingDate:
+                                    widget.searchMarriages[index].weddingDate,
+                                searchTime: DateTime.now());
+                            dataBox.put(
+                                widget.searchMarriages[index].marriageId,
+                                recentSearch);
 
-                        nextScreenReplace(context, HomeScreen());
+                            nextScreenReplace(context, HomeScreen());
+                          } else {
+                            Fluttertoast.showToast(
+                                msg: "you dont have access for this wedding");
+                          }
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(

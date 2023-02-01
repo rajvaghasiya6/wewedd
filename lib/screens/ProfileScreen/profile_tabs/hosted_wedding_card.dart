@@ -1,11 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:wedding/screens/ProfileScreen/feed_request/feed_request_screen.dart';
 
 import '../../../general/color_constants.dart';
 import '../../../general/helper_functions.dart';
+import '../../../general/navigation.dart';
 import '../../../general/text_styles.dart';
 import '../../../models/hosted_marriages.dart';
+import '../guest_request/guest_request_screen.dart';
 
 class HostedWeddingCard extends StatelessWidget {
   HostedWeddingCard({required this.hostedMarriage, Key? key}) : super(key: key);
@@ -67,22 +70,40 @@ class HostedWeddingCard extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
+            Text(
+              "${hostedMarriage.totalRegisterGuestNumber} guest registered",
+              style: poppinsBold.copyWith(
+                  color: white.withOpacity(0.5), fontSize: 14),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "${hostedMarriage.totalRegisterGuestNumber} guest registered",
-                  style: poppinsBold.copyWith(
-                      color: white.withOpacity(0.5), fontSize: 14),
+                GestureDetector(
+                  onTap: (() => nextScreen(context, FeedRequestScreen())),
+                  child: GradientText(
+                    "New feed request",
+                    colors: const [
+                      Color(0xfff3686d),
+                      Color(0xffed2831),
+                    ],
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w700),
+                  ),
                 ),
-                GradientText(
-                  "${hostedMarriage.pendingRequestNumber} new guest request",
-                  colors: const [
-                    Color(0xfff3686d),
-                    Color(0xffed2831),
-                  ],
-                  style: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.w700),
+                GestureDetector(
+                  onTap: (() => nextScreen(context, GuestRequestScreen())),
+                  child: GradientText(
+                    "${hostedMarriage.pendingRequestNumber} new guest request",
+                    colors: const [
+                      Color(0xfff3686d),
+                      Color(0xffed2831),
+                    ],
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w700),
+                  ),
                 ),
               ],
             ),
