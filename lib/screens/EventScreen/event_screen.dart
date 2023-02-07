@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/providers/event_provider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/widgets/custom_sliverappbar.dart';
-import 'package:wedding/widgets/loader.dart';
 
+import '../../general/color_constants.dart';
+import '../../general/navigation.dart';
+import '../../general/shared_preferences.dart';
+import '../../general/text_styles.dart';
+import '../../providers/event_provider.dart';
+import '../../providers/theme_provider.dart';
+import '../../widgets/custom_sliverappbar.dart';
+import '../../widgets/loader.dart';
+import 'add_new_event.dart';
 import 'event_components/event_component.dart';
 
 class EventScreen extends StatefulWidget {
@@ -60,6 +64,26 @@ class _EventScreenState extends State<EventScreen> {
             ),
           ),
         ),
+        floatingActionButton: sharedPrefs.isAdmin == true
+            ? ElevatedButton(
+                onPressed: () {
+                  nextScreen(context, const AddNewEvent());
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: timeGrey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  elevation: 15.0,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Text(
+                    "+ Add New Event",
+                    style: poppinsNormal.copyWith(color: grey, fontSize: 14),
+                  ),
+                ))
+            : const SizedBox(),
       ),
     );
   }

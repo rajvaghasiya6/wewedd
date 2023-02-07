@@ -6,27 +6,28 @@ DashboardModel dashboardModelFromJson(String str) =>
 String dashboardModelToJson(DashboardModel data) => json.encode(data.toJson());
 
 class DashboardModel {
-  DashboardModel({
-    required this.marriageLogo,
-    required this.eventManagerName,
-    required this.weddingHashtag,
-    required this.banner,
-    required this.invitationCard,
-    required this.isDark,
-    required this.secondaryColor,
-    required this.brideName,
-    required this.groomName,
-    required this.weddingVenue,
-    required this.mobileNumber,
-    required this.isGuestsIdProof,
-    required this.isApprovePost,
-    required this.liveLink,
-    required this.isActive,
-    required this.fcmTokenMarriage,
-    required this.marriageId,
-    required this.marriageName,
-    required this.weddingDate,
-  });
+  DashboardModel(
+      {required this.marriageLogo,
+      required this.eventManagerName,
+      required this.weddingHashtag,
+      required this.banner,
+      required this.invitationCard,
+      required this.isDark,
+      required this.secondaryColor,
+      required this.brideName,
+      required this.groomName,
+      required this.weddingVenue,
+      required this.mobileNumber,
+      required this.isGuestsIdProof,
+      required this.isApprovePost,
+      required this.liveLink,
+      required this.isActive,
+      required this.fcmTokenMarriage,
+      required this.marriageId,
+      required this.marriageName,
+      required this.weddingDate,
+      required this.groomSide,
+      required this.brideSide});
 
   final String marriageLogo;
   final String eventManagerName;
@@ -47,6 +48,8 @@ class DashboardModel {
   final String marriageId;
   final String marriageName;
   final String weddingDate;
+  List<Side>? groomSide;
+  List<Side>? brideSide;
 
   factory DashboardModel.fromJson(Map<String, dynamic> json) => DashboardModel(
         marriageLogo: json["marriage_logo"],
@@ -70,6 +73,10 @@ class DashboardModel {
         marriageId: json["marriage_id"],
         marriageName: json["marriage_name"],
         weddingDate: json["wedding_date"],
+        groomSide:
+            List<Side>.from(json["groom_side"].map((x) => Side.fromJson(x))),
+        brideSide:
+            List<Side>.from(json["bride_side"].map((x) => Side.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -92,5 +99,31 @@ class DashboardModel {
         "marriage_id": marriageId,
         "marriage_name": marriageName,
         "wedding_date": weddingDate,
+        "groom_side": List<dynamic>.from(groomSide!.map((x) => x.toJson())),
+        "bride_side": List<dynamic>.from(brideSide!.map((x) => x.toJson())),
+      };
+}
+
+class Side {
+  Side({
+    required this.name,
+    required this.relation,
+    required this.image,
+  });
+
+  String name;
+  String relation;
+  String image;
+
+  factory Side.fromJson(Map<String, dynamic> json) => Side(
+        name: json["name"],
+        relation: json["relation"],
+        image: json["image"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "relation": relation,
+        "image": image,
       };
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -12,11 +13,11 @@ import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
 import '../../models/marriage_detail_model.dart';
 import '../../providers/hashtag_search_provider.dart';
-import '../../widgets/loader.dart';
 import '../../widgets/user_button.dart';
 import '../AddWedding/add_wedding_screen.dart';
 import '../HomeScreen/home_screen.dart';
 import '../ProfileScreen/admin_profile.dart';
+import 'add_guest_side.dart';
 import 'searched_marriages.dart';
 
 class HashtagSearchScreen extends StatefulWidget {
@@ -66,8 +67,9 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
 
     return Scaffold(
       body: SafeArea(
-        child: context.watch<HashtagSearchProvider>().isLoading
-            ? const Center(child: Loader())
+        child: context.watch<HashtagSearchProvider>().isLoading ||
+                context.watch<HashtagSearchProvider>().isaccessLoading
+            ? const Center(child: CupertinoActivityIndicator())
             : Stack(
                 children: [
                   Positioned(
@@ -233,14 +235,30 @@ class _HashtagSearchScreenState extends State<HashtagSearchScreen>
                                                     sharedPrefs.mobileNo)
                                                 .then((value) {
                                               if (value.success == true) {
-                                                sharedPrefs.guestId =
-                                                    value.data;
-                                                sharedPrefs.marriageId = '';
                                                 sharedPrefs.marriageId =
                                                     data.marriageId;
-
-                                                nextScreen(
-                                                    context, HomeScreen());
+                                                sharedPrefs.guestId =
+                                                    value.data['guest_id'];
+                                                sharedPrefs.isAdmin =
+                                                    value.data['is_admin'];
+                                                if (value.data[
+                                                        'guest_side_selected'] ==
+                                                    true) {
+                                                  nextScreen(
+                                                      context, HomeScreen());
+                                                } else {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          AddGuestSideDialog(
+                                                            marriageId:
+                                                                data.marriageId,
+                                                          ));
+                                                }
+                                              } else {
+                                                Fluttertoast.showToast(
+                                                    msg:
+                                                        "you dont have access for this wedding");
                                               }
                                             });
                                           },

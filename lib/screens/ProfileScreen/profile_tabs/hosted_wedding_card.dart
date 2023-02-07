@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:wedding/screens/ProfileScreen/feed_request/feed_request_screen.dart';
 
 import '../../../general/color_constants.dart';
 import '../../../general/helper_functions.dart';
 import '../../../general/navigation.dart';
 import '../../../general/text_styles.dart';
 import '../../../models/hosted_marriages.dart';
+import '../feed_request/feed_request_screen.dart';
 import '../guest_request/guest_request_screen.dart';
 
 class HostedWeddingCard extends StatelessWidget {
@@ -82,7 +82,11 @@ class HostedWeddingCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: (() => nextScreen(context, FeedRequestScreen())),
+                  onTap: (() => nextScreen(
+                      context,
+                      FeedRequestScreen(
+                        marriageId: hostedMarriage.marriageId,
+                      ))),
                   child: GradientText(
                     "New feed request",
                     colors: const [
@@ -94,7 +98,10 @@ class HostedWeddingCard extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (() => nextScreen(context, GuestRequestScreen())),
+                  onTap: (() => nextScreen(
+                      context,
+                      GuestRequestScreen(
+                          marriageId: hostedMarriage.marriageId))),
                   child: GradientText(
                     "${hostedMarriage.pendingRequestNumber} new guest request",
                     colors: const [

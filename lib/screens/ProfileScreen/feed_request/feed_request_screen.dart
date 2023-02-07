@@ -10,8 +10,9 @@ import 'feed_request_pending_tab.dart';
 import 'feed_request_rejected_tab.dart';
 
 class FeedRequestScreen extends StatelessWidget {
-  FeedRequestScreen({Key? key}) : super(key: key);
-  final List<String> tabs = ["New", "Pending", "Approved", "Rejected"];
+  FeedRequestScreen({required this.marriageId, Key? key}) : super(key: key);
+  final String marriageId;
+  final List<String> tabs = ["Pending", "Approved", "Rejected", "New"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,13 +80,12 @@ class FeedRequestScreen extends StatelessWidget {
               },
               body: Container(
                 decoration: const BoxDecoration(),
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 0),
-                child: const TabBarView(
+                child: TabBarView(
                   children: [
-                    FeedRequestNewTab(),
-                    FeedRequestPendingTab(),
-                    FeedRequestApprovedTab(),
-                    FeedRequestRejectedTab(),
+                    FeedRequestPendingTab(marriageId: marriageId),
+                    FeedRequestApprovedTab(marriageId: marriageId),
+                    FeedRequestRejectedTab(marriageId: marriageId),
+                    FeedRequestNewTab(marriageId: marriageId),
                   ],
                 ),
               )),

@@ -17,7 +17,6 @@ import '../../general/text_styles.dart';
 import '../../providers/dashboard_provider.dart';
 import '../../providers/event_provider.dart';
 import '../../providers/theme_provider.dart';
-import '../../widgets/loader.dart';
 import '../../widgets/user_button.dart';
 import '../EventScreen/event_screen.dart';
 import '../GalleryScreen/gallery_screen.dart';
@@ -89,7 +88,7 @@ class _DashboardScreenState extends State<DashboardScreen>
       child: Scaffold(
         body: SafeArea(
           child: !dashboard.isLoaded
-              ? const Loader()
+              ? const Center(child: CupertinoActivityIndicator())
               : dashboard.dashboardModel == null
                   ? const Center(
                       child: Text("Data load failed"),
@@ -113,9 +112,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 children: [
                                   Row(
                                     children: [
-                                      BackButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
+                                      IconButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        icon: const Icon(
+                                          CupertinoIcons.back,
+                                          // color: Colors.white,
+                                        ),
                                       ),
                                       UserButton(
                                         url: sharedPrefs.guestProfileImage,
@@ -249,12 +253,9 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                             dashboard
                                                                 .dashboardModel!
                                                                 .marriageLogo,
-                                                    placeholder:
-                                                        (context, url) => Text(
-                                                      'LOGO',
-                                                      style: greyBold.copyWith(
-                                                          color: black),
-                                                    ),
+                                                    placeholder: (context,
+                                                            url) =>
+                                                        const CupertinoActivityIndicator(),
                                                     errorWidget:
                                                         (context, url, error) =>
                                                             Text(
@@ -794,7 +795,128 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 );
                               }).toList(),
                             ),
-                            const SizedBox(height: 42)
+                            const SizedBox(height: 20),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Groom Side",
+                                    style: poppinsBold.copyWith(fontSize: 18),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      PersonTitle(
+                                          theme: theme,
+                                          image: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .image,
+                                          name: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .name,
+                                          relation: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .relation),
+                                      PersonTitle(
+                                          theme: theme,
+                                          image: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .image,
+                                          name: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .name,
+                                          relation: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .relation),
+                                      PersonTitle(
+                                          theme: theme,
+                                          image: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .image,
+                                          name: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .name,
+                                          relation: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .relation)
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text(
+                                    "Bride Side",
+                                    style: poppinsBold.copyWith(fontSize: 18),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      PersonTitle(
+                                          theme: theme,
+                                          image: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .image,
+                                          name: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .name,
+                                          relation: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .relation),
+                                      PersonTitle(
+                                          theme: theme,
+                                          image: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .image,
+                                          name: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .name,
+                                          relation: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .relation),
+                                      PersonTitle(
+                                          theme: theme,
+                                          image: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .image,
+                                          name: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .name,
+                                          relation: dashboardData.groomSide
+                                              ?.firstWhere((element) =>
+                                                  element.relation == "Groom")
+                                              .relation)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -803,4 +925,117 @@ class _DashboardScreenState extends State<DashboardScreen>
       ),
     );
   }
+}
+
+Widget PersonTitle(
+    {required bool theme,
+    required String? image,
+    required String? name,
+    required String? relation}) {
+  return Column(
+    children: [
+      Stack(
+        children: [
+          Container(
+            height: 110,
+            width: 110,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: grey.withOpacity(0.01),
+              borderRadius: BorderRadius.circular(14.0),
+              boxShadow: [
+                if (theme)
+                  const BoxShadow(
+                      color: Color(0xff332e34),
+                      blurRadius: 6,
+                      spreadRadius: 1,
+                      offset: Offset(-2, -2)),
+                if (theme)
+                  const BoxShadow(
+                      color: Color(0xff050509),
+                      blurRadius: 6,
+                      spreadRadius: 2,
+                      offset: Offset(3, 3)),
+                if (!theme)
+                  BoxShadow(
+                    offset: const Offset(-2, -2),
+                    blurRadius: 6,
+                    spreadRadius: 2,
+                    color: white,
+                  ),
+                if (!theme)
+                  BoxShadow(
+                    offset: const Offset(3, 3),
+                    blurRadius: 6,
+                    spreadRadius: 1,
+                    color: grey.withOpacity(0.3),
+                  ),
+              ],
+            ),
+            child: Container(
+              decoration: theme
+                  ? BoxDecoration(
+                      color: scaffoldBlack,
+                      borderRadius: BorderRadius.circular(14.0),
+                    )
+                  : BoxDecoration(
+                      color: white,
+                      borderRadius: BorderRadius.circular(14.0),
+                      gradient: greyToWhiteDiagonal,
+                    ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6.0),
+                  child: CachedNetworkImage(
+                    imageUrl: "${StringConstants.apiUrl}$image",
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 190.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: black,
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    placeholder: (context, url) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: lightBlack,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: grey.withOpacity(0.4),
+                      ),
+                      child: const Icon(Icons.broken_image),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 12,
+            bottom: 16,
+            child: Text(
+              relation!,
+              style: poppinsBold.copyWith(color: white, fontSize: 12),
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 8,
+      ),
+      Text(
+        relation,
+        style: poppinsNormal.copyWith(color: grey),
+      ),
+    ],
+  );
 }

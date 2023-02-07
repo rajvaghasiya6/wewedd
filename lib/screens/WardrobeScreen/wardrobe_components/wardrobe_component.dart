@@ -1,14 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/models/wardrobe_model.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/widgets/loader.dart';
+
+import '../../../general/color_constants.dart';
+import '../../../general/string_constants.dart';
+import '../../../general/text_styles.dart';
+import '../../../models/wardrobe_model.dart';
+import '../../../providers/theme_provider.dart';
 
 class WardrobeComponent extends StatelessWidget {
   final WardrobeModel wardrobe;
@@ -145,7 +145,7 @@ class WardrobeComponent extends StatelessWidget {
               imageUrl: StringConstants.apiUrl + wardrobe.dressCode.outFit,
               height: 220,
               width: 141.5,
-              placeholder: (_, __) => const Loader(),
+              placeholder: (_, __) => const CupertinoActivityIndicator(),
               errorWidget: (_, __, ___) => SvgPicture.asset(
                 "icons/wardrobe.svg",
                 height: 220,

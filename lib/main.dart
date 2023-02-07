@@ -14,8 +14,10 @@ import 'providers/add_wedding_provider.dart';
 import 'providers/dashboard_provider.dart';
 import 'providers/event_provider.dart';
 import 'providers/feed_provider.dart';
+import 'providers/feed_request_provider.dart';
 import 'providers/galleryProvider.dart';
 import 'providers/guest_provider.dart';
+import 'providers/guest_request_provider.dart';
 import 'providers/hashtag_search_provider.dart';
 import 'providers/network_provider.dart';
 import 'providers/notification_provider.dart';
@@ -65,6 +67,12 @@ class MyApp extends StatelessWidget {
               ChangeNotifierProvider(
                 create: (context) => HashtagSearchProvider(),
               ),
+              ChangeNotifierProvider(
+                create: (context) => FeedRequestProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (context) => GuestRequestProvider(),
+              ),
               StreamProvider(
                   create: (context) =>
                       NetworkStatusService().networkStatusController.stream,
@@ -92,6 +100,9 @@ class MyApp extends StatelessWidget {
               ),
               ChangeNotifierProvider(
                 create: (context) => AddWeddingProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (context) => FeedProvider(),
               ),
             ],
             child: MaterialApp(

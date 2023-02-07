@@ -33,6 +33,8 @@ class SharedPrefs {
   String get userName =>
       _sharedPrefs!.getString(StringConstants.userName) ?? "";
 
+  bool get isAdmin => _sharedPrefs!.getBool(StringConstants.isAdmin) ?? false;
+
   List<String> get userIdProof =>
       _sharedPrefs!.getStringList(StringConstants.userIdProof) ?? [];
 
@@ -78,6 +80,10 @@ class SharedPrefs {
 
   set guestProfileImage(String value) {
     _sharedPrefs!.setString(StringConstants.guestProfileImage, value);
+  }
+
+  set isAdmin(bool value) {
+    _sharedPrefs!.setBool(StringConstants.isAdmin, value);
   }
 
   set guestIdProof(List<String> value) {

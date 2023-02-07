@@ -80,10 +80,10 @@ class HashtagSearchProvider extends ChangeNotifier {
   Future<ResponseClass> accessWedding(
       String marriageId, String mobileno) async {
     String url = "${StringConstants.apiUrl}check_user_access_for_marriage";
-    String? userGuestId;
+    Map? data;
     //Response
     ResponseClass responseClass = ResponseClass(
-        success: false, message: "Something went wrong", data: userGuestId);
+        success: false, message: "Something went wrong", data: data);
     try {
       isaccessLoading = true;
       notifyListeners();
@@ -92,7 +92,7 @@ class HashtagSearchProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         responseClass.success = response.data["is_success"];
         //  responseClass.message = response.data["message"];
-        responseClass.data = response.data["guest_id"];
+        responseClass.data = response.data["data"];
 
         isaccessLoading = false;
 
@@ -121,6 +121,51 @@ class HashtagSearchProvider extends ChangeNotifier {
       notifyListeners();
       if (kDebugMode) {
         log("access error ->" + e.toString());
+      }
+      return responseClass;
+    }
+  }
+
+  Future<ResponseClass> addGuestSide(
+      {required String marriage_id,
+      required String guest_side,
+      required String mobile_no}) async {
+    String url = '${StringConstants.apiUrl}add_guest_side';
+
+    ResponseClass responseClass = ResponseClass(
+        success: false, message: "Something went wrong", data: {});
+    try {
+      isLoading = true;
+      notifyListeners();
+      Response response = await dio.post(
+        url,
+        data: {
+          "marriage_id": marriage_id,
+          "guest_side": guest_side,
+          "mobile_number": mobile_no
+        },
+      );
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        responseClass.success = response.data["is_success"];
+        responseClass.data = response.data["data"];
+        isLoading = false;
+        notifyListeners();
+      }
+
+      return responseClass;
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        log(e.toString());
+      }
+      isLoading = false;
+      notifyListeners();
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
+      return responseClass;
+    } catch (e) {
+      isLoading = false;
+      notifyListeners();
+      if (kDebugMode) {
+        log("guest side request error ->" + e.toString());
       }
       return responseClass;
     }

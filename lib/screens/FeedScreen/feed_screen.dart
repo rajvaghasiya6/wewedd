@@ -9,14 +9,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/providers/feed_provider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/screens/FeedScreen/feed_component/feed_post.dart';
-import 'package:wedding/screens/HomeScreen/home_screen.dart';
-import 'package:wedding/widgets/loader.dart';
-import 'package:wedding/widgets/popup.dart';
+
+import '../../general/color_constants.dart';
+import '../../general/navigation.dart';
+import '../../general/text_styles.dart';
+import '../../providers/feed_provider.dart';
+import '../../providers/theme_provider.dart';
+import '../../widgets/loader.dart';
+import '../../widgets/popup.dart';
+import '../HomeScreen/home_screen.dart';
+import '../leaderboard/leaderboard_screen.dart';
+import 'feed_component/feed_post.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -266,6 +269,18 @@ class _FeedScreenState extends State<FeedScreen> {
                       ),
                     ),
                     actions: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10, top: 7),
+                        child: InkWell(
+                          onTap: () {
+                            nextScreen(context, LeaderboardScreen());
+                          },
+                          child: const Icon(
+                            Icons.group,
+                            size: 20,
+                          ),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10, top: 7),
                         child: feed.isUploading

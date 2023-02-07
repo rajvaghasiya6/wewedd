@@ -10,7 +10,8 @@ import 'guest_request_pending_tab.dart';
 import 'guest_request_rejected_tab.dart';
 
 class GuestRequestScreen extends StatelessWidget {
-  GuestRequestScreen({Key? key}) : super(key: key);
+  GuestRequestScreen({required this.marriageId, Key? key}) : super(key: key);
+  final marriageId;
   final List<String> tabs = ["All", "Pending", "Approved", "Rejected"];
   @override
   Widget build(BuildContext context) {
@@ -80,12 +81,12 @@ class GuestRequestScreen extends StatelessWidget {
               body: Container(
                 decoration: const BoxDecoration(),
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 0),
-                child: const TabBarView(
+                child: TabBarView(
                   children: [
-                    GuestRequestAllTab(),
-                    GuestRequestPendingTab(),
-                    GuestRequestApprovedTab(),
-                    GuestRequestRejectedTab(),
+                    GuestRequestAllTab(marriageId: marriageId),
+                    GuestRequestPendingTab(marriageId: marriageId),
+                    GuestRequestApprovedTab(marriageId: marriageId),
+                    GuestRequestRejectedTab(marriageId: marriageId),
                   ],
                 ),
               )),
