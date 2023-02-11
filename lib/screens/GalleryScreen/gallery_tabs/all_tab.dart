@@ -3,14 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:masonry_grid/masonry_grid.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/navigation.dart';
-import 'package:wedding/general/string_constants.dart';
-import 'package:wedding/providers/event_provider.dart';
-import 'package:wedding/providers/galleryProvider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/widgets/loader.dart';
 
+import '../../../general/color_constants.dart';
+import '../../../general/navigation.dart';
+import '../../../general/string_constants.dart';
+import '../../../providers/event_provider.dart';
+import '../../../providers/galleryProvider.dart';
+import '../../../providers/theme_provider.dart';
 import '../gallery_image.dart';
 
 class AllTab extends StatefulWidget {
@@ -133,7 +132,7 @@ class _AllTabState extends State<AllTab>
       decoration:
           theme ? const BoxDecoration() : BoxDecoration(gradient: greyToWhite),
       child: isLoading
-          ? const Loader()
+          ? const Center(child: CupertinoActivityIndicator())
           : RefreshIndicator(
               onRefresh: () async {
                 await _loadData();
@@ -159,31 +158,38 @@ class _AllTabState extends State<AllTab>
                               mainAxisSpacing: 15,
                               // staggered: true,
                               children: List.generate(
-                               isLoadingMore? images.length+1:images.length,
-                                (i) => (i==images.length)?const CupertinoActivityIndicator():GestureDetector(
-                                  onTap: () {
-                                    nextScreen(
-                                        context,
-                                        GalleryImage(
-                                          imageData: images,
-                                          currentIndex: i,
-                                        ));
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(6.0),
-                                    child: CachedNetworkImage(
-                                      imageUrl: StringConstants.apiUrl +
-                                          images.elementAt(i),
-                                      placeholder: (context, url) => Container(
-                                        height: 100,
-                                        width: 100,
-                                        color: grey,
+                                isLoadingMore
+                                    ? images.length + 1
+                                    : images.length,
+                                (i) => (i == images.length)
+                                    ? const CupertinoActivityIndicator()
+                                    : GestureDetector(
+                                        onTap: () {
+                                          nextScreen(
+                                              context,
+                                              GalleryImage(
+                                                imageData: images,
+                                                currentIndex: i,
+                                              ));
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          child: CachedNetworkImage(
+                                            imageUrl: StringConstants.apiUrl +
+                                                images.elementAt(i),
+                                            placeholder: (context, url) =>
+                                                Container(
+                                              height: 100,
+                                              width: 100,
+                                              color: grey,
+                                            ),
+                                            errorWidget: (context, url,
+                                                    error) =>
+                                                const Icon(Icons.broken_image),
+                                          ),
+                                        ),
                                       ),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.broken_image),
-                                    ),
-                                  ),
-                                ),
                               ),
                             )),
                       ),

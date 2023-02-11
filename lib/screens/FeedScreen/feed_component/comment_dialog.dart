@@ -1,18 +1,19 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:wedding/general/color_constants.dart';
-import 'package:wedding/general/shared_preferences.dart';
-import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/models/feed_model.dart';
-import 'package:wedding/providers/feed_provider.dart';
-import 'package:wedding/providers/theme_provider.dart';
-import 'package:wedding/screens/FeedScreen/feed_component/comment_component.dart';
-import 'package:wedding/widgets/comment_button.dart';
-import 'package:wedding/widgets/like_button.dart';
-import 'package:wedding/widgets/loader.dart';
+
+import '../../../general/color_constants.dart';
+import '../../../general/shared_preferences.dart';
+import '../../../general/text_styles.dart';
+import '../../../models/feed_model.dart';
+import '../../../providers/feed_provider.dart';
+import '../../../providers/theme_provider.dart';
+import '../../../widgets/comment_button.dart';
+import '../../../widgets/like_button.dart';
+import 'comment_component.dart';
 
 class CommentDialogue extends StatefulWidget {
   final FeedModel feedData;
@@ -81,7 +82,7 @@ class _CommentDialogueState extends State<CommentDialogue>
             ),
           ),
           context.watch<FeedProvider>().isCommentLoading
-              ? const Loader()
+              ? const CupertinoActivityIndicator()
               : context.watch<FeedProvider>().feedCommentList.isNotEmpty
                   ? SizedBox(
                       height: MediaQuery.of(context).size.height * 0.4,

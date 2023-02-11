@@ -25,7 +25,6 @@ import '../../widgets/user_button.dart';
 import '../ViewId/viewid_image.dart';
 import '../ViewId/viewid_pdf.dart';
 import 'bookmark_screen.dart';
-import 'edit_profile.dart';
 import 'profile_tabs/profile_all_tab.dart';
 import 'profile_tabs/profile_approved_tab.dart';
 import 'profile_tabs/profile_pending_tab.dart';
@@ -375,38 +374,38 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      editProfileDialog(context);
-                                    },
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        //change icon with ui one
-                                        Icon(
-                                          Icons.border_color,
-                                          size: 12,
-                                          color: theme
-                                              ? grey.withOpacity(0.7)
-                                              : Colors.black38,
-                                        ),
-                                        AutoSizeText(" Edit Profile",
-                                            style: gilroyNormal.copyWith(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400,
-                                              color: theme
-                                                  ? grey.withOpacity(0.8)
-                                                  : Colors.black54,
-                                            ))
-                                      ],
-                                    ),
-                                  ),
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     editProfileDialog(context);
+                                  //   },
+                                  //   child: Row(
+                                  //     crossAxisAlignment:
+                                  //         CrossAxisAlignment.start,
+                                  //     mainAxisAlignment: MainAxisAlignment.end,
+                                  //     children: [
+
+                                  //       Icon(
+                                  //         Icons.border_color,
+                                  //         size: 12,
+                                  //         color: theme
+                                  //             ? grey.withOpacity(0.7)
+                                  //             : Colors.black38,
+                                  //       ),
+                                  //       AutoSizeText(" Edit Profile",
+                                  //           style: gilroyNormal.copyWith(
+                                  //             fontSize: 10,
+                                  //             fontWeight: FontWeight.w400,
+                                  //             color: theme
+                                  //                 ? grey.withOpacity(0.8)
+                                  //                 : Colors.black54,
+                                  //           ))
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 14.0),
                                     child: AutoSizeText(
-                                      sharedPrefs.guestName,
+                                      sharedPrefs.userName,
                                       style: theme
                                           ? gilroyBold.copyWith(fontSize: 16)
                                           : gilroyBold.copyWith(

@@ -51,11 +51,11 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  List<String> brideSibling = [];
-  List<String> brideRelative = [];
+  List<SidePerson> brideSibling = [];
+  List<SidePerson> brideRelative = [];
 
-  List<String> groomSibling = [];
-  List<String> groomRelative = [];
+  List<SidePerson> groomSibling = [];
+  List<SidePerson> groomRelative = [];
 
   List<AddEventModel> events = [];
 
@@ -127,28 +127,28 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
           });
           for (var i = 0; i < brideSibling.length; i++) {
             data.fields.addAll([
-              MapEntry("bride_side${i + 2}.name", brideSibling[i]),
+              MapEntry("bride_side${i + 2}.name", brideSibling[i].name),
               MapEntry("bride_side${i + 2}.relation", "sibling"),
             ]);
           }
           for (var i = 0; i < brideRelative.length; i++) {
             data.fields.addAll([
               MapEntry("bride_side${i + brideSibling.length + 2}.name",
-                  brideRelative[i]),
+                  brideRelative[i].name),
               MapEntry("bride_side${i + brideSibling.length + 2}.relation",
                   "relative"),
             ]);
           }
           for (var i = 0; i < groomSibling.length; i++) {
             data.fields.addAll([
-              MapEntry("groom_side${i + 2}.name", groomSibling[i]),
+              MapEntry("groom_side${i + 2}.name", groomSibling[i].name),
               MapEntry("groom_side${i + 2}.relation", "sibling"),
             ]);
           }
           for (var i = 0; i < groomRelative.length; i++) {
             data.fields.addAll([
               MapEntry("groom_side${i + groomSibling.length + 2}.name",
-                  groomRelative[i]),
+                  groomRelative[i].name),
               MapEntry("groom_side${i + groomSibling.length + 2}.relation",
                   "relative"),
             ]);
@@ -157,7 +157,7 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
             if (pickedImage != null) {
               data.files.add(MapEntry(
                 "bride_side${i + 2}.image",
-                await MultipartFile.fromFile(pickedImage!.path),
+                await MultipartFile.fromFile(brideSibling[i].image!.path),
               ));
             }
           }
@@ -165,7 +165,7 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
             if (pickedImage != null) {
               data.files.add(MapEntry(
                 "bride_side${i + brideSibling.length + 2}.image",
-                await MultipartFile.fromFile(pickedImage!.path),
+                await MultipartFile.fromFile(brideRelative[i].image!.path),
               ));
             }
           }
@@ -173,7 +173,7 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
             if (pickedImage != null) {
               data.files.add(MapEntry(
                 "groom_side${i + 2}.image",
-                await MultipartFile.fromFile(pickedImage!.path),
+                await MultipartFile.fromFile(groomSibling[i].image!.path),
               ));
             }
           }
@@ -181,7 +181,7 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
             if (pickedImage != null) {
               data.files.add(MapEntry(
                 "groom_side${i + groomSibling.length + 2}.image",
-                await MultipartFile.fromFile(pickedImage!.path),
+                await MultipartFile.fromFile(groomRelative[i].image!.path),
               ));
             }
           }
@@ -328,178 +328,6 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
     }
     return null;
   }
-
-  // void imagePick() {
-  //   showModalBottomSheet(
-  //     isScrollControlled: true,
-  //     backgroundColor: carouselBlack,
-  //     shape: const RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(15.0),
-  //         topRight: Radius.circular(15.0),
-  //       ),
-  //     ),
-  //     context: context,
-  //     builder: (BuildContext bc) {
-  //       return Padding(
-  //           padding: MediaQuery.of(context).viewInsets,
-  //           child: Padding(
-  //             padding: const EdgeInsets.all(25),
-  //             child: Column(
-  //               mainAxisSize: MainAxisSize.min,
-  //               children: [
-  //                 Row(
-  //                   children: [
-  //                     Expanded(
-  //                       child: GestureDetector(
-  //                         onTap: () async {
-  //                           pickedImage = await getFromGallery();
-  //                           if (pickedImage != null) {
-  //                             pickedImage = await _cropImage(true);
-  //                           }
-
-  //                           if (pickedImage == null) {
-  //                             Fluttertoast.showToast(
-  //                                 msg: "failed to pick image");
-  //                           } else {
-  //                             setState(() {
-  //                               pickedImage;
-  //                             });
-  //                           }
-
-  //                           Navigator.of(context).pop();
-  //                         },
-  //                         child: Container(
-  //                           height: 60,
-  //                           decoration: BoxDecoration(
-  //                             borderRadius: BorderRadius.circular(10),
-  //                             color: timeGrey,
-  //                           ),
-  //                           child: Padding(
-  //                             padding: const EdgeInsets.all(10),
-  //                             child: Row(
-  //                               children: [
-  //                                 const Icon(Icons.image),
-  //                                 const SizedBox(
-  //                                   width: 10,
-  //                                 ),
-  //                                 Column(
-  //                                   crossAxisAlignment:
-  //                                       CrossAxisAlignment.start,
-  //                                   children: [
-  //                                     Text(
-  //                                       "Choose from",
-  //                                       softWrap: true,
-  //                                       style: poppinsNormal.copyWith(
-  //                                           color: white, fontSize: 14),
-  //                                     ),
-  //                                     Text(
-  //                                       "gallery",
-  //                                       softWrap: true,
-  //                                       style: poppinsNormal.copyWith(
-  //                                           color: white, fontSize: 14),
-  //                                     ),
-  //                                   ],
-  //                                 ),
-  //                               ],
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                     const SizedBox(
-  //                       width: 20,
-  //                     ),
-  //                     Expanded(
-  //                       child: GestureDetector(
-  //                         onTap: () async {
-  //                           pickedImage = await getFromCamera();
-  //                           if (pickedImage != null) {
-  //                             pickedImage = await _cropImage(true);
-  //                           }
-  //                           if (pickedImage == null) {
-  //                             Fluttertoast.showToast(
-  //                                 msg: "failed to pick image");
-  //                           } else {
-  //                             setState(() {
-  //                               pickedImage;
-  //                             });
-  //                           }
-
-  //                           Navigator.of(context).pop();
-  //                         },
-  //                         child: Container(
-  //                           height: 60,
-  //                           decoration: BoxDecoration(
-  //                             borderRadius: BorderRadius.circular(10),
-  //                             color: timeGrey,
-  //                           ),
-  //                           child: Padding(
-  //                             padding: const EdgeInsets.all(10),
-  //                             child: Row(
-  //                               children: [
-  //                                 const Icon(Icons.camera_alt_outlined),
-  //                                 const SizedBox(
-  //                                   width: 10,
-  //                                 ),
-  //                                 Column(
-  //                                   children: [
-  //                                     Text(
-  //                                       "Take  a",
-  //                                       style: poppinsNormal.copyWith(
-  //                                           color: white, fontSize: 14),
-  //                                     ),
-  //                                     Text(
-  //                                       "Photo ",
-  //                                       style: poppinsNormal.copyWith(
-  //                                           color: white, fontSize: 14),
-  //                                     ),
-  //                                   ],
-  //                                 ),
-  //                               ],
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 const SizedBox(
-  //                   height: 20,
-  //                 ),
-  //                 GestureDetector(
-  //                   onTap: () {
-  //                     if (Navigator.canPop(context)) {
-  //                       Navigator.pop(context);
-  //                     }
-  //                   },
-  //                   child: Row(
-  //                     children: [
-  //                       Expanded(
-  //                         child: Container(
-  //                           decoration: BoxDecoration(
-  //                               borderRadius: BorderRadius.circular(10),
-  //                               border: Border.all(color: lightBlack)),
-  //                           child: Padding(
-  //                             padding: const EdgeInsets.symmetric(vertical: 18),
-  //                             child: Text(
-  //                               "Cancel",
-  //                               style: poppinsNormal.copyWith(
-  //                                   color: lightBlack, fontSize: 15),
-  //                               textAlign: TextAlign.center,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //           ));
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -827,15 +655,20 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          brideSibling[index],
+                                          brideSibling[index].name,
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
+                                        ),
+                                        const Spacer(),
+                                        const SizedBox(
+                                          width: 10,
                                         ),
                                         GestureDetector(
                                           onTap: () {
@@ -848,7 +681,32 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                             Icons.remove_circle,
                                             color: Colors.red,
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.file(
+                                              File(brideSibling[index]
+                                                  .image!
+                                                  .path),
+                                              height: 40,
+                                              width: 40,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -917,10 +775,11 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          brideRelative[index],
+                                          brideRelative[index].name,
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
                                         ),
+                                        const Spacer(),
                                         GestureDetector(
                                           onTap: () {
                                             brideRelative.removeAt(index);
@@ -932,7 +791,32 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                             Icons.remove_circle,
                                             color: Colors.red,
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.file(
+                                              File(brideRelative[index]
+                                                  .image!
+                                                  .path),
+                                              height: 40,
+                                              width: 40,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1178,10 +1062,11 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          groomSibling[index],
+                                          groomSibling[index].name,
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
                                         ),
+                                        const Spacer(),
                                         GestureDetector(
                                           onTap: () {
                                             groomSibling.removeAt(index);
@@ -1193,7 +1078,32 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                             Icons.remove_circle,
                                             color: Colors.red,
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.file(
+                                              File(groomSibling[index]
+                                                  .image!
+                                                  .path),
+                                              height: 40,
+                                              width: 40,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1262,10 +1172,11 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          groomRelative[index],
+                                          groomRelative[index].name,
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
                                         ),
+                                        const Spacer(),
                                         GestureDetector(
                                           onTap: () {
                                             groomRelative.removeAt(index);
@@ -1277,7 +1188,32 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                             Icons.remove_circle,
                                             color: Colors.red,
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Image.file(
+                                              File(groomRelative[index]
+                                                  .image!
+                                                  .path),
+                                              height: 40,
+                                              width: 40,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1647,19 +1583,19 @@ class AddEventModel {
 class SidePerson {
   SidePerson({
     required this.name,
-    required this.relation,
+    required this.image,
   });
 
-  final String relation;
+  final File? image;
   final String name;
 
   factory SidePerson.fromJson(Map<String, dynamic> json) => SidePerson(
         name: json["name"],
-        relation: json["relation"],
+        image: json["image"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "relation": relation,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "name": name,
+  //       "image": image,
+  //     };
 }

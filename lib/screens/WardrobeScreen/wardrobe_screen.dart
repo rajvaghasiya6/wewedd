@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wedding/general/color_constants.dart';
 import 'package:wedding/providers/wardrobe_provider.dart';
 import 'package:wedding/screens/WardrobeScreen/wardrobe_components/wardrobe_component.dart';
 import 'package:wedding/widgets/custom_sliverappbar.dart';
-import 'package:wedding/widgets/loader.dart';
 
 class WardrobeScreen extends StatefulWidget {
   const WardrobeScreen({Key? key}) : super(key: key);
@@ -42,17 +42,21 @@ class _WardrobeScreenState extends State<WardrobeScreen> {
                   title: "Wardrobe Planner",
                 ),
                 !context.watch<WardrobeProvider>().isLoaded
-                    ? const SliverFillRemaining(child: Loader())
-                    : context.watch<WardrobeProvider>().wardrobes.isNotEmpty?SliverFixedExtentList(
-                        itemExtent: 230.0,
-                        delegate: SliverChildBuilderDelegate(
-                            (BuildContext context, int index) {
-                          return WardrobeComponent(
-                            index: index,
-                            wardrobe: wardrobe.elementAt(index),
-                          );
-                        }, childCount: wardrobe.length),
-                      ):const SliverFillRemaining(child: Center(child: Text("No data found..."))),
+                    ? const SliverFillRemaining(
+                        child: CupertinoActivityIndicator())
+                    : context.watch<WardrobeProvider>().wardrobes.isNotEmpty
+                        ? SliverFixedExtentList(
+                            itemExtent: 230.0,
+                            delegate: SliverChildBuilderDelegate(
+                                (BuildContext context, int index) {
+                              return WardrobeComponent(
+                                index: index,
+                                wardrobe: wardrobe.elementAt(index),
+                              );
+                            }, childCount: wardrobe.length),
+                          )
+                        : const SliverFillRemaining(
+                            child: Center(child: Text("No data found..."))),
               ],
             ),
           ),

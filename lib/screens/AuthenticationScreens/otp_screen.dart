@@ -182,8 +182,7 @@ class _OTPScreenState extends State<OTPScreen> {
                             ));
                       } else {
                         sharedPrefsData();
-                        nextScreenCloseOthers(
-                            context, const HashtagSearchScreen());
+                        nextScreenCloseOthers(context, HashtagSearchScreen());
                       }
                     } else {
                       setState(() {

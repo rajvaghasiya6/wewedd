@@ -92,7 +92,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 List<String>.from(value.data['user_id_proof']);
             print(
                 'registration data ${value.data} ,${value.message},${value.success}');
-            nextScreenCloseOthers(context, const HashtagSearchScreen());
+            nextScreenCloseOthers(context, HashtagSearchScreen());
           }
         }
       });

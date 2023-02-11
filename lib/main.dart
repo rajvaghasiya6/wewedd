@@ -12,6 +12,7 @@ import 'hiveModels/recent_search_model.dart';
 import 'models/theme_model.dart';
 import 'providers/add_wedding_provider.dart';
 import 'providers/dashboard_provider.dart';
+import 'providers/edit_wedding_provider.dart';
 import 'providers/event_provider.dart';
 import 'providers/feed_provider.dart';
 import 'providers/feed_request_provider.dart';
@@ -19,6 +20,7 @@ import 'providers/galleryProvider.dart';
 import 'providers/guest_provider.dart';
 import 'providers/guest_request_provider.dart';
 import 'providers/hashtag_search_provider.dart';
+import 'providers/leaderboard_provider.dart';
 import 'providers/network_provider.dart';
 import 'providers/notification_provider.dart';
 import 'providers/theme_provider.dart';
@@ -72,6 +74,12 @@ class MyApp extends StatelessWidget {
               ),
               ChangeNotifierProvider(
                 create: (context) => GuestRequestProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (context) => LeaderboardProvider(),
+              ),
+              ChangeNotifierProvider(
+                create: (context) => EditWeddingProvider(),
               ),
               StreamProvider(
                   create: (context) =>

@@ -15,7 +15,6 @@ import '../../general/navigation.dart';
 import '../../general/text_styles.dart';
 import '../../providers/feed_provider.dart';
 import '../../providers/theme_provider.dart';
-import '../../widgets/loader.dart';
 import '../../widgets/popup.dart';
 import '../HomeScreen/home_screen.dart';
 import '../leaderboard/leaderboard_screen.dart';
@@ -307,7 +306,8 @@ class _FeedScreenState extends State<FeedScreen> {
                     ],
                   ),
                   !feed.isFeedLoaded
-                      ? const SliverFillRemaining(child: Loader())
+                      ? const SliverFillRemaining(
+                          child: Center(child: CupertinoActivityIndicator()))
                       : feed.feeds.isNotEmpty
                           ? SliverPadding(
                               padding: const EdgeInsets.only(bottom: 15),

@@ -64,7 +64,6 @@ class _AddNewEventState extends State<AddNewEvent> {
             Fluttertoast.showToast(msg: "Event added successfully");
           }
         });
-        Navigator.pop(context);
       }
     }
   }

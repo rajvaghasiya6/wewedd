@@ -650,6 +650,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "network_to_file_image",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/network_to_file_image-4.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.13"
+    },
+    {
       "name": "nm",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/nm-0.5.0",
       "packageUri": "lib/",
@@ -1238,7 +1244,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2023-02-05T08:54:29.058108Z",
+  "generated": "2023-02-11T17:09:03.221348Z",
   "generator": "pub",
   "generatorVersion": "2.18.5"
 }

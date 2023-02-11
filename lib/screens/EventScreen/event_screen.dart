@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,8 +8,6 @@ import '../../general/shared_preferences.dart';
 import '../../general/text_styles.dart';
 import '../../providers/event_provider.dart';
 import '../../providers/theme_provider.dart';
-import '../../widgets/custom_sliverappbar.dart';
-import '../../widgets/loader.dart';
 import 'add_new_event.dart';
 import 'event_components/event_component.dart';
 
@@ -27,40 +26,78 @@ class _EventScreenState extends State<EventScreen> {
     return Container(
       decoration: BoxDecoration(gradient: greyToWhite),
       child: Scaffold(
-        body: SafeArea(
-          child: RefreshIndicator(
-            onRefresh: () async {
-              await context.read<EventProvider>().getEvents();
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
             },
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                const CustomSliverAppBar(
-                  title: "Events",
-                ),
-                !context.watch<EventProvider>().isLoaded
-                    ? const SliverFillRemaining(child: Loader())
-                    : context.watch<EventProvider>().events.isNotEmpty
-                        ? SliverFixedExtentList(
-                            itemExtent: 174.0,
-                            delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int eindex) {
+            icon: const Icon(
+              CupertinoIcons.back,
+              // color: Colors.white,
+            ),
+          ),
+          title: Text(
+            "Events",
+            style: poppinsBold.copyWith(
+              fontSize: 24,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: SafeArea(
+            child: RefreshIndicator(
+              onRefresh: () async {
+                await context.read<EventProvider>().getEvents();
+              },
+              child: Column(
+                children: [
+                  !context.watch<EventProvider>().isLoaded
+                      ? const Center(child: CupertinoActivityIndicator())
+                      : context.watch<EventProvider>().events.isNotEmpty
+                          ? ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: events.length,
+                              itemBuilder: (context, index) {
                                 return Container(
                                   decoration: !theme
                                       ? BoxDecoration(gradient: greyToWhite)
                                       : const BoxDecoration(),
                                   child: EventComponent(
-                                    cIndex: eindex,
-                                    event: events.elementAt(eindex),
+                                    cIndex: index,
+                                    event: events.elementAt(index),
                                   ),
                                 );
-                              },
-                              childCount: events.length,
-                            ),
-                          )
-                        : const SliverFillRemaining(
-                            child: Center(child: Text("Data not found...")))
-              ],
+                              })
+                          // !context.watch<EventProvider>().isLoaded
+                          //     ? const SliverFillRemaining(
+                          //         child: Center(child: CupertinoActivityIndicator()))
+                          //     : context.watch<EventProvider>().events.isNotEmpty
+                          //         ? ListView(
+                          //             children: [
+                          //               SliverFixedExtentList(
+                          //                 itemExtent: 174.0,
+                          //                 delegate: SliverChildBuilderDelegate(
+                          //                   (BuildContext context, int eindex) {
+                          //                     return Container(
+                          //                       decoration: !theme
+                          //                           ? BoxDecoration(gradient: greyToWhite)
+                          //                           : const BoxDecoration(),
+                          //                       child: EventComponent(
+                          //                         cIndex: eindex,
+                          //                         event: events.elementAt(eindex),
+                          //                       ),
+                          //                     );
+                          //                   },
+                          //                   childCount: events.length,
+                          //                 ),
+                          //               ),
+                          //             ],
+                          //           )
+                          : const Center(child: Text("Data not found..."))
+                ],
+              ),
             ),
           ),
         ),

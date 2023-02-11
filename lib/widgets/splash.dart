@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> {
             (sharedPrefs.userId == '' && sharedPrefs.mobileNo == '') ||
                     (sharedPrefs.userId.isEmpty && sharedPrefs.mobileNo.isEmpty)
                 ? const LoginScreen()
-                : const HashtagSearchScreen()));
+                : HashtagSearchScreen()));
   }
 
   // checkLoginStatus() async {

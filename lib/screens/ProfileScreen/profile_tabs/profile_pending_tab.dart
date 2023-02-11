@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:wedding/models/guest_feed_model.dart';
-import 'package:wedding/providers/user_feed_provider.dart';
-import 'package:wedding/screens/ProfileScreen/profile_components/square_image.dart';
-import 'package:wedding/widgets/loader.dart';
+
+import '../../../models/guest_feed_model.dart';
+import '../../../providers/user_feed_provider.dart';
+import '../profile_components/square_image.dart';
 
 class ProfilePendingTab extends StatefulWidget {
   const ProfilePendingTab({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _ProfilePendingTabState extends State<ProfilePendingTab>
   @override
   bool get wantKeepAlive => true;
 
-  bool isLoaded = false,isLoading =false;
+  bool isLoaded = false, isLoading = false;
 
   List<GuestFeedModel> images = [];
 
@@ -27,14 +27,14 @@ class _ProfilePendingTabState extends State<ProfilePendingTab>
     Future.delayed(const Duration(milliseconds: 0)).then((value) {
       if (!isLoaded) {
         setState(() {
-          isLoading=true;
+          isLoading = true;
         });
         Provider.of<UserFeedProvider>(context, listen: false)
             .getGuestFeed(type: "Pending")
             .then((value) {
           images = value.data!;
           setState(() {
-            isLoading=false;
+            isLoading = false;
             isLoaded = true;
           });
         });
@@ -46,7 +46,7 @@ class _ProfilePendingTabState extends State<ProfilePendingTab>
   Widget build(BuildContext context) {
     super.build(context);
     return isLoading
-        ? const Loader()
+        ? const CupertinoActivityIndicator()
         : images.isEmpty && isLoaded
             ? const Center(child: Text("No pending post found..."))
             : SquareImage(

@@ -826,34 +826,52 @@ class _DashboardScreenState extends State<DashboardScreen>
                                               ?.firstWhere((element) =>
                                                   element.relation == "Groom")
                                               .relation),
-                                      PersonTitle(
-                                          theme: theme,
-                                          image: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .image,
-                                          name: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .name,
-                                          relation: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .relation),
-                                      PersonTitle(
-                                          theme: theme,
-                                          image: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .image,
-                                          name: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .name,
-                                          relation: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .relation)
+                                      dashboardData.groomSide?.firstWhere(
+                                                  (element) =>
+                                                      element.relation ==
+                                                      "Groom") !=
+                                              null
+                                          ? PersonTitle(
+                                              theme: theme,
+                                              image: dashboardData.groomSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Groom")
+                                                  .image,
+                                              name: dashboardData.groomSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Groom")
+                                                  .name,
+                                              relation: dashboardData.groomSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Groom")
+                                                  .relation)
+                                          : const SizedBox(),
+                                      dashboardData.groomSide?.firstWhere(
+                                                  (element) =>
+                                                      element.relation ==
+                                                      "Groom") !=
+                                              null
+                                          ? PersonTitle(
+                                              theme: theme,
+                                              image: dashboardData.groomSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Groom")
+                                                  .image,
+                                              name: dashboardData.groomSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Groom")
+                                                  .name,
+                                              relation: dashboardData.groomSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Groom")
+                                                  .relation)
+                                          : const SizedBox(),
                                     ],
                                   ),
                                   const SizedBox(
@@ -872,51 +890,72 @@ class _DashboardScreenState extends State<DashboardScreen>
                                     children: [
                                       PersonTitle(
                                           theme: theme,
-                                          image: dashboardData.groomSide
+                                          image: dashboardData.brideSide
                                               ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
+                                                  element.relation == "Bride")
                                               .image,
-                                          name: dashboardData.groomSide
+                                          name: dashboardData.brideSide
                                               ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
+                                                  element.relation == "Bride")
                                               .name,
-                                          relation: dashboardData.groomSide
+                                          relation: dashboardData.brideSide
                                               ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
+                                                  element.relation == "Bride")
                                               .relation),
-                                      PersonTitle(
-                                          theme: theme,
-                                          image: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .image,
-                                          name: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .name,
-                                          relation: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .relation),
-                                      PersonTitle(
-                                          theme: theme,
-                                          image: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .image,
-                                          name: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .name,
-                                          relation: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .relation)
+                                      dashboardData.brideSide?.firstWhere(
+                                                  (element) =>
+                                                      element.relation ==
+                                                      "Bride") !=
+                                              null
+                                          ? PersonTitle(
+                                              theme: theme,
+                                              image: dashboardData.brideSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Bride")
+                                                  .image,
+                                              name: dashboardData.brideSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Bride")
+                                                  .name,
+                                              relation: dashboardData.brideSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Bride")
+                                                  .relation)
+                                          : const SizedBox(),
+                                      dashboardData.brideSide?.firstWhere(
+                                                  (element) =>
+                                                      element.relation ==
+                                                      "Bride") !=
+                                              null
+                                          ? PersonTitle(
+                                              theme: theme,
+                                              image: dashboardData.brideSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Bride")
+                                                  .image,
+                                              name: dashboardData.brideSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Bride")
+                                                  .name,
+                                              relation: dashboardData.brideSide
+                                                  ?.firstWhere((element) =>
+                                                      element.relation ==
+                                                      "Bride")
+                                                  .relation)
+                                          : const SizedBox(),
                                     ],
                                   ),
                                 ],
                               ),
-                            )
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
                           ],
                         ),
                       ),

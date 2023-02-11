@@ -95,6 +95,8 @@ dependencies:
   badges: ^3.0.2
   fl_chart: ^0.60.0
   syncfusion_flutter_charts: ^20.4.48
+  collection: ^1.16.0
+  network_to_file_image: ^4.0.1
 
 dev_dependencies:
   flutter_test:

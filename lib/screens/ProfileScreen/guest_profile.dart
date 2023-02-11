@@ -7,7 +7,6 @@ import 'package:wedding/general/text_styles.dart';
 import 'package:wedding/providers/guest_provider.dart';
 import 'package:wedding/providers/theme_provider.dart';
 import 'package:wedding/screens/ProfileScreen/profile_components/square_image_guest.dart';
-import 'package:wedding/widgets/loader.dart';
 import 'package:wedding/widgets/user_button.dart';
 
 class GuestProfileScreen extends StatefulWidget {
@@ -149,7 +148,7 @@ class _GuestProfileScreenState extends State<GuestProfileScreen> {
             },
             body: guest.isLoading || guest.guest == null
                 ? const Center(
-                    child: Loader(),
+                    child: CupertinoActivityIndicator(),
                   )
                 : Padding(
                     padding:
