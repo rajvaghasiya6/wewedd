@@ -12,7 +12,7 @@ Future<File> fileFromImageUrl(String url) async {
 
   final documentDirectory = await getApplicationDocumentsDirectory();
 
-  final file = File(join(documentDirectory.path, getRandomString(15)));
+  final file = File(join(documentDirectory.path, getRandomString(15) + '.jpg'));
 
   file.writeAsBytesSync(response.bodyBytes);
 

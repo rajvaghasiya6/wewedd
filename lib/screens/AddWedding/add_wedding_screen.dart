@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
@@ -100,17 +101,19 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
         if (_formKey.currentState!.validate()) {
           FormData data = FormData.fromMap({
             'mobile_number': sharedPrefs.mobileNo,
-            'marriage_name': weddingNameController.text,
-            'wedding_date': weddingDateController.text,
-            'wedding_hashtag': hashtagController.text,
-            'wedding_time': weddingTimeController.text,
-            'wedding_venue': weddingVenueController.text,
+            'marriage_name': weddingNameController.text.trim(),
+            'wedding_date': DateTime.parse(DateFormat('yyyy-MM-dd').format(
+                    DateFormat('dd-MM-yyyy').parse(weddingDateController.text)))
+                .toString(),
+            'wedding_hashtag': hashtagController.text.trim(),
+            'wedding_time': weddingTimeController.text.trim(),
+            'wedding_venue': weddingVenueController.text.trim(),
             'is_guests_id_proof': isIdProof.toString(),
             'is_approve_post': isUploadFeed.toString(),
             'is_private': isAccess.toString(),
-            'bride_name': brideNameController.text,
-            'groom_name': groomNameController.text,
-            'live_link': liveLinkController.text,
+            'bride_name': brideNameController.text.trim(),
+            'groom_name': groomNameController.text.trim(),
+            'live_link': liveLinkController.text.trim(),
             'groom_side_length':
                 (groomRelative.length + groomSibling.length + 2).toString(),
             'bride_side_length':
@@ -769,7 +772,8 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1056,7 +1060,8 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1166,7 +1171,8 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1233,7 +1239,7 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                   height: 30,
                 ),
                 MyTextFormField(
-                  hintText: "Enter Wedding Date",
+                  hintText: "Enter Wedding Date (dd-MM-yyyy)",
                   lable: "Wedding Date",
                   controller: weddingDateController,
                   validator: (val) {
@@ -1276,7 +1282,6 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    //  print(events.first.eventName);
                     addNewEventDialog(context, events);
                   },
                   child: Row(
@@ -1386,12 +1391,6 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
                   hintText: "www.youtubelive.com",
                   lable: "Live Streaming link",
                   controller: liveLinkController,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return "Please Enter Wedding Venue";
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(
                   height: 30,
@@ -1553,6 +1552,7 @@ class AddEventModel {
     required this.eventTime,
     required this.isDresscode,
     required this.eventVenue,
+    this.eventId,
     required this.menDresscode,
     required this.womenDresscode,
   });
@@ -1564,6 +1564,7 @@ class AddEventModel {
   final String eventTime;
   final String eventVenue;
   final bool isDresscode;
+  final String? eventId;
   final String menDresscode;
   final String womenDresscode;
 

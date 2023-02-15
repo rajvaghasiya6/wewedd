@@ -7,13 +7,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../general/color_constants.dart';
 import '../../../general/shared_preferences.dart';
 import '../../../general/text_styles.dart';
 import '../../../providers/edit_wedding_provider.dart';
-import '../../../providers/event_provider.dart';
 import '../../../widgets/mytextformfield.dart';
 import '../../AddWedding/AddWeddingComponent/add_new_event_widget.dart';
 import '../../AddWedding/AddWeddingComponent/add_siblings_widget.dart';
@@ -96,14 +96,16 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
         groomNameController.text = value.data?.groomName ?? '';
         groomFatherNameController.text = value.data?.groomFather?.name ?? '';
         groomMotherNameController.text = value.data?.groomMother?.name ?? '';
-        weddingDateController.text = value.data?.weddingDate ?? '';
+        weddingDateController.text = DateFormat('dd-MM-yyyy')
+            .format(DateTime.parse(value.data?.weddingDate ?? ''));
         weddingVenueController.text = value.data?.weddingVenue ?? '';
         weddingNameController.text = value.data?.marriageName ?? '';
-        //    weddingTimeController.text = value.data!.wedd;
+        weddingTimeController.text = value.data!.marriageTime;
         liveLinkController.text = value.data?.liveLink ?? '';
-        //  isAccess =value.data?.isActive?? true;
+        isAccess = value.data?.isActive ?? true;
         isIdProof = value.data?.isGuestsIdProof ?? true;
         isUploadFeed = value.data?.isApprovePost ?? true;
+
         setState(() {
           isImageLoad = true;
         });
@@ -140,20 +142,77 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
               : null;
           inviteImage.add(temp!);
         }
+        for (var i = 0; i < value.data!.groomSibling.length; i++) {
+          var tempName = value.data?.groomSibling[i] != null
+              ? value.data?.groomSibling[i].name
+              : '';
+          var temp = value.data?.groomSibling[i] != null
+              ? await fileFromImageUrl(value.data?.groomSibling[i].image ?? '')
+              : null;
+          groomSibling.add(SidePerson(name: tempName ?? '', image: temp));
+        }
+        for (var i = 0; i < value.data!.groomRelative.length; i++) {
+          var tempName = value.data?.groomRelative[i] != null
+              ? value.data?.groomRelative[i].name
+              : '';
+          var temp = value.data?.groomRelative[i] != null
+              ? await fileFromImageUrl(value.data?.groomRelative[i].image ?? '')
+              : null;
+          groomRelative.add(SidePerson(name: tempName ?? '', image: temp));
+        }
+        for (var i = 0; i < value.data!.brideSibling.length; i++) {
+          var tempName = value.data?.brideSibling[i] != null
+              ? value.data?.brideSibling[i].name
+              : '';
+          var temp = value.data?.brideSibling[i] != null
+              ? await fileFromImageUrl(value.data?.brideSibling[i].image ?? '')
+              : null;
+          brideSibling.add(SidePerson(name: tempName ?? '', image: temp));
+        }
+        for (var i = 0; i < value.data!.brideSibling.length; i++) {
+          var tempName = value.data?.brideSibling[i] != null
+              ? value.data?.brideSibling[i].name
+              : '';
+          var temp = value.data?.brideSibling[i] != null
+              ? await fileFromImageUrl(value.data?.brideSibling[i].image ?? '')
+              : null;
+          brideSibling.add(SidePerson(name: tempName ?? '', image: temp));
+        }
+
         setState(() {
           isImageLoad = false;
         });
       });
       // context.read<EditWeddingProvider>().getWeddingData(widget.marriageId);
-      Provider.of<EventProvider>(context, listen: false).getEvents();
     });
+    Provider.of<EditWeddingProvider>(context, listen: false)
+        .getEvents(widget.marriageId)
+        .then((value) {
+      for (var i = 0; i < value.data!.length; i++) {
+        var temp = value.data?[i] != null
+            ? AddEventModel(
+                eventId: value.data![i].eventId,
+                eventDate: value.data![i].eventDate.toString(),
+                eventName: value.data![i].eventName,
+                eventTagline: value.data![i].eventTagline,
+                eventTime: value.data![i].eventTime,
+                eventVenue: value.data![i].eventVenue,
+                isDresscode: value.data![i].isDressCode,
+                menDresscode: value.data![i].dressCode?.forMen ?? '',
+                womenDresscode: value.data![i].dressCode?.forWomen ?? '',
+                eventLogo: null,
+              )
+            : null;
 
-    var weddingdata = context.read<EditWeddingProvider>().weddingAllDetailModel;
+        events.add(temp!);
+      }
+    });
+    //  var weddingdata = context.read<EditWeddingProvider>().weddingAllDetailModel;
 
     super.initState();
   }
 
-  void addWeddingPress() async {
+  void updateWeddingPress() async {
     final isValid = _formKey.currentState!.validate();
     if (pickedImage == null) {
       Fluttertoast.showToast(msg: 'Upload wedding logo ');
@@ -178,8 +237,11 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
         if (_formKey.currentState!.validate()) {
           FormData data = FormData.fromMap({
             'mobile_number': sharedPrefs.mobileNo,
+            'marriage_id': widget.marriageId,
             'marriage_name': weddingNameController.text,
-            'wedding_date': weddingDateController.text,
+            'wedding_date': DateTime.parse(DateFormat('yyyy-MM-dd').format(
+                    DateFormat('dd-MM-yyyy').parse(weddingDateController.text)))
+                .toString(),
             'wedding_hashtag': hashtagController.text,
             'wedding_time': weddingTimeController.text,
             'wedding_venue': weddingVenueController.text,
@@ -334,6 +396,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
 
           for (var i = 0; i < events.length; i++) {
             data.fields.addAll([
+              MapEntry("event$i.id", events[i].eventId ?? ''),
               MapEntry("event$i.event_name", events[i].eventName),
               MapEntry("event$i.event_tagline", events[i].eventTagline),
               MapEntry("event$i.event_date", events[i].eventDate),
@@ -356,15 +419,14 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
 
           log(data.fields.toString());
           log(data.files.toString());
-          // Provider.of<AddWeddingProvider>(context, listen: false)
-          //     .addNewWedding(formData: data)
-          //     .then((value) {
-          //   print(value.message);
-          //   if (value.success) {
-          //     Navigator.of(context).pop();
-          //     Fluttertoast.showToast(msg: "Wedding added successfully");
-          //   }
-          // });
+          Provider.of<EditWeddingProvider>(context, listen: false)
+              .updateWedding(formData: data)
+              .then((value) {
+            if (value.success) {
+              Navigator.of(context).pop();
+              Fluttertoast.showToast(msg: "Wedding updated successfully");
+            }
+          });
         }
       }
     }
@@ -409,6 +471,8 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var isloading = Provider.of<EditWeddingProvider>(context).isLoading;
+
     return Scaffold(
         body: GestureDetector(
       onTap: () {
@@ -739,7 +803,8 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -748,6 +813,35 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                           brideSibling[index].name,
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
+                                        ),
+                                        const Spacer(),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: isImageLoad
+                                                  ? const CupertinoActivityIndicator()
+                                                  : ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.file(
+                                                        File(brideSibling[index]
+                                                            .image!
+                                                            .path),
+                                                        height: 40,
+                                                        width: 40,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    )),
                                         ),
                                         GestureDetector(
                                           onTap: () {
@@ -823,7 +917,8 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -833,6 +928,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
                                         ),
+                                        const Spacer(),
                                         GestureDetector(
                                           onTap: () {
                                             brideRelative.removeAt(index);
@@ -844,7 +940,36 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                             Icons.remove_circle,
                                             color: Colors.red,
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: isImageLoad
+                                                  ? const CupertinoActivityIndicator()
+                                                  : ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.file(
+                                                        File(
+                                                            brideRelative[index]
+                                                                .image!
+                                                                .path),
+                                                        height: 40,
+                                                        width: 40,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1090,7 +1215,8 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1100,6 +1226,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
                                         ),
+                                        const Spacer(),
                                         GestureDetector(
                                           onTap: () {
                                             groomSibling.removeAt(index);
@@ -1111,7 +1238,35 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                             Icons.remove_circle,
                                             color: Colors.red,
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: isImageLoad
+                                                  ? const CupertinoActivityIndicator()
+                                                  : ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.file(
+                                                        File(groomSibling[index]
+                                                            .image!
+                                                            .path),
+                                                        height: 40,
+                                                        width: 40,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1174,7 +1329,8 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6, horizontal: 16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -1184,6 +1340,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                           style: poppinsNormal.copyWith(
                                               color: white, fontSize: 15),
                                         ),
+                                        const Spacer(),
                                         GestureDetector(
                                           onTap: () {
                                             groomRelative.removeAt(index);
@@ -1195,7 +1352,36 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                             Icons.remove_circle,
                                             color: Colors.red,
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            color: lightBlack,
+                                          ),
+                                          child: Center(
+                                              child: isImageLoad
+                                                  ? const CupertinoActivityIndicator()
+                                                  : ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.file(
+                                                        File(
+                                                            groomRelative[index]
+                                                                .image!
+                                                                .path),
+                                                        height: 40,
+                                                        width: 40,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    )),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1215,7 +1401,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                   height: 30,
                 ),
                 MyTextFormField(
-                  hintText: "Enter Wedding Date",
+                  hintText: "Enter Wedding Date (dd-MM-yyyy)",
                   lable: "Wedding Date",
                   controller: weddingDateController,
                   validator: (val) {
@@ -1271,7 +1457,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 18),
                             child: Text(
-                              "  + Add New Event",
+                              "+ Add New Event",
                               style: poppinsNormal.copyWith(
                                   color: grey, fontSize: 15),
                             ),
@@ -1372,12 +1558,6 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                   hintText: "www.youtubelive.com",
                   lable: "Live Streaming link",
                   controller: liveLinkController,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return "Please Enter Wedding Venue";
-                    }
-                    return null;
-                  },
                 ),
                 const SizedBox(
                   height: 30,
@@ -1486,7 +1666,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    addWeddingPress();
+                    updateWeddingPress();
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1504,20 +1684,17 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 18),
-                            child:
-                                // isloading
-                                //     ? const Center(
-                                //         child: CircularProgressIndicator())
-                                //     :
-
-                                Text(
-                              'Edit Wedding',
-                              textAlign: TextAlign.center,
-                              style: poppinsBold.copyWith(
-                                  color: white,
-                                  fontSize: 14,
-                                  overflow: TextOverflow.ellipsis),
-                            ),
+                            child: isloading
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : Text(
+                                    'Edit Wedding',
+                                    textAlign: TextAlign.center,
+                                    style: poppinsBold.copyWith(
+                                        color: white,
+                                        fontSize: 14,
+                                        overflow: TextOverflow.ellipsis),
+                                  ),
                           ),
                         ),
                       ),
@@ -1532,3 +1709,29 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
     ));
   }
 }
+
+// class AddEventModelInEdit {
+//   AddEventModelInEdit({
+//     required this.eventDate,
+//     this.eventLogo,
+//     required this.eventName,
+//     required this.eventTagline,
+//     required this.eventTime,
+//     required this.isDresscode,
+//     required this.eventVenue,
+//     required this.menDresscode,
+//     required this.womenDresscode,
+//     required this.eventId,
+//   });
+
+//   final File? eventLogo;
+//   final String eventName;
+//   final String eventTagline;
+//   final String eventDate;
+//   final String eventTime;
+//   final String eventVenue;
+//   final String eventId;
+//   final bool isDresscode;
+//   final String menDresscode;
+//   final String womenDresscode;
+// }

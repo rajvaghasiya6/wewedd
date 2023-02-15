@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:intl/intl.dart';
 
 import '../../../general/color_constants.dart';
 import '../../../general/text_styles.dart';
@@ -65,7 +66,9 @@ class _AddNewEventSheetState extends State<AddNewEventSheet> {
       if (isValid) {
         widget.events.add(AddEventModel(
           eventVenue: eventVenueController.text.trim(),
-          eventDate: eventDateController.text.trim(),
+          eventDate: DateTime.parse(DateFormat('yyyy-MM-dd').format(
+                  DateFormat('dd-MM-yyyy').parse(eventDateController.text)))
+              .toString(),
           eventLogo: eventLogo,
           eventName: eventnameController.text.trim(),
           eventTagline: taglineController.text.trim(),
@@ -220,7 +223,7 @@ class _AddNewEventSheetState extends State<AddNewEventSheet> {
                 height: 30,
               ),
               MyTextFormField(
-                hintText: "Enter Event Date",
+                hintText: "Enter Event Date (dd-MM-yyyy)",
                 lable: "Event Date",
                 controller: eventDateController,
                 validator: (val) {

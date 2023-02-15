@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
@@ -20,8 +21,8 @@ class _LeaderboardAllState extends State<LeaderboardAll> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 0)).then((value) {
-      context
+    Future.delayed(const Duration(milliseconds: 0)).then((value) async {
+      await context
           .read<LeaderboardProvider>()
           .getLeaderboard(marriage_id: sharedPrefs.marriageId, guest_from: '');
     });
@@ -31,6 +32,11 @@ class _LeaderboardAllState extends State<LeaderboardAll> {
   Widget build(BuildContext context) {
     var isLoading = context.watch<LeaderboardProvider>().isLoading;
     var pointsList = context.watch<LeaderboardProvider>().points;
+    var currentguestposition =
+        context.watch<LeaderboardProvider>().currentguestposition;
+    var currentguestpoint =
+        context.watch<LeaderboardProvider>().currentguestpoint;
+
     return Scaffold(
       body: isLoading
           ? const Center(child: CupertinoActivityIndicator())
@@ -80,7 +86,21 @@ class _LeaderboardAllState extends State<LeaderboardAll> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          const Icon(Icons.heart_broken),
+                                          SvgPicture.asset(
+                                            'assets/gold.svg',
+                                            color: index == 0
+                                                ? const Color(0xffd4af37)
+                                                : index == 1
+                                                    ? const Color(0xffc0c0c0)
+                                                    : index == 2
+                                                        ? const Color(
+                                                            0xffCD7F32)
+                                                        : Colors.red,
+                                            width: 20,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
                                           Text(
                                             pointsList[index].points.toString(),
                                             style: const TextStyle(
@@ -145,15 +165,22 @@ class _LeaderboardAllState extends State<LeaderboardAll> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 5),
+                                horizontal: 12, vertical: 3),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Icon(Icons.heart_broken),
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/gold.svg',
+                                  color: Colors.red,
+                                  width: 28,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
                                 Text(
-                                  "70",
-                                  style: TextStyle(
-                                    fontSize: 18,
+                                  currentguestpoint.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -186,7 +213,7 @@ class _LeaderboardAllState extends State<LeaderboardAll> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                'Your current rank is 30th',
+                                'Your current rank is $currentguestposition',
                                 textAlign: TextAlign.center,
                                 style: poppinsBold.copyWith(
                                     color: white,

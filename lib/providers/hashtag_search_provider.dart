@@ -32,17 +32,7 @@ class HashtagSearchProvider extends ChangeNotifier {
         responseClass.success = response.data["is_success"];
         responseClass.message = response.data["message"];
         responseClass.data = response.data["data"];
-        // response.data['data'].forEach((val) {
-        //   responseClass.data.add(MarriageDetail.fromJson(val)) ;
-        //   //  searchMarriageDetails!.add(MarriageDetail.fromJson(val));
-        // });
-        // print(responseClass.data);
-        // // responseClass.data = response.data['data'].forEach((val) {
-        // //   searchMarriageDetails?.add(MarriageDetail.fromJson(val));
-        // // });
 
-        // responseClass.data = searchMarriageDetails;
-        //notifyListeners();
         isLoading = false;
         isLoaded = false;
         notifyListeners();

@@ -5,20 +5,19 @@ import '../../../general/color_constants.dart';
 import '../../../general/text_styles.dart';
 import '../../../widgets/GradientTabIndicator.dart';
 import 'feed_request_approved_tab.dart';
-import 'feed_request_new_tab.dart';
 import 'feed_request_pending_tab.dart';
 import 'feed_request_rejected_tab.dart';
 
 class FeedRequestScreen extends StatelessWidget {
   FeedRequestScreen({required this.marriageId, Key? key}) : super(key: key);
   final String marriageId;
-  final List<String> tabs = ["Pending", "Approved", "Rejected", "New"];
+  final List<String> tabs = ["Pending", "Approved", "Rejected"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: DefaultTabController(
-          length: 4,
+          length: 3,
           child: NestedScrollView(
               physics: const BouncingScrollPhysics(),
               headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -85,7 +84,7 @@ class FeedRequestScreen extends StatelessWidget {
                     FeedRequestPendingTab(marriageId: marriageId),
                     FeedRequestApprovedTab(marriageId: marriageId),
                     FeedRequestRejectedTab(marriageId: marriageId),
-                    FeedRequestNewTab(marriageId: marriageId),
+                    //      FeedRequestNewTab(marriageId: marriageId),
                   ],
                 ),
               )),

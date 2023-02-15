@@ -274,9 +274,10 @@ class _FeedScreenState extends State<FeedScreen> {
                           onTap: () {
                             nextScreen(context, LeaderboardScreen());
                           },
-                          child: const Icon(
-                            Icons.group,
-                            size: 20,
+                          child: SvgPicture.asset(
+                            'assets/Group.svg',
+                            height: 42,
+                            width: 42,
                           ),
                         ),
                       ),

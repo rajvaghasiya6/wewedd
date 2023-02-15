@@ -13,6 +13,7 @@ import 'user_provider.dart';
 class EventProvider with ChangeNotifier {
   bool isLoaded = false;
   bool isLoading = false;
+  bool isaddLoading = false;
   List<EventModel> events = [];
   int currentIndex = 0;
 
@@ -65,7 +66,7 @@ class EventProvider with ChangeNotifier {
     ResponseClass responseClass = ResponseClass(
         success: false, message: "Something went wrong", data: {});
     try {
-      isLoading = true;
+      isaddLoading = true;
       notifyListeners();
       Response response = await dio.post(
         url,
@@ -85,7 +86,8 @@ class EventProvider with ChangeNotifier {
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         responseClass.success = response.data["is_success"];
-        isLoading = false;
+        print(response.data['message']);
+        isaddLoading = false;
         notifyListeners();
       }
 
@@ -94,12 +96,12 @@ class EventProvider with ChangeNotifier {
       if (kDebugMode) {
         log(e.toString());
       }
-      isLoading = false;
+      isaddLoading = false;
       notifyListeners();
       Fluttertoast.showToast(msg: StringConstants.errorMessage);
       return responseClass;
     } catch (e) {
-      isLoading = false;
+      isaddLoading = false;
       notifyListeners();
       if (kDebugMode) {
         log("status change request error ->" + e.toString());

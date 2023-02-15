@@ -14,6 +14,8 @@ class HostedMarriages {
     required this.hashtag,
     required this.weddingDate,
     required this.weddingName,
+    required this.pendingFeedNumber,
+    required this.weddingLogo,
   });
 
   int pendingRequestNumber;
@@ -22,16 +24,19 @@ class HostedMarriages {
   int totalRegisterGuestNumber;
   String weddingDate;
   String weddingName;
+  int pendingFeedNumber;
+  String weddingLogo;
 
   factory HostedMarriages.fromJson(Map<String, dynamic> json) =>
       HostedMarriages(
-        pendingRequestNumber: json["pending_request_number"],
-        hashtag: json["hashtag"],
-        marriageId: json["marriage_id"],
-        totalRegisterGuestNumber: json["total_register_guest_number"],
-        weddingDate: json["wedding_date"],
-        weddingName: json["wedding_name"],
-      );
+          pendingRequestNumber: json["pending_request_number"],
+          hashtag: json["hashtag"],
+          marriageId: json["marriage_id"],
+          totalRegisterGuestNumber: json["total_register_guest_number"],
+          weddingDate: json["wedding_date"],
+          weddingName: json["wedding_name"],
+          pendingFeedNumber: json['pending_feed_number'],
+          weddingLogo: json['marriage_logo']);
 
   Map<String, dynamic> toJson() => {
         "pending_request_number": pendingRequestNumber,
@@ -40,5 +45,7 @@ class HostedMarriages {
         "marriage_id": marriageId,
         "wedding_date": weddingDate,
         "wedding_name": weddingName,
+        "pending_feed_number": pendingFeedNumber,
+        "marriage_logo": weddingLogo
       };
 }

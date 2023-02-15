@@ -81,6 +81,9 @@ class MyApp extends StatelessWidget {
               ChangeNotifierProvider(
                 create: (context) => EditWeddingProvider(),
               ),
+              ChangeNotifierProvider(
+                create: (context) => GalleryProvider(),
+              ),
               StreamProvider(
                   create: (context) =>
                       NetworkStatusService().networkStatusController.stream,

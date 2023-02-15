@@ -1,4 +1,4 @@
-#Thu Feb 02 00:20:00 IST 2023
+#Sun Feb 12 09:46:58 IST 2023
 base.0=E\:\\github\\wewedd\\build\\app\\intermediates\\dex\\neharishaadiRelease\\minifyNeharishaadiReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

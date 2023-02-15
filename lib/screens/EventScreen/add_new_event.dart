@@ -5,13 +5,16 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
+import '../../general/navigation.dart';
 import '../../general/shared_preferences.dart';
 import '../../general/text_styles.dart';
 import '../../providers/event_provider.dart';
 import '../../widgets/mytextformfield.dart';
+import 'event_screen.dart';
 
 class AddNewEvent extends StatefulWidget {
   const AddNewEvent({Key? key}) : super(key: key);
@@ -52,7 +55,8 @@ class _AddNewEventState extends State<AddNewEvent> {
                 marriage_id: sharedPrefs.marriageId,
                 event_name: eventnameController.text,
                 event_tagline: taglineController.text,
-                event_date: eventDateController.text,
+                event_date: DateFormat('yyyy-MM-dd').format(
+                    DateFormat('dd-MM-yyyy').parse(eventDateController.text)),
                 event_time: eventTimeController.text,
                 is_dress_code: isDresscode,
                 event_venue: eventVenueController.text,
@@ -61,6 +65,8 @@ class _AddNewEventState extends State<AddNewEvent> {
             .then((value) {
           if (value.success) {
             Navigator.of(context).pop();
+            Navigator.of(context).pop();
+            nextScreen(context, const EventScreen());
             Fluttertoast.showToast(msg: "Event added successfully");
           }
         });
@@ -107,6 +113,7 @@ class _AddNewEventState extends State<AddNewEvent> {
 
   @override
   Widget build(BuildContext context) {
+    var isaddLoading = context.watch<EventProvider>().isaddLoading;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -200,7 +207,7 @@ class _AddNewEventState extends State<AddNewEvent> {
                     height: 30,
                   ),
                   MyTextFormField(
-                    hintText: "Enter Event Date",
+                    hintText: "Enter Event Date (dd-MM-yyyy)",
                     lable: "Event Date",
                     controller: eventDateController,
                     validator: (val) {
@@ -343,10 +350,12 @@ class _AddNewEventState extends State<AddNewEvent> {
                   ]),
             ),
             height: 45,
-            child: AutoSizeText(
-              "Add",
-              style: gilroyBold.copyWith(fontSize: 18, color: white),
-            ),
+            child: isaddLoading
+                ? const Center(child: CircularProgressIndicator())
+                : AutoSizeText(
+                    "Add",
+                    style: gilroyBold.copyWith(fontSize: 18, color: white),
+                  ),
           ),
         ),
       ),

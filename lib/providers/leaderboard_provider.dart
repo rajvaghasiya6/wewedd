@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../general/shared_preferences.dart';
 import '../general/string_constants.dart';
 import '../models/response_model.dart';
 import 'user_provider.dart';
@@ -11,6 +12,8 @@ import 'user_provider.dart';
 class LeaderboardProvider extends ChangeNotifier {
   bool isLoading = false;
   List<GuestPoint> points = [];
+  int currentguestposition = 0;
+  int currentguestpoint = 0;
   Future<ResponseClass<List<GuestPoint>>> getLeaderboard(
       {required String marriage_id, required String guest_from}) async {
     String url = '${StringConstants.apiUrl}get_leaderboard';
@@ -37,6 +40,13 @@ class LeaderboardProvider extends ChangeNotifier {
         responseClass.data = list;
         points = list;
         isLoading = false;
+        notifyListeners();
+        currentguestpoint = points
+            .firstWhere((element) => element.guestId == sharedPrefs.guestId)
+            .points;
+        currentguestposition = points.indexWhere(
+                (element) => element.guestId == sharedPrefs.guestId) +
+            1;
         notifyListeners();
       }
 
@@ -65,21 +75,24 @@ class GuestPoint {
     required this.name,
     required this.guestfrom,
     required this.points,
+    required this.guestId,
   });
 
   String name;
   String guestfrom;
   int points;
+  String guestId;
 
   factory GuestPoint.fromJson(Map<String, dynamic> json) => GuestPoint(
-        name: json["name"],
-        guestfrom: json["guest_from"],
-        points: json["points"],
-      );
+      name: json["name"],
+      guestfrom: json["guest_from"],
+      points: json["points"],
+      guestId: json["guest_id"]);
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "guest_from": guestfrom,
         "points": points,
+        "guest_id": guestId,
       };
 }

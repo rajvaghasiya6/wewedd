@@ -22,6 +22,7 @@ class WeddingAllDetailModel {
     required this.isApprovePost,
     required this.liveLink,
     required this.isActive,
+    required this.marriageTime,
     required this.fcmTokenMarriage,
     required this.marriageId,
     required this.marriageName,
@@ -55,6 +56,7 @@ class WeddingAllDetailModel {
   final bool isActive;
   final String fcmTokenMarriage;
   final String marriageId;
+  final String marriageTime;
   final String marriageName;
   final String weddingDate;
   List<Side> groomSibling;
@@ -77,6 +79,7 @@ class WeddingAllDetailModel {
         invitationCard:
             List<String>.from(json["invitation_card"].map((x) => x)),
         isDark: json["is_dark"],
+        marriageTime: json["wedding_time"],
         secondaryColor:
             List<String>.from(json["secondary_color"].map((x) => x)),
         brideName: json["bride_name"],

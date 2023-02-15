@@ -16,6 +16,7 @@ import '../../general/string_constants.dart';
 import '../../general/text_styles.dart';
 import '../../providers/dashboard_provider.dart';
 import '../../providers/event_provider.dart';
+import '../../providers/galleryProvider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/user_button.dart';
 import '../EventScreen/event_screen.dart';
@@ -51,6 +52,7 @@ class _DashboardScreenState extends State<DashboardScreen>
       context.read<DashboardProvider>().getDashboard();
     });
     _loadEvents();
+  //  _loadFolder();
   }
 
   @override
@@ -62,6 +64,10 @@ class _DashboardScreenState extends State<DashboardScreen>
 
   _loadEvents() {
     Provider.of<EventProvider>(context, listen: false).getEvents();
+  }
+
+  _loadFolder() {
+    Provider.of<GalleryProvider>(context, listen: false).getFolder();
   }
 
   bool isVideo(String filename) {

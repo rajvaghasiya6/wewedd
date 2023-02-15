@@ -1,15 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../../general/color_constants.dart';
 import '../../../general/helper_functions.dart';
 import '../../../general/navigation.dart';
+import '../../../general/string_constants.dart';
 import '../../../general/text_styles.dart';
 import '../../../models/hosted_marriages.dart';
 import '../feed_request/feed_request_screen.dart';
 import '../guest_request/guest_request_screen.dart';
-import 'edit_wedding.dart';
+import 'edit_wedding_screen.dart';
 
 class HostedWeddingCard extends StatelessWidget {
   HostedWeddingCard({required this.hostedMarriage, Key? key}) : super(key: key);
@@ -29,45 +32,39 @@ class HostedWeddingCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: lightBlack,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          StringConstants.apiUrl + hostedMarriage.weddingLogo,
+                      imageBuilder: (context, imageProvider) => Padding(
+                        padding: const EdgeInsets.only(right: 4.0, left: 4),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: black,
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                      ),
+                      placeholder: (context, url) =>
+                          const Center(child: CupertinoActivityIndicator()),
+                      errorWidget: (context, url, error) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: grey.withOpacity(0.4),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-//                 ClipRRect(
-//     borderRadius: BorderRadius.circular(8.0),
-//     child:
-//      CachedNetworkImage(
-//                         imageUrl:
-//                             StringConstants.apiUrl + hostedMarriage.marriageLogo,
-//                         imageBuilder: (context, imageProvider) => Padding(
-//                           padding: const EdgeInsets.only(right: 4.0, left: 4),
-//                           child: Container(
-//                             width: MediaQuery.of(context).size.width,
-//                             height: 190.0,
-//                             decoration: BoxDecoration(
-//                               borderRadius: BorderRadius.circular(10),
-//                               color: black,
-//                               image: DecorationImage(
-//                                 image: imageProvider,
-//                                 fit: BoxFit.fitHeight,
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                         placeholder: (context, url) => Center(child: CupertinoActivityIndicator()),
-//                         errorWidget: (context, url, error) => Container(
-//                           height: 190,
-//                           decoration: BoxDecoration(
-//                             borderRadius: BorderRadius.circular(10),
-//                             color: grey.withOpacity(0.4),
-//                           ),
-//                         ),
-//                       ),
-// ),
                 const SizedBox(
                   width: 30,
                 ),
@@ -135,7 +132,7 @@ class HostedWeddingCard extends StatelessWidget {
                         marriageId: hostedMarriage.marriageId,
                       ))),
                   child: GradientText(
-                    "New feed request",
+                    "${hostedMarriage.pendingFeedNumber} New feed request",
                     colors: const [
                       Color(0xfff3686d),
                       Color(0xffed2831),

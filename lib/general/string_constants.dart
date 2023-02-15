@@ -16,6 +16,7 @@ class StringConstants {
       "get_all_event_wardrobe_for_guest";
   static String viewFeed = "view_feed";
   static String addFeed = "add_feed";
+  static String addGallery = "add_gallery";
   static String updateFeedLikeComment = "update_feed_like_comment_status";
   static String viewFeedComment = "view_feed_comment_list";
   static String sms = "guest_send_sms";

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
@@ -76,7 +77,21 @@ class _LeaderboardBridesideState extends State<LeaderboardBrideside> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          const Icon(Icons.heart_broken),
+                                          SvgPicture.asset(
+                                            'assets/gold.svg',
+                                            color: index == 0
+                                                ? const Color(0xffd4af37)
+                                                : index == 1
+                                                    ? const Color(0xffc0c0c0)
+                                                    : index == 2
+                                                        ? const Color(
+                                                            0xffCD7F32)
+                                                        : Colors.red,
+                                            width: 20,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
                                           Text(
                                             pointsList[index].points.toString(),
                                             style: const TextStyle(
