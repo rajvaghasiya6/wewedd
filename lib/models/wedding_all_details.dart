@@ -21,7 +21,7 @@ class WeddingAllDetailModel {
     required this.isGuestsIdProof,
     required this.isApprovePost,
     required this.liveLink,
-    required this.isActive,
+    required this.isPrivate,
     required this.marriageTime,
     required this.fcmTokenMarriage,
     required this.marriageId,
@@ -53,7 +53,7 @@ class WeddingAllDetailModel {
   final bool isGuestsIdProof;
   final bool isApprovePost;
   final String liveLink;
-  final bool isActive;
+  final bool isPrivate;
   final String fcmTokenMarriage;
   final String marriageId;
   final String marriageTime;
@@ -89,7 +89,7 @@ class WeddingAllDetailModel {
         isGuestsIdProof: json["is_guests_id_proof"],
         isApprovePost: json["is_approve_post"],
         liveLink: json["live_link"],
-        isActive: json["is_active"],
+        isPrivate: json["is_private"],
         fcmTokenMarriage: json["fcm_token_marriage"],
         marriageId: json["marriage_id"],
         marriageName: json["marriage_name"],

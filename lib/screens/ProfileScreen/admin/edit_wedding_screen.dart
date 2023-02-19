@@ -102,7 +102,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
         weddingNameController.text = value.data?.marriageName ?? '';
         weddingTimeController.text = value.data!.marriageTime;
         liveLinkController.text = value.data?.liveLink ?? '';
-        isAccess = value.data?.isActive ?? true;
+        isAccess = value.data?.isPrivate ?? true;
         isIdProof = value.data?.isGuestsIdProof ?? true;
         isUploadFeed = value.data?.isApprovePost ?? true;
 

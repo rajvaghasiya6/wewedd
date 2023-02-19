@@ -6,12 +6,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../general/shared_preferences.dart';
 import '../general/string_constants.dart';
+import '../models/chart_model.dart';
 import '../models/response_model.dart';
 import 'user_provider.dart';
 
 class LeaderboardProvider extends ChangeNotifier {
   bool isLoading = false;
   List<GuestPoint> points = [];
+  ChartModel? chart;
   int currentguestposition = 0;
   int currentguestpoint = 0;
   Future<ResponseClass<List<GuestPoint>>> getLeaderboard(
@@ -64,6 +66,51 @@ class LeaderboardProvider extends ChangeNotifier {
       notifyListeners();
       if (kDebugMode) {
         log("userHostedMarriages error ->" + e.toString());
+      }
+      return responseClass;
+    }
+  }
+
+  Future<ResponseClass<ChartModel>> getChart({
+    required String marriage_id,
+  }) async {
+    String url = '${StringConstants.apiUrl}get_chart';
+
+    //Response
+    ResponseClass<ChartModel> responseClass = ResponseClass(
+        success: false, message: "Something went wrong", data: chart);
+    try {
+      isLoading = true;
+      notifyListeners();
+      Response response = await dio.post(
+        url,
+        data: {
+          "marriage_id": marriage_id,
+        },
+      );
+      if (response.statusCode == 200) {
+        responseClass.success = response.data["is_success"];
+
+        responseClass.data = ChartModel.fromJson(response.data['data']);
+        chart = ChartModel.fromJson(response.data['data']);
+        isLoading = false;
+        notifyListeners();
+      }
+
+      return responseClass;
+    } on DioError catch (e) {
+      if (kDebugMode) {
+        log(e.toString());
+      }
+      isLoading = false;
+      notifyListeners();
+      Fluttertoast.showToast(msg: StringConstants.errorMessage);
+      return responseClass;
+    } catch (e) {
+      isLoading = false;
+      notifyListeners();
+      if (kDebugMode) {
+        log("chart error ->" + e.toString());
       }
       return responseClass;
     }

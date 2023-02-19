@@ -222,7 +222,11 @@ class _LeaderboardAllState extends State<LeaderboardAll> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  nextScreen(context, const Chart());
+                                  nextScreen(
+                                      context,
+                                      Chart(
+                                        marriageId: sharedPrefs.marriageId,
+                                      ));
                                 },
                                 child: Text(
                                   'View Report',

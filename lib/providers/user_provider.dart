@@ -11,9 +11,9 @@ import '../models/response_model.dart';
 import '../models/user_model.dart';
 
 BaseOptions options = BaseOptions(
-  connectTimeout: 5000,
-  receiveTimeout: 3000,
-);
+    // connectTimeout: 5000,
+    // receiveTimeout: 3000,
+    );
 Dio dio = Dio(options);
 
 class UserProvider extends ChangeNotifier {
