@@ -55,8 +55,10 @@ class _AddNewEventState extends State<AddNewEvent> {
                 marriage_id: sharedPrefs.marriageId,
                 event_name: eventnameController.text,
                 event_tagline: taglineController.text,
-                event_date: DateFormat('yyyy-MM-dd').format(
-                    DateFormat('dd-MM-yyyy').parse(eventDateController.text)),
+                event_date: DateFormat('yyyy-MM-dd')
+                    .format(DateFormat('dd-MM-yyyy')
+                        .parse(eventDateController.text))
+                    .toString(),
                 event_time: eventTimeController.text,
                 is_dress_code: isDresscode,
                 event_venue: eventVenueController.text,

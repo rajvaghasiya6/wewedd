@@ -10,9 +10,11 @@ import '../../providers/hashtag_search_provider.dart';
 import '../HomeScreen/home_screen.dart';
 
 class AddGuestSideDialog extends StatefulWidget {
-  const AddGuestSideDialog({required this.marriageId, Key? key})
+  const AddGuestSideDialog(
+      {required this.marriageId, required this.isPrivate, Key? key})
       : super(key: key);
-  final marriageId;
+  final String marriageId;
+  final bool isPrivate;
 
   @override
   State<AddGuestSideDialog> createState() => _AddGuestSideDialogState();
@@ -71,9 +73,15 @@ class _AddGuestSideDialogState extends State<AddGuestSideDialog> {
                     guest_side: guestside,
                     mobile_no: sharedPrefs.mobileNo)
                 .then((value) {
-              print(value);
+              print(value.success);
               if (value.success == true) {
-                nextScreenReplace(context, HomeScreen());
+                if (widget.isPrivate == false) {
+                  nextScreenReplace(context, HomeScreen());
+                } else {
+                  Navigator.pop(context);
+                  Fluttertoast.showToast(
+                      msg: "you dont have access for this wedding");
+                }
               } else {
                 Fluttertoast.showToast(msg: "Something Went Wrong");
               }

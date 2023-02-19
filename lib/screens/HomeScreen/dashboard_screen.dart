@@ -52,7 +52,7 @@ class _DashboardScreenState extends State<DashboardScreen>
       context.read<DashboardProvider>().getDashboard();
     });
     _loadEvents();
-  //  _loadFolder();
+    _loadFolder();
   }
 
   @override
@@ -179,7 +179,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                             Padding(
                               padding: const EdgeInsets.only(top: 20.0),
                               child: Container(
-                                height: 180,
+                                height: 210,
                                 width: MediaQuery.of(context).size.width * 0.84,
                                 padding: const EdgeInsets.only(
                                     top: 25, left: 30, bottom: 25, right: 30),
@@ -287,21 +287,79 @@ class _DashboardScreenState extends State<DashboardScreen>
                                         : Row(
                                             children: [
                                               isCountdown
-                                                  ? SlideCountdownSeparated(
-                                                      height: 45,
-                                                      width: 45,
-                                                      decoration: BoxDecoration(
-                                                          color: grey
-                                                              .withOpacity(0.2),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                      duration: (DateTime.parse(
-                                                              dashboardData
-                                                                  .weddingDate)
-                                                          .difference(
-                                                              DateTime.now())),
+                                                  ? Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SlideCountdownSeparated(
+                                                          height: 45,
+                                                          width: 45,
+                                                          showZeroValue: true,
+                                                          decoration: BoxDecoration(
+                                                              color: grey
+                                                                  .withOpacity(
+                                                                      0.2),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                          duration: (DateTime.parse(
+                                                                  dashboardData
+                                                                      .weddingDate)
+                                                              .difference(
+                                                                  DateTime
+                                                                      .now())),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 5,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            const SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Text(
+                                                              "Days",
+                                                              style: TextStyle(
+                                                                  color: grey,
+                                                                  fontSize: 11),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 30,
+                                                            ),
+                                                            Text(
+                                                              "Hours",
+                                                              style: TextStyle(
+                                                                  color: grey,
+                                                                  fontSize: 11),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 30,
+                                                            ),
+                                                            Text(
+                                                              "Mins",
+                                                              style: TextStyle(
+                                                                  color: grey,
+                                                                  fontSize: 11),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 30,
+                                                            ),
+                                                            Text(
+                                                              "Secs",
+                                                              style: TextStyle(
+                                                                  color: grey,
+                                                                  fontSize: 11),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      ],
                                                     )
                                                   : const SizedBox(),
                                               const Spacer(),
@@ -818,65 +876,33 @@ class _DashboardScreenState extends State<DashboardScreen>
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      PersonTitle(
-                                          theme: theme,
-                                          image: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .image,
-                                          name: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .name,
-                                          relation: dashboardData.groomSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Groom")
-                                              .relation),
-                                      dashboardData.groomSide?.firstWhere(
-                                                  (element) =>
-                                                      element.relation ==
-                                                      "Groom") !=
-                                              null
+                                      dashboardData.groom != null
                                           ? PersonTitle(
                                               theme: theme,
-                                              image: dashboardData.groomSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Groom")
-                                                  .image,
-                                              name: dashboardData.groomSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Groom")
-                                                  .name,
-                                              relation: dashboardData.groomSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Groom")
-                                                  .relation)
+                                              image: dashboardData.groom?.image,
+                                              name: dashboardData.groom?.name,
+                                              relation:
+                                                  dashboardData.groom?.relation)
                                           : const SizedBox(),
-                                      dashboardData.groomSide?.firstWhere(
-                                                  (element) =>
-                                                      element.relation ==
-                                                      "Groom") !=
-                                              null
+                                      dashboardData.groomFather != null
                                           ? PersonTitle(
                                               theme: theme,
-                                              image: dashboardData.groomSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Groom")
-                                                  .image,
-                                              name: dashboardData.groomSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Groom")
-                                                  .name,
-                                              relation: dashboardData.groomSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Groom")
-                                                  .relation)
+                                              image: dashboardData
+                                                  .groomFather?.image,
+                                              name: dashboardData
+                                                  .groomFather?.name,
+                                              relation: dashboardData
+                                                  .groomFather?.relation)
+                                          : const SizedBox(),
+                                      dashboardData.groomMother != null
+                                          ? PersonTitle(
+                                              theme: theme,
+                                              image: dashboardData
+                                                  .groomMother?.image,
+                                              name: dashboardData
+                                                  .groomMother?.name,
+                                              relation: dashboardData
+                                                  .groomMother?.relation)
                                           : const SizedBox(),
                                     ],
                                   ),
@@ -894,67 +920,103 @@ class _DashboardScreenState extends State<DashboardScreen>
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      PersonTitle(
-                                          theme: theme,
-                                          image: dashboardData.brideSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Bride")
-                                              .image,
-                                          name: dashboardData.brideSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Bride")
-                                              .name,
-                                          relation: dashboardData.brideSide
-                                              ?.firstWhere((element) =>
-                                                  element.relation == "Bride")
-                                              .relation),
-                                      dashboardData.brideSide?.firstWhere(
-                                                  (element) =>
-                                                      element.relation ==
-                                                      "Bride") !=
-                                              null
+                                      dashboardData.bride != null
                                           ? PersonTitle(
                                               theme: theme,
-                                              image: dashboardData.brideSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Bride")
-                                                  .image,
-                                              name: dashboardData.brideSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Bride")
-                                                  .name,
-                                              relation: dashboardData.brideSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Bride")
-                                                  .relation)
+                                              image: dashboardData.bride?.image,
+                                              name: dashboardData.bride?.name,
+                                              relation:
+                                                  dashboardData.bride?.relation)
                                           : const SizedBox(),
-                                      dashboardData.brideSide?.firstWhere(
-                                                  (element) =>
-                                                      element.relation ==
-                                                      "Bride") !=
-                                              null
+                                      dashboardData.brideFather != null
                                           ? PersonTitle(
                                               theme: theme,
-                                              image: dashboardData.brideSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Bride")
-                                                  .image,
-                                              name: dashboardData.brideSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Bride")
-                                                  .name,
-                                              relation: dashboardData.brideSide
-                                                  ?.firstWhere((element) =>
-                                                      element.relation ==
-                                                      "Bride")
-                                                  .relation)
+                                              image: dashboardData
+                                                  .brideFather?.image,
+                                              name: dashboardData
+                                                  .brideFather?.name,
+                                              relation: dashboardData
+                                                  .brideFather?.relation)
+                                          : const SizedBox(),
+                                      dashboardData.brideMother != null
+                                          ? PersonTitle(
+                                              theme: theme,
+                                              image: dashboardData
+                                                  .brideMother?.image,
+                                              name: dashboardData
+                                                  .brideMother?.name,
+                                              relation: dashboardData
+                                                  .brideMother?.relation)
                                           : const SizedBox(),
                                     ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          color: timeGrey),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 18, horizontal: 15),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Family Welcomes you",
+                                              style: poppinsBold.copyWith(
+                                                  color: white, fontSize: 15),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          border: Border.all(
+                                              color: lightBlack, width: 0.5)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 16, horizontal: 15),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "RSVP",
+                                              style: poppinsBold.copyWith(
+                                                  color: white, fontSize: 15),
+                                            ),
+                                            const Icon(
+                                                Icons.keyboard_arrow_right),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -982,8 +1044,8 @@ Widget PersonTitle(
       Stack(
         children: [
           Container(
-            height: 110,
-            width: 110,
+            height: 100,
+            width: 100,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               color: grey.withOpacity(0.01),
@@ -1068,7 +1130,7 @@ Widget PersonTitle(
             left: 12,
             bottom: 16,
             child: Text(
-              relation!,
+              relation ?? '',
               style: poppinsBold.copyWith(color: white, fontSize: 12),
             ),
           ),
@@ -1078,7 +1140,7 @@ Widget PersonTitle(
         height: 8,
       ),
       Text(
-        relation,
+        name ?? '',
         style: poppinsNormal.copyWith(color: grey),
       ),
     ],

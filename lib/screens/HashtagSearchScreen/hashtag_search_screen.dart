@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -8,6 +10,7 @@ import '../../general/color_constants.dart';
 import '../../general/helper_functions.dart';
 import '../../general/navigation.dart';
 import '../../general/shared_preferences.dart';
+import '../../general/string_constants.dart';
 import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
 import '../../models/marriage_detail_model.dart';
@@ -232,14 +235,28 @@ class HashtagSearchScreen extends StatelessWidget {
                                                 context: context,
                                                 builder: (context) =>
                                                     AddGuestSideDialog(
+                                                      isPrivate: false,
                                                       marriageId:
                                                           data.marriageId,
                                                     ));
                                           }
                                         } else {
-                                          Fluttertoast.showToast(
-                                              msg:
-                                                  "you dont have access for this wedding");
+                                          if (value.data[
+                                                  'guest_side_selected'] ==
+                                              true) {
+                                            Fluttertoast.showToast(
+                                                msg:
+                                                    "you dont have access for this wedding");
+                                          } else {
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    AddGuestSideDialog(
+                                                      isPrivate: true,
+                                                      marriageId:
+                                                          data.marriageId,
+                                                    ));
+                                          }
                                         }
                                       });
                                     },
@@ -252,15 +269,81 @@ class HashtagSearchScreen extends StatelessWidget {
                                         padding: const EdgeInsets.all(14.0),
                                         child: Row(
                                           children: [
-                                            Container(
-                                              width: 70,
-                                              height: 100,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                color: lightBlack,
-                                              ),
-                                            ),
+                                            data?.weddingLogo != ''
+                                                ? ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    child: SizedBox(
+                                                      height: 100,
+                                                      width: 70,
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: StringConstants
+                                                                .apiUrl +
+                                                            data!.weddingLogo,
+                                                        imageBuilder: (context,
+                                                                imageProvider) =>
+                                                            Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  right: 4.0,
+                                                                  left: 4),
+                                                          child: Container(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
+                                                              color: black,
+                                                              image:
+                                                                  DecorationImage(
+                                                                image:
+                                                                    imageProvider,
+                                                                fit: BoxFit
+                                                                    .fitHeight,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            const Center(
+                                                                child:
+                                                                    CupertinoActivityIndicator()),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            color: grey
+                                                                .withOpacity(
+                                                                    0.4),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Container(
+                                                    width: 70,
+                                                    height: 100,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: lightBlack,
+                                                    ),
+                                                  ),
                                             const SizedBox(
                                               width: 20,
                                             ),

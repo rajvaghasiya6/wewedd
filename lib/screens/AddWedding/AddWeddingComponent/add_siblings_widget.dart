@@ -107,7 +107,7 @@ class _AddSiblingDialogueState extends State<AddSiblingDialogue> {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 30, left: 4),
-            child: AutoSizeText("Add Sibling",
+            child: AutoSizeText("Add ",
                 style: gilroyBold.copyWith(fontSize: 22)),
           ),
           InkWell(

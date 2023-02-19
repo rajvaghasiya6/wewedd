@@ -14,11 +14,15 @@ class RecentSearch {
   final String marriageId;
   @HiveField(4)
   final DateTime searchTime;
+  @HiveField(5)
+  final String weddingLogo;
 
-  RecentSearch(
-      {required this.hashtag,
-      required this.weddingName,
-      required this.weddingDate,
-      required this.marriageId,
-      required this.searchTime});
+  RecentSearch({
+    required this.hashtag,
+    required this.weddingName,
+    required this.weddingDate,
+    required this.marriageId,
+    required this.searchTime,
+    required this.weddingLogo,
+  });
 }

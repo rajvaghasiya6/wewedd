@@ -34,7 +34,7 @@ class EditWeddingProvider extends ChangeNotifier {
         responseClass.success = response.data["is_success"];
         responseClass.message = response.data["message"];
         responseClass.data = response.data["data"];
-        print("done");
+        print(response.data['message']);
         isLoading = false;
         notifyListeners();
       }

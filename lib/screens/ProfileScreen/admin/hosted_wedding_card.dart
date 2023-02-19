@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../../general/color_constants.dart';
@@ -114,10 +115,20 @@ class HostedWeddingCard extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
-            Text(
-              "${hostedMarriage.totalRegisterGuestNumber} guest registered",
-              style: poppinsBold.copyWith(
-                  color: white.withOpacity(0.5), fontSize: 14),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/Group.svg',
+                  height: 30,
+                  width: 30,
+                ),
+                Text(
+                  "${hostedMarriage.totalRegisterGuestNumber} guest registered",
+                  style: poppinsBold.copyWith(
+                      color: white.withOpacity(0.5), fontSize: 14),
+                ),
+              ],
             ),
             const SizedBox(
               height: 16,

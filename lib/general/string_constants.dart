@@ -23,6 +23,8 @@ class StringConstants {
   static String getAllNotification = "get_all_notification_for_guest";
   static String viewGuestDetails = "view_guest_details";
   static String updateGuestDetails = "update_guest_details";
+  static String updateNameForUser = "update_name_for_user";
+
   static String getAllFeedsGuest = "get_all_feeds_from_a_single_guest";
   static String viewBookmarkFeed = "view_bookmark_feed";
   static String getGuestApprovedFeed = "get_guest_approved_feed";

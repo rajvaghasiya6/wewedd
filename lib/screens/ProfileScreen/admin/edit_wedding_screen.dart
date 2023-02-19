@@ -169,14 +169,14 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
               : null;
           brideSibling.add(SidePerson(name: tempName ?? '', image: temp));
         }
-        for (var i = 0; i < value.data!.brideSibling.length; i++) {
-          var tempName = value.data?.brideSibling[i] != null
-              ? value.data?.brideSibling[i].name
+        for (var i = 0; i < value.data!.brideRelative.length; i++) {
+          var tempName = value.data?.brideRelative[i] != null
+              ? value.data?.brideRelative[i].name
               : '';
-          var temp = value.data?.brideSibling[i] != null
-              ? await fileFromImageUrl(value.data?.brideSibling[i].image ?? '')
+          var temp = value.data?.brideRelative[i] != null
+              ? await fileFromImageUrl(value.data?.brideRelative[i].image ?? '')
               : null;
-          brideSibling.add(SidePerson(name: tempName ?? '', image: temp));
+          brideRelative.add(SidePerson(name: tempName ?? '', image: temp));
         }
 
         setState(() {
@@ -239,8 +239,9 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
             'mobile_number': sharedPrefs.mobileNo,
             'marriage_id': widget.marriageId,
             'marriage_name': weddingNameController.text,
-            'wedding_date': DateTime.parse(DateFormat('yyyy-MM-dd').format(
-                    DateFormat('dd-MM-yyyy').parse(weddingDateController.text)))
+            'wedding_date': DateFormat('yyyy-MM-dd')
+                .format(
+                    DateFormat('dd-MM-yyyy').parse(weddingDateController.text))
                 .toString(),
             'wedding_hashtag': hashtagController.text,
             'wedding_time': weddingTimeController.text,
@@ -396,7 +397,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
 
           for (var i = 0; i < events.length; i++) {
             data.fields.addAll([
-              MapEntry("event$i.id", events[i].eventId ?? ''),
+              MapEntry("event$i.event_id", events[i].eventId ?? ''),
               MapEntry("event$i.event_name", events[i].eventName),
               MapEntry("event$i.event_tagline", events[i].eventTagline),
               MapEntry("event$i.event_date", events[i].eventDate),
@@ -408,14 +409,14 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
               MapEntry("event$i.dress_code_women", events[i].womenDresscode),
             ]);
           }
-          for (var i = 0; i < events.length; i++) {
-            if (events[i].eventLogo != null) {
-              data.files.add(
-                MapEntry("event$i.logo",
-                    await MultipartFile.fromFile(events[i].eventLogo!.path)),
-              );
-            }
-          }
+          // for (var i = 0; i < events.length; i++) {
+          //   if (events[i].eventLogo != null) {
+          //     data.files.add(
+          //       MapEntry("event$i.logo",
+          //           await MultipartFile.fromFile(events[i].eventLogo!.path)),
+          //     );
+          //   }
+          // }
 
           log(data.fields.toString());
           log(data.files.toString());
@@ -815,6 +816,18 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                               color: white, fontSize: 15),
                                         ),
                                         const Spacer(),
+                                        GestureDetector(
+                                          onTap: () {
+                                            brideSibling.removeAt(index);
+                                            setState(() {
+                                              brideSibling;
+                                            });
+                                          },
+                                          child: const Icon(
+                                            Icons.remove_circle,
+                                            color: Colors.red,
+                                          ),
+                                        ),
                                         const SizedBox(
                                           width: 10,
                                         ),
@@ -843,18 +856,6 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                                                       ),
                                                     )),
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            brideSibling.removeAt(index);
-                                            setState(() {
-                                              brideSibling;
-                                            });
-                                          },
-                                          child: const Icon(
-                                            Icons.remove_circle,
-                                            color: Colors.red,
-                                          ),
-                                        )
                                       ],
                                     ),
                                   ),
@@ -1457,7 +1458,7 @@ class _EditWeddingScreenState extends State<EditWeddingScreen> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 18),
                             child: Text(
-                              "+ Add New Event",
+                              " + Add New Event",
                               style: poppinsNormal.copyWith(
                                   color: grey, fontSize: 15),
                             ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,6 +9,7 @@ import '../../general/color_constants.dart';
 import '../../general/helper_functions.dart';
 import '../../general/navigation.dart';
 import '../../general/shared_preferences.dart';
+import '../../general/string_constants.dart';
 import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
 import '../../models/marriage_detail_model.dart';
@@ -67,26 +69,32 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                               Provider.of<HashtagSearchProvider>(context,
                                       listen: false)
                                   .accessWedding(
-                                      widget.searchMarriages[index].marriageId,
+                                      widget.searchMarriages[index].marriageId!,
                                       sharedPrefs.mobileNo)
                                   .then((value) {
                                 if (value.success == true) {
                                   sharedPrefs.marriageId =
-                                      widget.searchMarriages[index].marriageId;
+                                      widget.searchMarriages[index].marriageId!;
                                   sharedPrefs.guestId = value.data['guest_id'];
                                   sharedPrefs.isAdmin = value.data['is_admin'];
                                   if (value.data['guest_side_selected'] ==
                                       true) {
                                     RecentSearch recentSearch = RecentSearch(
                                         hashtag: widget.searchMarriages[index]
-                                            .weddingHashtag,
+                                            .weddingHashtag!,
                                         marriageId: widget
-                                            .searchMarriages[index].marriageId,
+                                            .searchMarriages[index].marriageId!,
                                         weddingName: widget
                                             .searchMarriages[index]
-                                            .marriageName,
+                                            .marriageName!,
                                         weddingDate: widget
-                                            .searchMarriages[index].weddingDate,
+                                                .searchMarriages[index]
+                                                .weddingDate ??
+                                            '',
+                                        weddingLogo: widget
+                                                .searchMarriages[index]
+                                                .weddingLogo ??
+                                            '',
                                         searchTime: DateTime.now());
                                     dataBox.put(
                                         widget
@@ -99,14 +107,29 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                         context: context,
                                         builder: (context) =>
                                             AddGuestSideDialog(
+                                                isPrivate: false,
                                                 marriageId: widget
-                                                    .searchMarriages[index]
-                                                    .marriageId));
+                                                        .searchMarriages[index]
+                                                        .marriageId ??
+                                                    ''));
                                   }
                                 } else {
-                                  Fluttertoast.showToast(
-                                      msg:
-                                          "you dont have access for this wedding");
+                                  if (value.data['guest_side_selected'] ==
+                                      true) {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                            "you dont have access for this wedding");
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) =>
+                                            AddGuestSideDialog(
+                                                isPrivate: true,
+                                                marriageId: widget
+                                                        .searchMarriages[index]
+                                                        .marriageId ??
+                                                    ''));
+                                  }
                                 }
                               });
                             },
@@ -119,14 +142,70 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                 padding: const EdgeInsets.all(14.0),
                                 child: Row(
                                   children: [
-                                    Container(
-                                      width: 70,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: lightBlack,
-                                      ),
-                                    ),
+                                    widget.searchMarriages[index].weddingLogo !=
+                                            ''
+                                        ? ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            child: SizedBox(
+                                              height: 100,
+                                              width: 70,
+                                              child: CachedNetworkImage(
+                                                imageUrl: StringConstants
+                                                        .apiUrl +
+                                                    widget
+                                                        .searchMarriages[index]
+                                                        .weddingLogo!,
+                                                imageBuilder:
+                                                    (context, imageProvider) =>
+                                                        Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 4.0, left: 4),
+                                                  child: Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                      color: black,
+                                                      image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.fitHeight,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                placeholder: (context, url) =>
+                                                    const Center(
+                                                        child:
+                                                            CupertinoActivityIndicator()),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color:
+                                                        grey.withOpacity(0.4),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            width: 70,
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: lightBlack,
+                                            ),
+                                          ),
                                     const SizedBox(
                                       width: 20,
                                     ),
@@ -136,7 +215,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                       children: [
                                         Text(
                                           widget.searchMarriages[index]
-                                              .weddingHashtag,
+                                              .weddingHashtag!,
                                           style: poppinsBold.copyWith(
                                               color: white, fontSize: 16),
                                         ),
@@ -145,7 +224,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                         ),
                                         Text(
                                           widget.searchMarriages[index]
-                                              .marriageName,
+                                              .marriageName!,
                                           style: poppinsNormal.copyWith(
                                               color: grey, fontSize: 12),
                                         ),
@@ -153,11 +232,15 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                           height: 14,
                                         ),
                                         Text(
-                                          format(
-                                            DateTime.parse(widget
-                                                .searchMarriages[index]
-                                                .weddingDate),
-                                          ),
+                                          widget.searchMarriages[index]
+                                                      .weddingDate !=
+                                                  null
+                                              ? format(
+                                                  DateTime.parse(widget
+                                                      .searchMarriages[index]
+                                                      .weddingDate!),
+                                                )
+                                              : '',
                                           style: poppinsNormal.copyWith(
                                               color: grey, fontSize: 10),
                                         ),

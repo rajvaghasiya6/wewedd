@@ -147,8 +147,15 @@ class _GalleryScreenState extends State<GalleryScreen>
                                                         folderNameController
                                                             .text
                                                             .trim())
-                                                .then((value) {
+                                                .then((value) async {
                                               if (value.success == true) {
+                                                await Provider.of<
+                                                            GalleryProvider>(
+                                                        context,
+                                                        listen: false)
+                                                    .getFolder();
+                                                Future.delayed(
+                                                    const Duration(seconds: 1));
                                                 Fluttertoast.showToast(
                                                     msg: "Folder Added");
                                                 Navigator.pop(context);

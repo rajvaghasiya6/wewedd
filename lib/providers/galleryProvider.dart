@@ -150,9 +150,10 @@ class GalleryProvider with ChangeNotifier {
     }
   }
 
-  getFolder() async {
+  Future<ResponseClass> getFolder() async {
     String url = "${StringConstants.apiUrl}get_all_folders";
-
+    ResponseClass responseClass = ResponseClass(
+        success: false, message: "Something went wrong", data: {});
     try {
       Response response = await dio.post(url, data: {
         'marriage_id': sharedPrefs.marriageId,
@@ -165,6 +166,7 @@ class GalleryProvider with ChangeNotifier {
         isLoaded = true;
         notifyListeners();
       }
+      return responseClass;
     } on DioError catch (e) {
       if (kDebugMode) {
         log(e.toString());
@@ -172,12 +174,14 @@ class GalleryProvider with ChangeNotifier {
       isLoaded = true;
       notifyListeners();
       Fluttertoast.showToast(msg: StringConstants.errorMessage);
+      return responseClass;
     } catch (e) {
       isLoaded = true;
       notifyListeners();
       if (kDebugMode) {
         log("folder error ->" + e.toString());
       }
+      return responseClass;
     }
   }
 

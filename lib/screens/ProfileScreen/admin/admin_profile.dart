@@ -488,7 +488,7 @@ class _AdminProfileState extends State<AdminProfile> {
                                   size: 70,
                                   url: sharedPrefs.guestProfileImage,
                                   pushScreen: () {
-                                    _imagePick();
+                                    //  _imagePick();
                                   },
                                 ))
                           ],
@@ -509,33 +509,42 @@ class _AdminProfileState extends State<AdminProfile> {
                                       color: grey, fontSize: 14),
                                 ),
                               )
-                            : ListView(
-                                children: [
-                                  Text(
-                                    "Wedding Hosted",
-                                    style: poppinsBold.copyWith(
-                                        color: white, fontSize: 16),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  ListView.separated(
-                                    separatorBuilder: (_, index) =>
-                                        const SizedBox(
-                                      height: 16,
+                            : RefreshIndicator(
+                                onRefresh: () async {
+                                  context
+                                      .read<UserProvider>()
+                                      .userHostedMarriages(
+                                          mobileNo: sharedPrefs.mobileNo);
+                                },
+                                child: ListView(
+                                  children: [
+                                    Text(
+                                      "Wedding Hosted",
+                                      style: poppinsBold.copyWith(
+                                          color: white, fontSize: 16),
                                     ),
-                                    itemCount: hostedMarriages.length,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemBuilder: (_, index) {
-                                      return HostedWeddingCard(
-                                        hostedMarriage: hostedMarriages[index],
-                                      );
-                                    },
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    ListView.separated(
+                                      separatorBuilder: (_, index) =>
+                                          const SizedBox(
+                                        height: 16,
+                                      ),
+                                      itemCount: hostedMarriages.length,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemBuilder: (_, index) {
+                                        return HostedWeddingCard(
+                                          hostedMarriage:
+                                              hostedMarriages[index],
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                       )),
           ),

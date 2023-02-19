@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -46,13 +45,12 @@ class _EditProfileDialogueState extends State<EditProfileDialogue> {
 
   _updateUser() {
     Provider.of<UserProvider>(context, listen: false)
-        .updateUser(
-            formData:
-                FormData.fromMap({"guest_name": textEditingController.text}))
+        .updateUser(name: textEditingController.text.trim())
         .then((value) {
       if (value.success) {
-        Provider.of<UserProvider>(context, listen: false)
-            .getUserData(mobileNo: sharedPrefs.mobileNo);
+        sharedPrefs.userName = textEditingController.text.trim();
+        // Provider.of<UserProvider>(context, listen: false)
+        //     .getUserData(mobileNo: sharedPrefs.mobileNo);
         Fluttertoast.showToast(msg: "User Update Success");
         if (Navigator.canPop(context)) {
           Navigator.pop(context);
@@ -102,7 +100,6 @@ class _EditProfileDialogueState extends State<EditProfileDialogue> {
             child: TextFormField(
               cursorColor: grey,
               controller: textEditingController,
-              // initialValue: Provider.of<UserProvider>(context).user?.guestName,
               textInputAction: TextInputAction.next,
               style: gilroyNormal.copyWith(fontSize: 14),
               maxLength: 25,
@@ -144,10 +141,9 @@ class _EditProfileDialogueState extends State<EditProfileDialogue> {
           Padding(
             padding: const EdgeInsets.only(top: 12, bottom: 45),
             child: TextFormField(
-              style: gilroyNormal.copyWith(fontSize: 14),
+              style: gilroyNormal.copyWith(fontSize: 14, color: grey),
               cursorColor: grey,
-              initialValue:
-                  Provider.of<UserProvider>(context).user?.guestMobileNumber,
+              initialValue: sharedPrefs.mobileNo,
               validator: (phone) {
                 Pattern pattern = r'(^(?:[+0]9)?[0-9]{10,}$)';
                 RegExp regExp = RegExp(pattern.toString());

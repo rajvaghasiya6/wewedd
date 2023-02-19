@@ -173,7 +173,20 @@ class _GuestRequestPendingTabState extends State<GuestRequestPendingTab> {
                                           height: 14,
                                         ),
                                       ],
-                                    )
+                                    ),
+                                    const Spacer(),
+                                    guestRequest[index].guestSide != ''
+                                        ? guestRequest[index].guestSide ==
+                                                'groom_side'
+                                            ? Text("G",
+                                                style: poppinsBold.copyWith(
+                                                    color: Colors.blue,
+                                                    fontSize: 18))
+                                            : Text("B",
+                                                style: poppinsBold.copyWith(
+                                                    color: Colors.red,
+                                                    fontSize: 18))
+                                        : const SizedBox()
                                   ],
                                 ),
                                 const SizedBox(

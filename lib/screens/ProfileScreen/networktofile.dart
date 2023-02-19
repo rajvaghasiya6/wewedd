@@ -12,14 +12,15 @@ Future<File> fileFromImageUrl(String url) async {
 
   final documentDirectory = await getApplicationDocumentsDirectory();
 
-  final file = File(join(documentDirectory.path, getRandomString(15) + '.jpg'));
+  final file = File(join(
+      documentDirectory.path, 'image_cropper_' + getRandomString(13) + '.jpg'));
 
   file.writeAsBytesSync(response.bodyBytes);
 
   return file;
 }
 
-const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+const _chars = '1234567890';
 Random _rnd = Random();
 String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
     length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));

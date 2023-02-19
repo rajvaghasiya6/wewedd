@@ -25,9 +25,7 @@ addNewEventDialog(BuildContext context, List<AddEventModel> events) {
     builder: (ctx) {
       return SizedBox(
         height: MediaQuery.of(context).size.height - 100,
-        child: Padding(
-            padding: MediaQuery.of(context).viewInsets,
-            child: AddNewEventSheet(events: events)),
+        child: AddNewEventSheet(events: events),
       );
     },
   );
@@ -66,8 +64,8 @@ class _AddNewEventSheetState extends State<AddNewEventSheet> {
       if (isValid) {
         widget.events.add(AddEventModel(
           eventVenue: eventVenueController.text.trim(),
-          eventDate: DateTime.parse(DateFormat('yyyy-MM-dd').format(
-                  DateFormat('dd-MM-yyyy').parse(eventDateController.text)))
+          eventDate: DateFormat('yyyy-MM-dd')
+              .format(DateFormat('dd-MM-yyyy').parse(eventDateController.text))
               .toString(),
           eventLogo: eventLogo,
           eventName: eventnameController.text.trim(),

@@ -77,30 +77,32 @@ class _AllTabState extends State<AllTab>
                 isLoaded = true;
               });
             });
+          } else {
+            setState(() {
+              isLoading = true;
+            });
+            await Provider.of<GalleryProvider>(context, listen: false)
+                .getGalleryByFolder(
+                    folderId: context
+                        .read<GalleryProvider>()
+                        .folders[widget.index -
+                            1 -
+                            Provider.of<EventProvider>(context, listen: false)
+                                .events
+                                .length]
+                        .folderId,
+                    page: 1)
+                .then((value) {
+              images = value.data!;
+              setState(() {
+                if (value.pagination != null) {
+                  maxLimit = value.pagination!.last!.page;
+                }
+                isLoading = false;
+                isLoaded = true;
+              });
+            });
           }
-          // else{
-          //   setState(() {
-          //     isLoading = true;
-          //   });
-          //   await Provider.of<GalleryProvider>(context, listen: false)
-          //       .getGallery(
-          //           eventId: context
-          //               .read<EventProvider>()
-          //               .events[widget.index - 1]
-          //               .eventId,
-          //           page: 1)
-          //       .then((value) {
-          //     images = value.data!;
-          //     setState(() {
-          //       if (value.pagination != null) {
-          //         maxLimit = value.pagination!.last!.page;
-          //       }
-          //       isLoading = false;
-          //       isLoaded = true;
-          //     });
-          //   });
-          // }
-
         } else {
           setState(() {
             isLoading = true;
@@ -127,24 +129,50 @@ class _AllTabState extends State<AllTab>
         page++;
       });
       if (widget.index != 0) {
-        setState(() {
-          isLoadingMore = true;
-        });
-        await Provider.of<GalleryProvider>(context, listen: false)
-            .getGalleryByEvent(
-                eventId: context
-                    .read<EventProvider>()
-                    .events[widget.index - 1]
-                    .eventId,
-                page: page)
-            .then((value) {
-          if (value.data != null) {
-            images.addAll(value.data!);
-          }
+        if (widget.index <=
+            Provider.of<EventProvider>(context, listen: false).events.length) {
           setState(() {
-            isLoadingMore = false;
+            isLoadingMore = true;
           });
-        });
+          await Provider.of<GalleryProvider>(context, listen: false)
+              .getGalleryByEvent(
+                  eventId: context
+                      .read<EventProvider>()
+                      .events[widget.index - 1]
+                      .eventId,
+                  page: page)
+              .then((value) {
+            if (value.data != null) {
+              images.addAll(value.data!);
+            }
+            setState(() {
+              isLoadingMore = false;
+            });
+          });
+        } else {
+          setState(() {
+            isLoadingMore = true;
+          });
+          await Provider.of<GalleryProvider>(context, listen: false)
+              .getGalleryByFolder(
+                  folderId: context
+                      .read<GalleryProvider>()
+                      .folders[widget.index -
+                          1 -
+                          Provider.of<EventProvider>(context, listen: false)
+                              .events
+                              .length]
+                      .folderId,
+                  page: page)
+              .then((value) {
+            if (value.data != null) {
+              images.addAll(value.data!);
+            }
+            setState(() {
+              isLoadingMore = false;
+            });
+          });
+        }
       } else {
         setState(() {
           isLoadingMore = true;

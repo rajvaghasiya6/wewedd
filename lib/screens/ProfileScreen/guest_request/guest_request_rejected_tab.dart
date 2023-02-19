@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -119,7 +120,20 @@ class _GuestRequestRejectedTabState extends State<GuestRequestRejectedTab> {
                                               fontSize: 12),
                                         ),
                                       ],
-                                    )
+                                    ),
+                                    const Spacer(),
+                                    guestRequest[index].guestSide != ''
+                                        ? guestRequest[index].guestSide ==
+                                                'groom_side'
+                                            ? Text("G",
+                                                style: poppinsBold.copyWith(
+                                                    color: Colors.blue,
+                                                    fontSize: 18))
+                                            : Text("B",
+                                                style: poppinsBold.copyWith(
+                                                    color: Colors.red,
+                                                    fontSize: 18))
+                                        : const SizedBox()
                                   ],
                                 ),
                               ],

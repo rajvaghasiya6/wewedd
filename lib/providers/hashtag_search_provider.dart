@@ -138,6 +138,7 @@ class HashtagSearchProvider extends ChangeNotifier {
       if (response.statusCode == 201 || response.statusCode == 200) {
         responseClass.success = response.data["is_success"];
         responseClass.data = response.data["data"];
+        print(response.data['message']);
         isLoading = false;
         notifyListeners();
       }

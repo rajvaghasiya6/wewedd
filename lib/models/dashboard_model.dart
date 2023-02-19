@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
+
 DashboardModel dashboardModelFromJson(String str) =>
     DashboardModel.fromJson(json.decode(str));
-
-String dashboardModelToJson(DashboardModel data) => json.encode(data.toJson());
 
 class DashboardModel {
   DashboardModel(
@@ -26,8 +26,13 @@ class DashboardModel {
       required this.marriageId,
       required this.marriageName,
       required this.weddingDate,
-      required this.groomSide,
-      required this.brideSide});
+      required this.groom,
+      required this.bride,
+      required this.brideFather,
+      required this.brideMother,
+      required this.groomFather,
+      required this.groomMother,
+      e});
 
   final String marriageLogo;
   final String eventManagerName;
@@ -48,8 +53,12 @@ class DashboardModel {
   final String marriageId;
   final String marriageName;
   final String weddingDate;
-  List<Side>? groomSide;
-  List<Side>? brideSide;
+  Side? groom;
+  Side? groomFather;
+  Side? groomMother;
+  Side? brideFather;
+  Side? brideMother;
+  Side? bride;
 
   factory DashboardModel.fromJson(Map<String, dynamic> json) => DashboardModel(
         marriageLogo: json["marriage_logo"],
@@ -73,35 +82,23 @@ class DashboardModel {
         marriageId: json["marriage_id"],
         marriageName: json["marriage_name"],
         weddingDate: json["wedding_date"],
-        groomSide:
-            List<Side>.from(json["groom_side"].map((x) => Side.fromJson(x))),
-        brideSide:
-            List<Side>.from(json["bride_side"].map((x) => Side.fromJson(x))),
+        bride: List<Side>.from(json["bride_side"].map((x) => Side.fromJson(x)))
+            .firstWhereOrNull((element) => element.relation == 'Bride'),
+        groom: List<Side>.from(json["groom_side"].map((x) => Side.fromJson(x)))
+            .firstWhereOrNull((element) => element.relation == 'Groom'),
+        brideFather:
+            List<Side>.from(json["bride_side"].map((x) => Side.fromJson(x)))
+                .firstWhereOrNull((element) => element.relation == 'father'),
+        brideMother:
+            List<Side>.from(json["bride_side"].map((x) => Side.fromJson(x)))
+                .firstWhereOrNull((element) => element.relation == 'mother'),
+        groomFather:
+            List<Side>.from(json["groom_side"].map((x) => Side.fromJson(x)))
+                .firstWhereOrNull((element) => element.relation == 'father'),
+        groomMother:
+            List<Side>.from(json["groom_side"].map((x) => Side.fromJson(x)))
+                .firstWhereOrNull((element) => element.relation == 'mother'),
       );
-
-  Map<String, dynamic> toJson() => {
-        "marriage_logo": marriageLogo,
-        "event_manager_name": eventManagerName,
-        "wedding_hashtag": weddingHashtag,
-        "banner": List<dynamic>.from(banner.map((x) => x)),
-        "invitation_card": List<dynamic>.from(invitationCard.map((x) => x)),
-        "is_dark": isDark,
-        "secondary_color": List<dynamic>.from(secondaryColor.map((x) => x)),
-        "bride_name": brideName,
-        "groom_name": groomName,
-        "wedding_venue": weddingVenue,
-        "mobile_number": mobileNumber,
-        "is_guests_id_proof": isGuestsIdProof,
-        "is_approve_post": isApprovePost,
-        "live_link": liveLink,
-        "is_active": isActive,
-        "fcm_token_marriage": fcmTokenMarriage,
-        "marriage_id": marriageId,
-        "marriage_name": marriageName,
-        "wedding_date": weddingDate,
-        "groom_side": List<dynamic>.from(groomSide!.map((x) => x.toJson())),
-        "bride_side": List<dynamic>.from(brideSide!.map((x) => x.toJson())),
-      };
 }
 
 class Side {

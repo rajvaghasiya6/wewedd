@@ -11,9 +11,9 @@ import '../models/response_model.dart';
 import '../models/user_model.dart';
 
 BaseOptions options = BaseOptions(
-    // connectTimeout: 5000,
-    // receiveTimeout: 3000,
-    );
+  connectTimeout: 5000,
+  receiveTimeout: 3000,
+);
 Dio dio = Dio(options);
 
 class UserProvider extends ChangeNotifier {
@@ -397,14 +397,8 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseClass> updateUser({required FormData formData}) async {
-    String loginUrl =
-        StringConstants.apiUrl + StringConstants.updateGuestDetails;
-
-    formData.fields.add(MapEntry("marriage_id", sharedPrefs.marriageId));
-    formData.fields.add(MapEntry("guest_id", sharedPrefs.guestId));
-    //body Data
-    var data = formData;
+  Future<ResponseClass> updateUser({required String name}) async {
+    String url = StringConstants.apiUrl + StringConstants.updateNameForUser;
 
     //Response
     ResponseClass responseClass = ResponseClass(
@@ -412,21 +406,22 @@ class UserProvider extends ChangeNotifier {
     try {
       isLoading = true;
       notifyListeners();
-      Response response = await dio.patch(
-        loginUrl,
-        data: data,
+      Response response = await dio.post(
+        url,
+        data: {
+          "mobile_number": sharedPrefs.mobileNo,
+          "name": name,
+        },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         responseClass.success = response.data["is_success"];
-        responseClass.message = response.data["message"];
-        responseClass.data = response.data["data"];
+
         isLoading = false;
         notifyListeners();
       }
       if (response.statusCode == 409) {
         responseClass.success = response.data["is_success"];
-        responseClass.message = response.data["message"];
-        responseClass.data = response.data["data"];
+
         Fluttertoast.showToast(msg: responseClass.message);
         isLoading = false;
         notifyListeners();
