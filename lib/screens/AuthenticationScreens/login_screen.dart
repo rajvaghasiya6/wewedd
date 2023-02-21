@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../general/color_constants.dart';
 import '../../general/navigation.dart';
 import '../../general/text_styles.dart';
+import '../../providers/theme_provider.dart';
 import '../../providers/user_provider.dart';
 import '../../widgets/mytextformfield.dart';
 import '../../widgets/rounded_elevatedbutton.dart';
@@ -26,6 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
   // TextEditingController password = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<ThemeProvider>().setDark();
+    });
+  }
 
   _loginUser() async {
     if (_formKey.currentState!.validate()) {

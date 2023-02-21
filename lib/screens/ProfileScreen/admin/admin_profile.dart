@@ -38,10 +38,14 @@ class _AdminProfileState extends State<AdminProfile> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 0)).then((value) {
-      context
-          .read<UserProvider>()
-          .userHostedMarriages(mobileNo: sharedPrefs.mobileNo);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<ThemeProvider>().setDark();
+      Future.delayed(const Duration(milliseconds: 0)).then((value) {
+        context
+            .read<UserProvider>()
+            .userHostedMarriages(mobileNo: sharedPrefs.mobileNo);
+      });
     });
   }
 
@@ -281,11 +285,7 @@ class _AdminProfileState extends State<AdminProfile> {
                       elevation: 0,
                       automaticallyImplyLeading: false,
                       expandedHeight: 65,
-                      flexibleSpace: !theme
-                          ? Container(
-                              decoration: BoxDecoration(gradient: greyToWhite),
-                            )
-                          : const SizedBox(),
+                      flexibleSpace: const SizedBox(),
                       floating: true,
                       snap: true,
                       centerTitle: true,
@@ -339,11 +339,7 @@ class _AdminProfileState extends State<AdminProfile> {
                       centerTitle: true,
                       flexibleSpace: Container(
                         padding: const EdgeInsets.only(top: 10),
-                        decoration: theme
-                            ? const BoxDecoration()
-                            : BoxDecoration(
-                                gradient: greyToWhite,
-                              ),
+                        decoration: const BoxDecoration(),
                         child: Stack(
                           alignment: Alignment.topLeft,
                           children: [
@@ -352,27 +348,10 @@ class _AdminProfileState extends State<AdminProfile> {
                                   top: 35, right: 20, left: 20, bottom: 10),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 20),
-                              decoration: theme
-                                  ? BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: mediumBlack,
-                                    )
-                                  : BoxDecoration(
-                                      color: white,
-                                      borderRadius: BorderRadius.circular(12),
-                                      gradient: greyToWhite,
-                                      boxShadow: [
-                                          BoxShadow(
-                                              color: white.withOpacity(0.3),
-                                              blurRadius: 2,
-                                              spreadRadius: 2,
-                                              offset: const Offset(-2, -2)),
-                                          BoxShadow(
-                                              color: grey.withOpacity(0.15),
-                                              blurRadius: 2,
-                                              spreadRadius: 2,
-                                              offset: const Offset(2, 2)),
-                                        ]),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: mediumBlack,
+                              ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -390,17 +369,13 @@ class _AdminProfileState extends State<AdminProfile> {
                                         Icon(
                                           Icons.border_color,
                                           size: 12,
-                                          color: theme
-                                              ? grey.withOpacity(0.7)
-                                              : Colors.black38,
+                                          color: grey.withOpacity(0.7),
                                         ),
                                         AutoSizeText(" Edit Profile",
                                             style: gilroyNormal.copyWith(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w400,
-                                              color: theme
-                                                  ? grey.withOpacity(0.8)
-                                                  : Colors.black54,
+                                              color: grey.withOpacity(0.8),
                                             ))
                                       ],
                                     ),
@@ -409,10 +384,7 @@ class _AdminProfileState extends State<AdminProfile> {
                                     padding: const EdgeInsets.only(top: 14.0),
                                     child: AutoSizeText(
                                       sharedPrefs.userName,
-                                      style: theme
-                                          ? gilroyBold.copyWith(fontSize: 16)
-                                          : gilroyBold.copyWith(
-                                              fontSize: 16, color: eventGrey),
+                                      style: gilroyBold.copyWith(fontSize: 16),
                                     ),
                                   ),
                                   Padding(
@@ -421,9 +393,7 @@ class _AdminProfileState extends State<AdminProfile> {
                                       sharedPrefs.mobileNo,
                                       style: gilroyLight.copyWith(
                                           fontWeight: FontWeight.w400,
-                                          color: theme
-                                              ? grey.withOpacity(0.8)
-                                              : eventGrey),
+                                          color: grey.withOpacity(0.8)),
                                     ),
                                   ),
                                   if (isViewId) const SizedBox(height: 20),
@@ -466,15 +436,13 @@ class _AdminProfileState extends State<AdminProfile> {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(8),
-                                          color: theme
-                                              ? grey.withOpacity(0.1)
-                                              : timeGrey.withOpacity(0.07),
+                                          color: grey.withOpacity(0.1),
                                         ),
                                         child: AutoSizeText(
                                           "View ID Proof",
                                           style: gilroyBold.copyWith(
                                             fontSize: 10,
-                                            color: theme ? white : eventGrey,
+                                            color: white,
                                           ),
                                         ),
                                       ),

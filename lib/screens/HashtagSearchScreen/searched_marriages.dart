@@ -12,15 +12,18 @@ import '../../general/shared_preferences.dart';
 import '../../general/string_constants.dart';
 import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
-import '../../models/marriage_detail_model.dart';
 import '../../providers/hashtag_search_provider.dart';
 import '../HomeScreen/home_screen.dart';
 import 'add_guest_side.dart';
 
 class SearchedMarriages extends StatefulWidget {
-  SearchedMarriages({required this.searchMarriages, Key? key})
+  const SearchedMarriages(
+      {required this.hashtag,
+      //  required this.searchMarriages,
+      Key? key})
       : super(key: key);
-  List<MarriageDetail> searchMarriages;
+  final String hashtag;
+//  List<MarriageDetail> searchMarriages;
   @override
   State<SearchedMarriages> createState() => _SearchedMarriagesState();
 }
@@ -30,14 +33,23 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<HashtagSearchProvider>(context, listen: false)
+          .getHashtagSearchData(widget.hashtag);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    var searchList =
+        context.watch<HashtagSearchProvider>().searchMarriageDetails;
+    var isaccessLoading =
+        context.watch<HashtagSearchProvider>().isaccessLoading;
+    var isLoading = context.watch<HashtagSearchProvider>().isLoading;
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
-        child: context.watch<HashtagSearchProvider>().isaccessLoading
+        child: isLoading || isaccessLoading
             ? const Center(child: CupertinoActivityIndicator())
             : SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -45,8 +57,11 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                   padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Column(
                     children: [
+                      const SizedBox(
+                        height: 24,
+                      ),
                       Text(
-                        '${widget.searchMarriages.length} Wedding Found',
+                        '${searchList.length} Wedding Found',
                         style: poppinsBold.copyWith(color: white, fontSize: 20),
                       ),
                       const SizedBox(
@@ -59,7 +74,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                             thickness: 1,
                           ),
                         ),
-                        itemCount: widget.searchMarriages.length,
+                        itemCount: searchList.length,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         physics: const NeverScrollableScrollPhysics(),
@@ -68,37 +83,29 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                             onTap: () {
                               Provider.of<HashtagSearchProvider>(context,
                                       listen: false)
-                                  .accessWedding(
-                                      widget.searchMarriages[index].marriageId!,
+                                  .accessWedding(searchList[index].marriageId!,
                                       sharedPrefs.mobileNo)
                                   .then((value) {
                                 if (value.success == true) {
                                   sharedPrefs.marriageId =
-                                      widget.searchMarriages[index].marriageId!;
+                                      searchList[index].marriageId!;
                                   sharedPrefs.guestId = value.data['guest_id'];
                                   sharedPrefs.isAdmin = value.data['is_admin'];
                                   if (value.data['guest_side_selected'] ==
                                       true) {
                                     RecentSearch recentSearch = RecentSearch(
-                                        hashtag: widget.searchMarriages[index]
-                                            .weddingHashtag!,
-                                        marriageId: widget
-                                            .searchMarriages[index].marriageId!,
-                                        weddingName: widget
-                                            .searchMarriages[index]
-                                            .marriageName!,
-                                        weddingDate: widget
-                                                .searchMarriages[index]
-                                                .weddingDate ??
-                                            '',
-                                        weddingLogo: widget
-                                                .searchMarriages[index]
-                                                .weddingLogo ??
-                                            '',
+                                        hashtag:
+                                            searchList[index].weddingHashtag!,
+                                        marriageId:
+                                            searchList[index].marriageId!,
+                                        weddingName:
+                                            searchList[index].marriageName!,
+                                        weddingDate:
+                                            searchList[index].weddingDate ?? '',
+                                        weddingLogo:
+                                            searchList[index].weddingLogo ?? '',
                                         searchTime: DateTime.now());
-                                    dataBox.put(
-                                        widget
-                                            .searchMarriages[index].marriageId,
+                                    dataBox.put(searchList[index].marriageId,
                                         recentSearch);
 
                                     nextScreenReplace(context, HomeScreen());
@@ -108,8 +115,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                         builder: (context) =>
                                             AddGuestSideDialog(
                                                 isPrivate: false,
-                                                marriageId: widget
-                                                        .searchMarriages[index]
+                                                marriageId: searchList[index]
                                                         .marriageId ??
                                                     ''));
                                   }
@@ -125,8 +131,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                         builder: (context) =>
                                             AddGuestSideDialog(
                                                 isPrivate: true,
-                                                marriageId: widget
-                                                        .searchMarriages[index]
+                                                marriageId: searchList[index]
                                                         .marriageId ??
                                                     ''));
                                   }
@@ -142,8 +147,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                 padding: const EdgeInsets.all(14.0),
                                 child: Row(
                                   children: [
-                                    widget.searchMarriages[index].weddingLogo !=
-                                            ''
+                                    searchList[index].weddingLogo != ''
                                         ? ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8),
@@ -151,11 +155,10 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                               height: 100,
                                               width: 70,
                                               child: CachedNetworkImage(
-                                                imageUrl: StringConstants
-                                                        .apiUrl +
-                                                    widget
-                                                        .searchMarriages[index]
-                                                        .weddingLogo!,
+                                                imageUrl:
+                                                    StringConstants.apiUrl +
+                                                        searchList[index]
+                                                            .weddingLogo!,
                                                 imageBuilder:
                                                     (context, imageProvider) =>
                                                         Padding(
@@ -214,8 +217,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          widget.searchMarriages[index]
-                                              .weddingHashtag!,
+                                          searchList[index].weddingHashtag!,
                                           style: poppinsBold.copyWith(
                                               color: white, fontSize: 16),
                                         ),
@@ -223,8 +225,7 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                           height: 14,
                                         ),
                                         Text(
-                                          widget.searchMarriages[index]
-                                              .marriageName!,
+                                          searchList[index].marriageName!,
                                           style: poppinsNormal.copyWith(
                                               color: grey, fontSize: 12),
                                         ),
@@ -232,13 +233,11 @@ class _SearchedMarriagesState extends State<SearchedMarriages> {
                                           height: 14,
                                         ),
                                         Text(
-                                          widget.searchMarriages[index]
-                                                      .weddingDate !=
-                                                  null
+                                          searchList[index].weddingDate != null
                                               ? format(
-                                                  DateTime.parse(widget
-                                                      .searchMarriages[index]
-                                                      .weddingDate!),
+                                                  DateTime.parse(
+                                                      searchList[index]
+                                                          .weddingDate!),
                                                 )
                                               : '',
                                           style: poppinsNormal.copyWith(

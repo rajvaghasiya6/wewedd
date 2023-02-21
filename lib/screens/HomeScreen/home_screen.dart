@@ -84,6 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
               curve: Curves.easeIn);
           return Future.value(false);
         } else {
+          Future.delayed(const Duration(milliseconds: 0)).then((value) {
+            context.read<ThemeProvider>().setDark();
+          });
           return Future.value(true);
         }
       },

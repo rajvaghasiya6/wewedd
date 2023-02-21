@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../general/string_constants.dart';
+import '../models/marriage_detail_model.dart';
 import '../models/response_model.dart';
 import 'user_provider.dart';
 
@@ -13,16 +14,17 @@ class HashtagSearchProvider extends ChangeNotifier {
   bool isLoaded = false;
   bool isLoading = false;
   bool isaccessLoading = false;
-//  List<MarriageDetail>? searchMarriageDetails = [];
+  List<MarriageDetail> searchMarriageDetails = [];
 
-  Future<ResponseClass> getHashtagSearchData(String hashtag) async {
+  Future<ResponseClass<List<MarriageDetail>>> getHashtagSearchData(
+      String hashtag) async {
     String url = "${StringConstants.apiUrl}get_all_marriages";
 
     //Response
-    ResponseClass responseClass = ResponseClass(
-      success: false,
-      message: "Something went wrong",
-    );
+    ResponseClass<List<MarriageDetail>> responseClass = ResponseClass(
+        success: false,
+        message: "Something went wrong",
+        data: searchMarriageDetails);
     try {
       isLoaded = true;
       isLoading = true;
@@ -31,7 +33,12 @@ class HashtagSearchProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         responseClass.success = response.data["is_success"];
         responseClass.message = response.data["message"];
-        responseClass.data = response.data["data"];
+
+        List searchList = response.data["data"];
+        List<MarriageDetail> list =
+            searchList.map((e) => MarriageDetail.fromJson(e)).toList();
+        responseClass.data = list;
+        searchMarriageDetails = list;
 
         isLoading = false;
         isLoaded = false;

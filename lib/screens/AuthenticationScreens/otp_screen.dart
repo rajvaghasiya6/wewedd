@@ -11,7 +11,6 @@ import 'package:wedding/general/color_constants.dart';
 import 'package:wedding/general/navigation.dart';
 import 'package:wedding/general/shared_preferences.dart';
 import 'package:wedding/general/text_styles.dart';
-import 'package:wedding/providers/theme_provider.dart';
 import 'package:wedding/providers/user_provider.dart';
 import 'package:wedding/screens/AuthenticationScreens/registration_screen.dart';
 import 'package:wedding/screens/HashtagSearchScreen/hashtag_search_screen.dart';
@@ -110,14 +109,9 @@ class _OTPScreenState extends State<OTPScreen> {
                         hasError: hasErr,
                         pinBoxHeight: 40,
                         controller: smsController,
-                        highlightPinBoxColor:
-                            context.read<ThemeProvider>().darkTheme
-                                ? hintText
-                                : grey.withOpacity(0.5),
+                        highlightPinBoxColor: hintText,
                         highlightColor: hintText,
-                        pinBoxColor: context.read<ThemeProvider>().darkTheme
-                            ? hintText
-                            : Colors.transparent,
+                        pinBoxColor: hintText,
                         pinTextStyle: const TextStyle(
                           fontSize: 17,
                           fontFamily: "poppins",

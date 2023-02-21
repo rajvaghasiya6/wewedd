@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
 import '../../general/color_constants.dart';
 import '../../general/helper_functions.dart';
@@ -13,13 +13,8 @@ import '../../general/shared_preferences.dart';
 import '../../general/string_constants.dart';
 import '../../general/text_styles.dart';
 import '../../hiveModels/recent_search_model.dart';
-import '../../models/marriage_detail_model.dart';
-import '../../providers/hashtag_search_provider.dart';
-import '../../widgets/user_button.dart';
 import '../AddWedding/add_wedding_screen.dart';
-import '../HomeScreen/home_screen.dart';
 import '../ProfileScreen/admin/admin_profile.dart';
-import 'add_guest_side.dart';
 import 'searched_marriages.dart';
 
 class HashtagSearchScreen extends StatelessWidget {
@@ -29,28 +24,28 @@ class HashtagSearchScreen extends StatelessWidget {
 
   final Box<RecentSearch> dataBox = Hive.box('recent_search');
 
-  List<MarriageDetail> searchMarriages = [];
+//  List<MarriageDetail> searchMarriages = [];
 
   bool isRecentSearch = true;
 
-  searchHashtag(BuildContext context, String hashtag) {
-    if (searchController.text.trim() != '') {
-      Provider.of<HashtagSearchProvider>(context, listen: false)
-          .getHashtagSearchData(hashtag)
-          .then((value) {
-        if (value.success == true) {
-          searchMarriages = [];
-          value.data.forEach((val) {
-            searchMarriages.add(MarriageDetail.fromJson(val));
-          });
-          nextScreen(
-              context, SearchedMarriages(searchMarriages: searchMarriages));
-        }
-      });
-    } else {
-      Fluttertoast.showToast(msg: 'Enter Hashtag ');
-    }
-  }
+  // searchHashtag(BuildContext context, String hashtag) {
+  //   if (searchController.text.trim() != '') {
+  //     Provider.of<HashtagSearchProvider>(context, listen: false)
+  //         .getHashtagSearchData(hashtag)
+  //         .then((value) {
+  //       if (value.success == true) {
+  //         searchMarriages = [];
+  //         value.data.forEach((val) {
+  //           searchMarriages.add(MarriageDetail.fromJson(val));
+  //         });
+  //         nextScreen(
+  //             context, SearchedMarriages(searchMarriages: searchMarriages));
+  //       }
+  //     });
+  //   } else {
+  //     Fluttertoast.showToast(msg: 'Enter Hashtag ');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -86,12 +81,61 @@ class HashtagSearchScreen extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            UserButton(
-                              url: sharedPrefs.guestProfileImage,
-                              size: 45,
-                              pushScreen: () {
+                            GestureDetector(
+                              onTap: () {
                                 nextScreen(context, const AdminProfile());
                               },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    "icons/user.svg",
+                                    height: 45,
+                                    width: 45,
+                                  ),
+                                  Container(
+                                    height: 45 * 0.58,
+                                    width: 45 * 0.58,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(100),
+                                      child: sharedPrefs.guestProfileImage != ''
+                                          ? CachedNetworkImage(
+                                              imageUrl:
+                                                  '${StringConstants.apiUrl}${sharedPrefs.guestProfileImage}',
+                                              height: 45 * 0.59,
+                                              width: 45 * 0.59,
+                                              fit: BoxFit.cover,
+                                              errorWidget: (_, __, error) =>
+                                                  Padding(
+                                                padding:
+                                                    const EdgeInsets.all(3),
+                                                child: SvgPicture.asset(
+                                                  "icons/user_icon.svg",
+                                                  height: 45 * 0.44,
+                                                  width: 45 * 0.44,
+                                                ),
+                                              ),
+                                              placeholder: (context, url) =>
+                                                  const Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  strokeWidth: 2,
+                                                ),
+                                              ),
+                                            )
+                                          : SvgPicture.asset(
+                                              "icons/user_icon.svg",
+                                              height: 45 * 0.44,
+                                              width: 45 * 0.44,
+                                            ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             ElevatedButton(
                                 onPressed: () {
@@ -102,7 +146,7 @@ class HashtagSearchScreen extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25),
                                   ),
-                                  elevation: 15.0,
+                                  elevation: 0,
                                 ),
                                 child: Padding(
                                   padding:
@@ -140,7 +184,15 @@ class HashtagSearchScreen extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
                         onFieldSubmitted: (value) {
-                          searchHashtag(context, searchController.text.trim());
+                          //  searchHashtag(context, searchController.text.trim());
+                          if (searchController.text.trim() != '') {
+                            nextScreen(
+                                context,
+                                SearchedMarriages(
+                                    hashtag: searchController.text.trim()));
+                          } else {
+                            Fluttertoast.showToast(msg: 'Enter Hashtag ');
+                          }
                         },
                         validator: (val) {
                           if (val == '') {
@@ -154,8 +206,16 @@ class HashtagSearchScreen extends StatelessWidget {
                               poppinsNormal.copyWith(color: grey, fontSize: 15),
                           suffixIcon: GestureDetector(
                             onTap: () {
-                              searchHashtag(
-                                  context, searchController.text.trim());
+                              // searchHashtag(
+                              //     context, searchController.text.trim());
+                              if (searchController.text.trim() != '') {
+                                nextScreen(
+                                    context,
+                                    SearchedMarriages(
+                                        hashtag: searchController.text.trim()));
+                              } else {
+                                Fluttertoast.showToast(msg: 'Enter Hashtag ');
+                              }
                             },
                             child: Image.asset(
                               'assets/search.png',
@@ -163,14 +223,15 @@ class HashtagSearchScreen extends StatelessWidget {
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(16),
                             borderSide: const BorderSide(
                               width: 0,
                               style: BorderStyle.none,
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16.0),
+                          focusedBorder: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                           ),
                           contentPadding: const EdgeInsets.only(
                               left: 20, right: 20, top: 20, bottom: 20),
@@ -213,52 +274,52 @@ class HashtagSearchScreen extends StatelessWidget {
 
                                   return GestureDetector(
                                     onTap: () {
-                                      Provider.of<HashtagSearchProvider>(
-                                              context,
-                                              listen: false)
-                                          .accessWedding(data!.marriageId,
-                                              sharedPrefs.mobileNo)
-                                          .then((value) {
-                                        if (value.success == true) {
-                                          sharedPrefs.marriageId =
-                                              data.marriageId;
-                                          sharedPrefs.guestId =
-                                              value.data['guest_id'];
-                                          sharedPrefs.isAdmin =
-                                              value.data['is_admin'];
-                                          if (value.data[
-                                                  'guest_side_selected'] ==
-                                              true) {
-                                            nextScreen(context, HomeScreen());
-                                          } else {
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    AddGuestSideDialog(
-                                                      isPrivate: false,
-                                                      marriageId:
-                                                          data.marriageId,
-                                                    ));
-                                          }
-                                        } else {
-                                          if (value.data[
-                                                  'guest_side_selected'] ==
-                                              true) {
-                                            Fluttertoast.showToast(
-                                                msg:
-                                                    "you dont have access for this wedding");
-                                          } else {
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    AddGuestSideDialog(
-                                                      isPrivate: true,
-                                                      marriageId:
-                                                          data.marriageId,
-                                                    ));
-                                          }
-                                        }
-                                      });
+                                      // Provider.of<HashtagSearchProvider>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .accessWedding(data!.marriageId,
+                                      //         sharedPrefs.mobileNo)
+                                      //     .then((value) {
+                                      //   if (value.success == true) {
+                                      //     sharedPrefs.marriageId =
+                                      //         data.marriageId;
+                                      //     sharedPrefs.guestId =
+                                      //         value.data['guest_id'];
+                                      //     sharedPrefs.isAdmin =
+                                      //         value.data['is_admin'];
+                                      //     if (value.data[
+                                      //             'guest_side_selected'] ==
+                                      //         true) {
+                                      //       nextScreen(context, HomeScreen());
+                                      //     } else {
+                                      //       showDialog(
+                                      //           context: context,
+                                      //           builder: (context) =>
+                                      //               AddGuestSideDialog(
+                                      //                 isPrivate: false,
+                                      //                 marriageId:
+                                      //                     data.marriageId,
+                                      //               ));
+                                      //     }
+                                      //   } else {
+                                      //     if (value.data[
+                                      //             'guest_side_selected'] ==
+                                      //         true) {
+                                      //       Fluttertoast.showToast(
+                                      //           msg:
+                                      //               "you dont have access for this wedding");
+                                      //     } else {
+                                      //       showDialog(
+                                      //           context: context,
+                                      //           builder: (context) =>
+                                      //               AddGuestSideDialog(
+                                      //                 isPrivate: true,
+                                      //                 marriageId:
+                                      //                     data.marriageId,
+                                      //               ));
+                                      //     }
+                                      //   }
+                                      // });
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

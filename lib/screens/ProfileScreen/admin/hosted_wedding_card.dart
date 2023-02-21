@@ -50,7 +50,7 @@ class HostedWeddingCard extends StatelessWidget {
                             color: black,
                             image: DecorationImage(
                               image: imageProvider,
-                              fit: BoxFit.fitHeight,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -80,14 +80,16 @@ class HostedWeddingCard extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      hostedMarriage.weddingName,
+                      hostedMarriage.weddingName ?? '',
                       style: poppinsNormal.copyWith(color: grey, fontSize: 12),
                     ),
                     const SizedBox(
                       height: 14,
                     ),
                     Text(
-                      format(DateTime.parse(hostedMarriage.weddingDate)),
+                      hostedMarriage.weddingDate != null
+                          ? format(DateTime.parse(hostedMarriage.weddingDate))
+                          : '',
                       style: poppinsNormal.copyWith(color: grey, fontSize: 12),
                     ),
                   ],

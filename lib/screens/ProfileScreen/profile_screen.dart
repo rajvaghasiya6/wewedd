@@ -458,7 +458,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                           borderRadius:
                                               BorderRadius.circular(8),
                                           color: theme
-                                              ? grey.withOpacity(0.1)
+                                              ? timeGrey
                                               : timeGrey.withOpacity(0.07),
                                         ),
                                         child: AutoSizeText(

@@ -34,10 +34,10 @@ class _GalleryScreenState extends State<GalleryScreen>
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 0)).then((value) {
-      Provider.of<GalleryProvider>(context, listen: false).getFolder();
+    Future.delayed(const Duration(milliseconds: 0)).then((value) async {
+      await Provider.of<GalleryProvider>(context, listen: false).getFolder();
 
-      Provider.of<EventProvider>(context, listen: false).getEvents();
+      await Provider.of<EventProvider>(context, listen: false).getEvents();
     });
     tabController = TabController(
         vsync: this,
@@ -154,10 +154,10 @@ class _GalleryScreenState extends State<GalleryScreen>
                                                         context,
                                                         listen: false)
                                                     .getFolder();
-                                                Future.delayed(
-                                                    const Duration(seconds: 1));
+
                                                 Fluttertoast.showToast(
                                                     msg: "Folder Added");
+
                                                 Navigator.pop(context);
                                                 Navigator.pop(context);
                                                 nextScreen(

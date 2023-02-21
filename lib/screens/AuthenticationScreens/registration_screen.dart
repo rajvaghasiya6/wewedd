@@ -15,7 +15,6 @@ import '../../general/navigation.dart';
 import '../../general/shared_preferences.dart';
 import '../../general/text_styles.dart';
 import '../../providers/dashboard_provider.dart';
-import '../../providers/theme_provider.dart';
 import '../../providers/user_provider.dart';
 import '../../widgets/mytextformfield.dart';
 import '../../widgets/rounded_elevatedbutton.dart';
@@ -512,7 +511,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = context.watch<ThemeProvider>().darkTheme;
     return Container(
       decoration: BoxDecoration(gradient: greyToWhite),
       child: Scaffold(
@@ -635,16 +633,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                           AutoSizeText(
                                             "Attach ID proof Front",
                                             style: poppinsLight.copyWith(
-                                                color: theme
-                                                    ? grey.withOpacity(0.6)
-                                                    : hintLightText,
+                                                color: grey.withOpacity(0.6),
                                                 fontSize: 11),
-
-                                            /*  poppinsLight.copyWith(
-                                                  color: theme
-                                                      ? hintText
-                                                      : hintLightText,
-                                                  fontSize: 12)*/
                                           ),
                                         ],
                                       ),
@@ -690,9 +680,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                           ),
                                           AutoSizeText("Attach ID proof back",
                                               style: poppinsLight.copyWith(
-                                                  color: theme
-                                                      ? grey.withOpacity(0.6)
-                                                      : hintLightText,
+                                                  color: grey.withOpacity(0.6),
                                                   fontSize: 11)),
                                         ],
                                       ),
@@ -737,9 +725,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     )
                                   : AutoSizeText("Attach Id Proof Pdf",
                                       style: poppinsLight.copyWith(
-                                          color: theme
-                                              ? grey.withOpacity(0.6)
-                                              : hintLightText,
+                                          color: grey.withOpacity(0.6),
                                           fontSize: 11)),
                             ),
                           ),

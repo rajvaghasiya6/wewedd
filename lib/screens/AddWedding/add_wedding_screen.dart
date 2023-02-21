@@ -13,6 +13,7 @@ import '../../general/color_constants.dart';
 import '../../general/shared_preferences.dart';
 import '../../general/text_styles.dart';
 import '../../providers/add_wedding_provider.dart';
+import '../../providers/theme_provider.dart';
 import '../../widgets/mytextformfield.dart';
 import 'AddWeddingComponent/add_new_event_widget.dart';
 import 'AddWeddingComponent/add_siblings_widget.dart';
@@ -97,200 +98,203 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
     } else if (coupleImage.length < 5) {
       Fluttertoast.showToast(msg: "Upload Minimum 5 couple photo");
     } else {
-     if (isValid) {
-     if (_formKey.currentState!.validate()) {
-    FormData data = FormData.fromMap({
-      'mobile_number': sharedPrefs.mobileNo,
-      'marriage_name': weddingNameController.text.trim(),
-      'wedding_date': DateFormat('yyyy-MM-dd')
-          .format(DateFormat('dd-MM-yyyy').parse(weddingDateController.text))
-          .toString(),
-      'wedding_hashtag': hashtagController.text.trim(),
-      'wedding_time': weddingTimeController.text.trim(),
-      'wedding_venue': weddingVenueController.text.trim(),
-      'is_guests_id_proof': isIdProof.toString(),
-      'is_approve_post': isUploadFeed.toString(),
-      'is_private': isAccess.toString(),
-      'bride_name': brideNameController.text.trim(),
-      'groom_name': groomNameController.text.trim(),
-      'live_link': liveLinkController.text.trim(),
-      'groom_side_length':
-          (groomRelative.length + groomSibling.length + 2).toString(),
-      'bride_side_length':
-          (brideRelative.length + brideSibling.length + 2).toString(),
-      'groom_side0.name': groomFatherNameController.text,
-      'groom_side0.relation': 'father',
-      'groom_side1.name': groomMotherNameController.text,
-      'groom_side1.relation': 'mother',
-      'bride_side0.name': brideFatherNameController.text,
-      'bride_side0.relation': 'father',
-      'bride_side1.name': brideMotherNameController.text,
-      'bride_side1.relation': 'mother',
-      'events_length': events.length.toString(),
-    });
-    for (var i = 0; i < brideSibling.length; i++) {
-      data.fields.addAll([
-        MapEntry("bride_side${i + 2}.name", brideSibling[i].name),
-        MapEntry("bride_side${i + 2}.relation", "sibling"),
-      ]);
-    }
-    for (var i = 0; i < brideRelative.length; i++) {
-      data.fields.addAll([
-        MapEntry("bride_side${i + brideSibling.length + 2}.name",
-            brideRelative[i].name),
-        MapEntry(
-            "bride_side${i + brideSibling.length + 2}.relation", "relative"),
-      ]);
-    }
-    for (var i = 0; i < groomSibling.length; i++) {
-      data.fields.addAll([
-        MapEntry("groom_side${i + 2}.name", groomSibling[i].name),
-        MapEntry("groom_side${i + 2}.relation", "sibling"),
-      ]);
-    }
-    for (var i = 0; i < groomRelative.length; i++) {
-      data.fields.addAll([
-        MapEntry("groom_side${i + groomSibling.length + 2}.name",
-            groomRelative[i].name),
-        MapEntry(
-            "groom_side${i + groomSibling.length + 2}.relation", "relative"),
-      ]);
-    }
-    for (var i = 0; i < brideSibling.length; i++) {
-      if (pickedImage != null) {
-        data.files.add(MapEntry(
-          "bride_side${i + 2}.image",
-          await MultipartFile.fromFile(brideSibling[i].image!.path),
-        ));
-      }
-    }
-    for (var i = 0; i < brideRelative.length; i++) {
-      if (pickedImage != null) {
-        data.files.add(MapEntry(
-          "bride_side${i + brideSibling.length + 2}.image",
-          await MultipartFile.fromFile(brideRelative[i].image!.path),
-        ));
-      }
-    }
-    for (var i = 0; i < groomSibling.length; i++) {
-      if (pickedImage != null) {
-        data.files.add(MapEntry(
-          "groom_side${i + 2}.image",
-          await MultipartFile.fromFile(groomSibling[i].image!.path),
-        ));
-      }
-    }
-    for (var i = 0; i < groomRelative.length; i++) {
-      if (pickedImage != null) {
-        data.files.add(MapEntry(
-          "groom_side${i + groomSibling.length + 2}.image",
-          await MultipartFile.fromFile(groomRelative[i].image!.path),
-        ));
-      }
-    }
-    if (pickedImage != null) {
-      data.files.add(
-        MapEntry(
-          "marriage_logo",
-          await MultipartFile.fromFile(pickedImage!.path),
-        ),
-      );
-    }
-    if (groomImage != null) {
-      data.files.add(
-        MapEntry(
-          "groom_image",
-          await MultipartFile.fromFile(groomImage!.path),
-        ),
-      );
-    }
-    if (brideImage != null) {
-      data.files.add(
-        MapEntry(
-          "bride_image",
-          await MultipartFile.fromFile(brideImage!.path),
-        ),
-      );
-    }
-    if (groomFatherImage != null) {
-      data.files.add(
-        MapEntry(
-          "groom_side0.image",
-          await MultipartFile.fromFile(groomFatherImage!.path),
-        ),
-      );
-    }
-    if (groomMotherImage != null) {
-      data.files.add(
-        MapEntry(
-          "groom_side1.image",
-          await MultipartFile.fromFile(groomMotherImage!.path),
-        ),
-      );
-    }
-    if (brideFatherImage != null) {
-      data.files.add(
-        MapEntry(
-          "bride_side0.image",
-          await MultipartFile.fromFile(brideFatherImage!.path),
-        ),
-      );
-    }
-    if (brideMotherImage != null) {
-      data.files.add(
-        MapEntry(
-          "bride_side1.image",
-          await MultipartFile.fromFile(brideMotherImage!.path),
-        ),
-      );
-    }
+      if (isValid) {
+        if (_formKey.currentState!.validate()) {
+          FormData data = FormData.fromMap({
+            'mobile_number': sharedPrefs.mobileNo,
+            'marriage_name': weddingNameController.text.trim(),
+            'wedding_date': DateFormat('yyyy-MM-dd')
+                .format(
+                    DateFormat('dd-MM-yyyy').parse(weddingDateController.text))
+                .toString(),
+            'wedding_hashtag': hashtagController.text.trim(),
+            'wedding_time': weddingTimeController.text.trim(),
+            'wedding_venue': weddingVenueController.text.trim(),
+            'is_guests_id_proof': isIdProof.toString(),
+            'is_approve_post': isUploadFeed.toString(),
+            'is_private': isAccess.toString(),
+            'bride_name': brideNameController.text.trim(),
+            'groom_name': groomNameController.text.trim(),
+            'live_link': liveLinkController.text.trim(),
+            'groom_side_length':
+                (groomRelative.length + groomSibling.length + 2).toString(),
+            'bride_side_length':
+                (brideRelative.length + brideSibling.length + 2).toString(),
+            'groom_side0.name': groomFatherNameController.text,
+            'groom_side0.relation': 'father',
+            'groom_side1.name': groomMotherNameController.text,
+            'groom_side1.relation': 'mother',
+            'bride_side0.name': brideFatherNameController.text,
+            'bride_side0.relation': 'father',
+            'bride_side1.name': brideMotherNameController.text,
+            'bride_side1.relation': 'mother',
+            'events_length': events.length.toString(),
+          });
+          for (var i = 0; i < brideSibling.length; i++) {
+            data.fields.addAll([
+              MapEntry("bride_side${i + 2}.name", brideSibling[i].name),
+              MapEntry("bride_side${i + 2}.relation", "sibling"),
+            ]);
+          }
+          for (var i = 0; i < brideRelative.length; i++) {
+            data.fields.addAll([
+              MapEntry("bride_side${i + brideSibling.length + 2}.name",
+                  brideRelative[i].name),
+              MapEntry("bride_side${i + brideSibling.length + 2}.relation",
+                  "relative"),
+            ]);
+          }
+          for (var i = 0; i < groomSibling.length; i++) {
+            data.fields.addAll([
+              MapEntry("groom_side${i + 2}.name", groomSibling[i].name),
+              MapEntry("groom_side${i + 2}.relation", "sibling"),
+            ]);
+          }
+          for (var i = 0; i < groomRelative.length; i++) {
+            data.fields.addAll([
+              MapEntry("groom_side${i + groomSibling.length + 2}.name",
+                  groomRelative[i].name),
+              MapEntry("groom_side${i + groomSibling.length + 2}.relation",
+                  "relative"),
+            ]);
+          }
+          for (var i = 0; i < brideSibling.length; i++) {
+            if (pickedImage != null) {
+              data.files.add(MapEntry(
+                "bride_side${i + 2}.image",
+                await MultipartFile.fromFile(brideSibling[i].image!.path),
+              ));
+            }
+          }
+          for (var i = 0; i < brideRelative.length; i++) {
+            if (pickedImage != null) {
+              data.files.add(MapEntry(
+                "bride_side${i + brideSibling.length + 2}.image",
+                await MultipartFile.fromFile(brideRelative[i].image!.path),
+              ));
+            }
+          }
+          for (var i = 0; i < groomSibling.length; i++) {
+            if (pickedImage != null) {
+              data.files.add(MapEntry(
+                "groom_side${i + 2}.image",
+                await MultipartFile.fromFile(groomSibling[i].image!.path),
+              ));
+            }
+          }
+          for (var i = 0; i < groomRelative.length; i++) {
+            if (pickedImage != null) {
+              data.files.add(MapEntry(
+                "groom_side${i + groomSibling.length + 2}.image",
+                await MultipartFile.fromFile(groomRelative[i].image!.path),
+              ));
+            }
+          }
+          if (pickedImage != null) {
+            data.files.add(
+              MapEntry(
+                "marriage_logo",
+                await MultipartFile.fromFile(pickedImage!.path),
+              ),
+            );
+          }
+          if (groomImage != null) {
+            data.files.add(
+              MapEntry(
+                "groom_image",
+                await MultipartFile.fromFile(groomImage!.path),
+              ),
+            );
+          }
+          if (brideImage != null) {
+            data.files.add(
+              MapEntry(
+                "bride_image",
+                await MultipartFile.fromFile(brideImage!.path),
+              ),
+            );
+          }
+          if (groomFatherImage != null) {
+            data.files.add(
+              MapEntry(
+                "groom_side0.image",
+                await MultipartFile.fromFile(groomFatherImage!.path),
+              ),
+            );
+          }
+          if (groomMotherImage != null) {
+            data.files.add(
+              MapEntry(
+                "groom_side1.image",
+                await MultipartFile.fromFile(groomMotherImage!.path),
+              ),
+            );
+          }
+          if (brideFatherImage != null) {
+            data.files.add(
+              MapEntry(
+                "bride_side0.image",
+                await MultipartFile.fromFile(brideFatherImage!.path),
+              ),
+            );
+          }
+          if (brideMotherImage != null) {
+            data.files.add(
+              MapEntry(
+                "bride_side1.image",
+                await MultipartFile.fromFile(brideMotherImage!.path),
+              ),
+            );
+          }
 
-    for (var file in inviteImage) {
-      data.files.addAll([
-        MapEntry("invitation_card", await MultipartFile.fromFile(file.path)),
-      ]);
-    }
-    for (var file in coupleImage) {
-      data.files.addAll([
-        MapEntry("banner", await MultipartFile.fromFile(file.path)),
-      ]);
-    }
+          for (var file in inviteImage) {
+            data.files.addAll([
+              MapEntry(
+                  "invitation_card", await MultipartFile.fromFile(file.path)),
+            ]);
+          }
+          for (var file in coupleImage) {
+            data.files.addAll([
+              MapEntry("banner", await MultipartFile.fromFile(file.path)),
+            ]);
+          }
 
-    for (var i = 0; i < events.length; i++) {
-      data.fields.addAll([
-        MapEntry("event$i.event_name", events[i].eventName),
-        MapEntry("event$i.event_tagline", events[i].eventTagline),
-        MapEntry("event$i.event_date", events[i].eventDate),
-        MapEntry("event$i.event_time", events[i].eventTime),
-        MapEntry("event$i.is_dress_code", events[i].isDresscode.toString()),
-        MapEntry("event$i.event_venue", events[i].eventVenue),
-        MapEntry("event$i.dress_code_men", events[i].menDresscode),
-        MapEntry("event$i.dress_code_women", events[i].womenDresscode),
-      ]);
-    }
-    for (var i = 0; i < events.length; i++) {
-      if (events[i].eventLogo != null) {
-        data.files.add(
-          MapEntry("event$i.logo",
-              await MultipartFile.fromFile(events[i].eventLogo!.path)),
-        );
-      }
-    }
+          for (var i = 0; i < events.length; i++) {
+            data.fields.addAll([
+              MapEntry("event$i.event_name", events[i].eventName),
+              MapEntry("event$i.event_tagline", events[i].eventTagline),
+              MapEntry("event$i.event_date", events[i].eventDate),
+              MapEntry("event$i.event_time", events[i].eventTime),
+              MapEntry(
+                  "event$i.is_dress_code", events[i].isDresscode.toString()),
+              MapEntry("event$i.event_venue", events[i].eventVenue),
+              MapEntry("event$i.dress_code_men", events[i].menDresscode),
+              MapEntry("event$i.dress_code_women", events[i].womenDresscode),
+            ]);
+          }
+          for (var i = 0; i < events.length; i++) {
+            if (events[i].eventLogo != null) {
+              data.files.add(
+                MapEntry("event$i.logo",
+                    await MultipartFile.fromFile(events[i].eventLogo!.path)),
+              );
+            }
+          }
 
-    log(data.fields.toString());
-    log(data.files.toString());
-    Provider.of<AddWeddingProvider>(context, listen: false)
-        .addNewWedding(formData: data)
-        .then((value) {
-      print(value.message);
-      if (value.success) {
-        Navigator.of(context).pop();
-        Fluttertoast.showToast(msg: "Wedding added successfully");
-      }
-    });
+          log(data.fields.toString());
+          log(data.files.toString());
+          Provider.of<AddWeddingProvider>(context, listen: false)
+              .addNewWedding(formData: data)
+              .then((value) {
+            print(value.message);
+            if (value.success) {
+              Navigator.of(context).pop();
+              Fluttertoast.showToast(msg: "Wedding added successfully");
+            }
+          });
+        }
       }
     }
-      }
   }
 
   Future<File?> _cropImage(File? image) async {
@@ -328,6 +332,14 @@ class _AddWeddingScreenState extends State<AddWeddingScreen> {
       return File(result.files.single.path!);
     }
     return null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<ThemeProvider>().setDark();
+    });
   }
 
   @override

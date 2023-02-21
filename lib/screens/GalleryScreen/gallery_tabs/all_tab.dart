@@ -293,7 +293,7 @@ class _AllTabState extends State<AllTab>
     return null;
   }
 
-  void _imagePick() {
+  void _imagePick(bool theme) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
@@ -356,6 +356,10 @@ class _AllTabState extends State<AllTab>
                     child: Padding(
                       padding: const EdgeInsets.only(right: 25.0, bottom: 5),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              theme ? timeGrey : timeGrey.withOpacity(0.08),
+                        ),
                         onPressed: () {
                           if (Navigator.canPop(context)) {
                             Navigator.pop(context);
@@ -468,14 +472,14 @@ class _AllTabState extends State<AllTab>
       floatingActionButton: sharedPrefs.isAdmin == true && widget.index != 0
           ? ElevatedButton(
               onPressed: () {
-                _imagePick();
+                _imagePick(theme);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: timeGrey,
+                backgroundColor: theme ? timeGrey : timeGrey.withOpacity(0.1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
-                elevation: 15.0,
+                elevation: 0,
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),

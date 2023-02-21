@@ -20,6 +20,12 @@ class EventScreen extends StatefulWidget {
 
 class _EventScreenState extends State<EventScreen> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<EventProvider>(context, listen: false).getEvents();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var theme = context.watch<ThemeProvider>().darkTheme;
     var events = context.watch<EventProvider>().events;
@@ -95,7 +101,15 @@ class _EventScreenState extends State<EventScreen> {
                           //               ),
                           //             ],
                           //           )
-                          : const Center(child: Text("Data not found..."))
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                SizedBox(
+                                  height: 100,
+                                ),
+                                Center(child: Text("Data not found...")),
+                              ],
+                            )
                 ],
               ),
             ),
@@ -107,11 +121,11 @@ class _EventScreenState extends State<EventScreen> {
                   nextScreen(context, const AddNewEvent());
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: timeGrey,
+                  backgroundColor: theme ? timeGrey : timeGrey.withOpacity(0.1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  elevation: 15.0,
+                  elevation: 0,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),

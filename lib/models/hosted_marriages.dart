@@ -13,7 +13,7 @@ class HostedMarriages {
     required this.marriageId,
     required this.hashtag,
     required this.weddingDate,
-    required this.weddingName,
+    this.weddingName,
     required this.pendingFeedNumber,
     required this.weddingLogo,
   });
@@ -23,7 +23,7 @@ class HostedMarriages {
   String marriageId;
   int totalRegisterGuestNumber;
   String weddingDate;
-  String weddingName;
+  String? weddingName;
   int pendingFeedNumber;
   String weddingLogo;
 
@@ -33,8 +33,8 @@ class HostedMarriages {
           hashtag: json["hashtag"],
           marriageId: json["marriage_id"],
           totalRegisterGuestNumber: json["total_register_guest_number"],
-          weddingDate: json["wedding_date"],
-          weddingName: json["wedding_name"],
+          weddingDate: json["wedding_date"] ?? '',
+          weddingName: json["wedding_name"] ?? '',
           pendingFeedNumber: json['pending_feed_number'],
           weddingLogo: json['marriage_logo']);
 

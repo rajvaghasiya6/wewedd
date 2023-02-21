@@ -120,6 +120,13 @@ class _DashboardScreenState extends State<DashboardScreen>
                                     children: [
                                       IconButton(
                                         onPressed: () {
+                                          Future.delayed(const Duration(
+                                                  milliseconds: 0))
+                                              .then((value) {
+                                            context
+                                                .read<ThemeProvider>()
+                                                .setDark();
+                                          });
                                           Navigator.of(context).pop();
                                         },
                                         icon: const Icon(
@@ -254,6 +261,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                             child: dashboard.dashboardModel!
                                                     .marriageLogo.isNotEmpty
                                                 ? CachedNetworkImage(
+                                                    fit: BoxFit.cover,
                                                     imageUrl:
                                                         StringConstants.apiUrl +
                                                             dashboard
@@ -293,6 +301,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                               .start,
                                                       children: [
                                                         SlideCountdownSeparated(
+                                                          textStyle: theme
+                                                              ? gilroyBold
+                                                              : gilroyBold.copyWith(
+                                                                  color:
+                                                                      timeGrey),
                                                           height: 45,
                                                           width: 45,
                                                           showZeroValue: true,
@@ -364,7 +377,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                                                   : const SizedBox(),
                                               const Spacer(),
                                               Switch(
-                                                activeColor: white,
+                                                activeColor:
+                                                    theme ? white : grey,
                                                 value: isCountdown,
                                                 onChanged: (bool value) {
                                                   context
@@ -963,9 +977,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                                   Expanded(
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          color: timeGrey),
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: theme
+                                            ? timeGrey
+                                            : timeGrey.withOpacity(0.07),
+                                      ),
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 18, horizontal: 15),
@@ -974,9 +990,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "Family Welcomes you",
+                                              "${dashboardData.groom!.name.split(' ').length > 1 ? dashboardData.groom!.name.split(' ')[1] : dashboardData.groom!.name} & ${dashboardData.bride!.name.split(' ').length > 1 ? dashboardData.bride!.name.split(' ')[1] : dashboardData.bride!.name} Family Welcomes you",
                                               style: poppinsBold.copyWith(
-                                                  color: white, fontSize: 15),
+                                                  color: theme ? white : grey,
+                                                  fontSize: 15),
                                             ),
                                           ],
                                         ),
@@ -998,7 +1015,10 @@ class _DashboardScreenState extends State<DashboardScreen>
                                           borderRadius:
                                               BorderRadius.circular(6),
                                           border: Border.all(
-                                              color: lightBlack, width: 0.5)),
+                                              color: theme
+                                                  ? lightBlack
+                                                  : timeGrey.withOpacity(0.07),
+                                              width: 1)),
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 16, horizontal: 15),
@@ -1009,10 +1029,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                                             Text(
                                               "RSVP",
                                               style: poppinsBold.copyWith(
-                                                  color: white, fontSize: 15),
+                                                  color: theme ? white : grey,
+                                                  fontSize: 15),
                                             ),
-                                            const Icon(
-                                                Icons.keyboard_arrow_right),
+                                            Icon(Icons.keyboard_arrow_right,
+                                                color: theme ? white : grey),
                                           ],
                                         ),
                                       ),

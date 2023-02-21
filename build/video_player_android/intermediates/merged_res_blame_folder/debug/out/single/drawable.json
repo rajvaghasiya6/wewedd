@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "E:\\github\\wewedd\\build\\video_player_android\\intermediates\\merged_res\\debug\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\6fa8ddcc7d1f6768ac1e33887eb1323c\\transformed\\core-1.7.0\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "E:\\github\\wewedd\\build\\video_player_android\\intermediates\\merged_res\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\6fa8ddcc7d1f6768ac1e33887eb1323c\\transformed\\core-1.7.0\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "E:\\github\\wewedd\\build\\video_player_android\\intermediates\\merged_res\\debug\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\6fa8ddcc7d1f6768ac1e33887eb1323c\\transformed\\core-1.7.0\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "E:\\github\\wewedd\\build\\video_player_android\\intermediates\\merged_res\\debug\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\6fa8ddcc7d1f6768ac1e33887eb1323c\\transformed\\core-1.7.0\\res\\drawable\\notification_tile_bg.xml"
+    }
+]

@@ -121,6 +121,7 @@ class _FeedScreenState extends State<FeedScreen> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
+        var theme = context.watch<ThemeProvider>().darkTheme;
         return Wrap(
           children: <Widget>[
             Padding(
@@ -180,6 +181,10 @@ class _FeedScreenState extends State<FeedScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 25.0, bottom: 5),
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              theme ? timeGrey : timeGrey.withOpacity(0.08),
+                        ),
                         onPressed: () {
                           if (Navigator.canPop(context)) {
                             Navigator.pop(context);
