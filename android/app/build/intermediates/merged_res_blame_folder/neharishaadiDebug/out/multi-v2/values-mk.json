@@ -1,27 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\android\\app\\build\\intermediates\\incremental\\mergeNeharishaadiDebugResources\\merged.dir\\values-mk\\values-mk.xml",
+            "outputFile": "/Users/dhruvil/Documents/GitHub/wewedd/android/app/build/intermediates/incremental/mergeNeharishaadiDebugResources/merged.dir/values-mk/values-mk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\7ad3d862d01a3b033089bd9289a20d21\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-mk\\values-mk.xml",
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/f5d891b7855a21f2f6bda3a6962063d0/transformed/browser-1.4.0/res/values-mk/values-mk.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,125,186,250,318,395,468,557,642",
-                        "endColumns": "69,60,63,67,76,72,88,84,77",
-                        "endOffsets": "120,181,245,313,390,463,552,637,715"
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,168,273,388",
+                        "endColumns": "112,104,114,100",
+                        "endOffsets": "163,268,383,484"
                     },
                     "to": {
-                        "startLines": "48,49,50,51,52,53,54,55,56",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "5176,5246,5307,5371,5439,5516,5589,5678,5763",
-                        "endColumns": "69,60,63,67,76,72,88,84,77",
-                        "endOffsets": "5241,5302,5366,5434,5511,5584,5673,5758,5836"
+                        "startLines": "47,57,58,59",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "5063,5841,5946,6061",
+                        "endColumns": "112,104,114,100",
+                        "endOffsets": "5171,5941,6056,6157"
                     }
                 },
                 {
-                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\88a881f6b1270c3515153b444b8529ea\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-mk\\values.xml",
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/88a881f6b1270c3515153b444b8529ea/transformed/jetified-play-services-basement-18.1.0/res/values-mk/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\9ae3fc7c9104ef1ad86e0da5c71280c6\\transformed\\jetified-play-services-base-18.0.1\\res\\values-mk\\values.xml",
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/9ae3fc7c9104ef1ad86e0da5c71280c6/transformed/jetified-play-services-base-18.0.1/res/values-mk/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,24 +55,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\87b1358ccc4c77d48379c1b5feae7d68\\transformed\\core-1.8.0\\res\\values-mk\\values-mk.xml",
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/7ad3d862d01a3b033089bd9289a20d21/transformed/jetified-exoplayer-core-2.18.1/res/values-mk/values-mk.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,125,186,250,318,395,468,557,642",
+                        "endColumns": "69,60,63,67,76,72,88,84,77",
+                        "endOffsets": "120,181,245,313,390,463,552,637,715"
                     },
                     "to": {
-                        "startLines": "61",
-                        "startColumns": "4",
-                        "startOffsets": "6247",
-                        "endColumns": "100",
-                        "endOffsets": "6343"
+                        "startLines": "48,49,50,51,52,53,54,55,56",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "5176,5246,5307,5371,5439,5516,5589,5678,5763",
+                        "endColumns": "69,60,63,67,76,72,88,84,77",
+                        "endOffsets": "5241,5302,5366,5434,5511,5584,5673,5758,5836"
                     }
                 },
                 {
-                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\9151440e432764aef23216ee3ffc1fd0\\transformed\\appcompat-1.5.1\\res\\values-mk\\values-mk.xml",
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/9151440e432764aef23216ee3ffc1fd0/transformed/appcompat-1.5.1/res/values-mk/values-mk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -89,20 +89,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\f5d891b7855a21f2f6bda3a6962063d0\\transformed\\browser-1.4.0\\res\\values-mk\\values-mk.xml",
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/87b1358ccc4c77d48379c1b5feae7d68/transformed/core-1.8.0/res/values-mk/values-mk.xml",
                     "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,168,273,388",
-                        "endColumns": "112,104,114,100",
-                        "endOffsets": "163,268,383,484"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "47,57,58,59",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "5063,5841,5946,6061",
-                        "endColumns": "112,104,114,100",
-                        "endOffsets": "5171,5941,6056,6157"
+                        "startLines": "61",
+                        "startColumns": "4",
+                        "startOffsets": "6247",
+                        "endColumns": "100",
+                        "endOffsets": "6343"
                     }
                 }
             ]
