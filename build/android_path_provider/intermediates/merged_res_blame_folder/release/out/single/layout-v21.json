@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/layout-v21/notification_action.xml",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+    }
+]

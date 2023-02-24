@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_normal.9.png",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/dhruvil/Documents/GitHub/wewedd/build/android_path_provider/intermediates/merged_res/release/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+        "source": "/Users/dhruvil/.gradle/caches/transforms-3/c338ae258e9e15d287dcdc0829fa0aa1/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    }
+]

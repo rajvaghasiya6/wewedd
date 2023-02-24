@@ -1,0 +1,562 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.neharishaadi.wedding"
+4    android:versionCode="9"
+5    android:versionName="1.0.9" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="32" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:4:5-67
+14-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:4:22-64
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:5:5-65
+15-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:5:22-62
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:6:5-78
+16-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:6:22-76
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:8:5-81
+17-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:8:22-78
+18    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+18-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:9:5-83
+18-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:9:22-80
+19    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+19-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:10:5-77
+19-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:10:22-74
+20    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+20-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:11:5-79
+20-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:11:22-77
+21    <uses-permission android:name="android.permission.WAKE_LOCK" />
+21-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-68
+21-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-65
+22    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+22-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-81
+22-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:7:22-78
+23    <uses-permission android:name="android.permission.VIBRATE" />
+23-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-66
+23-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-63
+24    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+24-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-81
+24-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-78
+25    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+25-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-79
+25-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-76
+26    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+26-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-77
+26-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-74
+27
+28    <queries>
+28-->[:file_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-15:15
+29        <intent>
+29-->[:file_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:18
+30            <action android:name="android.intent.action.GET_CONTENT" />
+30-->[:file_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-72
+30-->[:file_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:11:21-69
+31
+32            <data android:mimeType="*/*" />
+32-->[:file_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-44
+32-->[:file_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:13:19-41
+33        </intent>
+34        <intent>
+34-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-10:18
+35            <action android:name="android.support.customtabs.action.CustomTabsService" />
+35-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-90
+35-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:9:21-87
+36        </intent>
+37    </queries> <!-- Required by older versions of Google Play services to create IID tokens -->
+38    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+38-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:29:5-82
+38-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:29:22-79
+39    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+39-->[com.google.android.gms:play-services-measurement-api:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/3b7e5dee440c1f439c73c37ac58c991a/transformed/jetified-play-services-measurement-api-21.1.1/AndroidManifest.xml:25:5-79
+39-->[com.google.android.gms:play-services-measurement-api:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/3b7e5dee440c1f439c73c37ac58c991a/transformed/jetified-play-services-measurement-api-21.1.1/AndroidManifest.xml:25:22-76
+40    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+40-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:26:5-110
+40-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:26:22-107
+41
+42    <application
+42-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:13:5-60:19
+43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+43-->[androidx.core:core:1.8.0] /Users/dhruvil/.gradle/caches/transforms-3/09842c02e971036f1003cae5f5e171f6/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+44        android:debuggable="true"
+45        android:icon="@mipmap/ic_launcher"
+45-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:14:9-43
+46        android:label="@string/app_name"
+46-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:16:9-41
+47        android:requestLegacyExternalStorage="true" >
+47-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:15:9-52
+48        <activity
+48-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:17:9-49:20
+49            android:name="com.neharishaadi.wedding.MainActivity"
+49-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:18:13-41
+50            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+50-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:19:13-163
+51            android:exported="true"
+51-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:25:13-36
+52            android:hardwareAccelerated="true"
+52-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:20:13-47
+53            android:launchMode="singleTop"
+53-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:21:13-43
+54            android:requestLegacyExternalStorage="true"
+54-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:23:13-56
+55            android:theme="@style/LaunchTheme"
+55-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:22:13-47
+56            android:usesCleartextTraffic="true"
+56-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:24:13-48
+57            android:windowSoftInputMode="adjustResize" >
+57-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:26:13-55
+58
+59            <!--
+60                 Specifies an Android theme to apply to this Activity as soon as
+61                 the Android process has started. This theme is visible to the user
+62                 while the Flutter UI initializes. After that, this theme continues
+63                 to determine the Window background behind the Flutter UI.
+64            -->
+65            <meta-data
+65-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:31:13-33:57
+66                android:name="io.flutter.embedding.android.NormalTheme"
+66-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:32:17-72
+67                android:resource="@style/NormalTheme" />
+67-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:33:17-54
+68            <!--
+69                 Displays an Android View that continues showing the launch screen
+70                 Drawable until Flutter paints its first frame, then this splash
+71                 screen fades out. A splash screen is useful to avoid any visual
+72                 gap between the end of Android's launch screen and the painting of
+73                 Flutter's first frame.
+74            -->
+75
+76            <meta-data
+76-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:40:13-42:66
+77                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+77-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:41:17-81
+78                android:resource="@drawable/launch_background" />
+78-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:42:17-63
+79
+80            <intent-filter>
+80-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:43:13-46:29
+81                <action android:name="android.intent.action.MAIN" />
+81-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:44:17-69
+81-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:44:25-66
+82
+83                <category android:name="android.intent.category.LAUNCHER" />
+83-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:45:17-77
+83-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:45:27-74
+84            </intent-filter>
+85        </activity>
+86        <activity
+86-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:51:9-54:72
+87            android:name="com.yalantis.ucrop.UCropActivity"
+87-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:52:13-60
+88            android:screenOrientation="portrait"
+88-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:53:13-49
+89            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+89-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:54:13-69
+90        <!--
+91             Don't delete the meta-data below.
+92             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+93        -->
+94        <meta-data
+94-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:57:9-59:33
+95            android:name="flutterEmbedding"
+95-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:58:13-44
+96            android:value="2" />
+96-->/Users/dhruvil/Documents/GitHub/wewedd/android/app/src/main/AndroidManifest.xml:59:13-30
+97
+98        <service
+98-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-15:72
+99            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
+99-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-107
+100            android:exported="false"
+100-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
+101            android:permission="android.permission.BIND_JOB_SERVICE" />
+101-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-69
+102        <service
+102-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-22:19
+103            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+103-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-97
+104            android:exported="false" >
+104-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+105            <intent-filter>
+105-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-21:29
+106                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+106-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:20:17-78
+106-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:20:25-75
+107            </intent-filter>
+108        </service>
+109
+110        <receiver
+110-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:9-31:20
+111            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
+111-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-98
+112            android:exported="true"
+112-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-36
+113            android:permission="com.google.android.c2dm.permission.SEND" >
+113-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-73
+114            <intent-filter>
+114-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-30:29
+115                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+115-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-81
+115-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:29:25-78
+116            </intent-filter>
+117        </receiver>
+118
+119        <service
+119-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:9-37:19
+120            android:name="com.google.firebase.components.ComponentDiscoveryService"
+120-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:18-89
+121            android:directBootAware="true"
+121-->[com.google.firebase:firebase-common:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/d6f19fbbbb594dc2799b852d0fffe033/transformed/jetified-firebase-common-20.1.2/AndroidManifest.xml:35:13-43
+122            android:exported="false" >
+122-->[com.google.firebase:firebase-analytics-ktx:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/e1fbef39f0765c57b5709dccd67cbbaf/transformed/jetified-firebase-analytics-ktx-21.1.1/AndroidManifest.xml:10:13-37
+123            <meta-data
+123-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:34:13-36:85
+124                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
+124-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:35:17-128
+125                android:value="com.google.firebase.components.ComponentRegistrar" />
+125-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:36:17-82
+126            <meta-data
+126-->[:firebase_analytics] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_analytics/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:85
+127                android:name="com.google.firebase.components:io.flutter.plugins.firebaseanalytics.FlutterFirebaseAppRegistrar"
+127-->[:firebase_analytics] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_analytics/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-127
+128                android:value="com.google.firebase.components.ComponentRegistrar" />
+128-->[:firebase_analytics] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_analytics/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-82
+129            <meta-data
+129-->[:firebase_core] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-11:85
+130                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+130-->[:firebase_core] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:10:17-124
+131                android:value="com.google.firebase.components.ComponentRegistrar" />
+131-->[:firebase_core] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:17-82
+132            <meta-data
+132-->[com.google.firebase:firebase-analytics-ktx:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/e1fbef39f0765c57b5709dccd67cbbaf/transformed/jetified-firebase-analytics-ktx-21.1.1/AndroidManifest.xml:11:13-13:85
+133                android:name="com.google.firebase.components:com.google.firebase.analytics.ktx.FirebaseAnalyticsKtxRegistrar"
+133-->[com.google.firebase:firebase-analytics-ktx:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/e1fbef39f0765c57b5709dccd67cbbaf/transformed/jetified-firebase-analytics-ktx-21.1.1/AndroidManifest.xml:12:17-126
+134                android:value="com.google.firebase.components.ComponentRegistrar" />
+134-->[com.google.firebase:firebase-analytics-ktx:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/e1fbef39f0765c57b5709dccd67cbbaf/transformed/jetified-firebase-analytics-ktx-21.1.1/AndroidManifest.xml:13:17-82
+135            <meta-data
+135-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:56:13-58:85
+136                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+136-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:57:17-119
+137                android:value="com.google.firebase.components.ComponentRegistrar" />
+137-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:58:17-82
+138            <meta-data
+138-->[com.google.firebase:firebase-common-ktx:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/fb67805a362b86e8406aaad85c51161e/transformed/jetified-firebase-common-ktx-20.1.2/AndroidManifest.xml:15:13-17:85
+139                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+139-->[com.google.firebase:firebase-common-ktx:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/fb67805a362b86e8406aaad85c51161e/transformed/jetified-firebase-common-ktx-20.1.2/AndroidManifest.xml:16:17-113
+140                android:value="com.google.firebase.components.ComponentRegistrar" />
+140-->[com.google.firebase:firebase-common-ktx:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/fb67805a362b86e8406aaad85c51161e/transformed/jetified-firebase-common-ktx-20.1.2/AndroidManifest.xml:17:17-82
+141            <meta-data
+141-->[com.google.firebase:firebase-datatransport:18.1.6] /Users/dhruvil/.gradle/caches/transforms-3/e975dbf7680e0d15ce1e550d9ba8bd5d/transformed/jetified-firebase-datatransport-18.1.6/AndroidManifest.xml:28:13-30:85
+142                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+142-->[com.google.firebase:firebase-datatransport:18.1.6] /Users/dhruvil/.gradle/caches/transforms-3/e975dbf7680e0d15ce1e550d9ba8bd5d/transformed/jetified-firebase-datatransport-18.1.6/AndroidManifest.xml:29:17-115
+143                android:value="com.google.firebase.components.ComponentRegistrar" />
+143-->[com.google.firebase:firebase-datatransport:18.1.6] /Users/dhruvil/.gradle/caches/transforms-3/e975dbf7680e0d15ce1e550d9ba8bd5d/transformed/jetified-firebase-datatransport-18.1.6/AndroidManifest.xml:30:17-82
+144            <meta-data
+144-->[com.google.android.gms:play-services-measurement-api:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/3b7e5dee440c1f439c73c37ac58c991a/transformed/jetified-play-services-measurement-api-21.1.1/AndroidManifest.xml:31:13-33:85
+145                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+145-->[com.google.android.gms:play-services-measurement-api:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/3b7e5dee440c1f439c73c37ac58c991a/transformed/jetified-play-services-measurement-api-21.1.1/AndroidManifest.xml:32:17-139
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[com.google.android.gms:play-services-measurement-api:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/3b7e5dee440c1f439c73c37ac58c991a/transformed/jetified-play-services-measurement-api-21.1.1/AndroidManifest.xml:33:17-82
+147            <meta-data
+147-->[com.google.firebase:firebase-installations:17.0.3] /Users/dhruvil/.gradle/caches/transforms-3/ccaa2f7a4a99acdeb65d0fa661f312f4/transformed/jetified-firebase-installations-17.0.3/AndroidManifest.xml:18:13-20:85
+148                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+148-->[com.google.firebase:firebase-installations:17.0.3] /Users/dhruvil/.gradle/caches/transforms-3/ccaa2f7a4a99acdeb65d0fa661f312f4/transformed/jetified-firebase-installations-17.0.3/AndroidManifest.xml:19:17-127
+149                android:value="com.google.firebase.components.ComponentRegistrar" />
+149-->[com.google.firebase:firebase-installations:17.0.3] /Users/dhruvil/.gradle/caches/transforms-3/ccaa2f7a4a99acdeb65d0fa661f312f4/transformed/jetified-firebase-installations-17.0.3/AndroidManifest.xml:20:17-82
+150        </service>
+151
+152        <provider
+152-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:39:9-43:38
+153            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
+153-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:40:13-102
+154            android:authorities="com.neharishaadi.wedding.flutterfirebasemessaginginitprovider"
+154-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:41:13-88
+155            android:exported="false"
+155-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:42:13-37
+156            android:initOrder="99" />
+156-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:43:13-35
+157        <provider
+157-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
+158            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+158-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-82
+159            android:authorities="com.neharishaadi.wedding.flutter.image_provider"
+159-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-74
+160            android:exported="false"
+160-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
+161            android:grantUriPermissions="true" >
+161-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
+162            <meta-data
+162-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:75
+163                android:name="android.support.FILE_PROVIDER_PATHS"
+163-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+164                android:resource="@xml/flutter_image_picker_file_paths" />
+164-->[:image_picker] /Users/dhruvil/Documents/GitHub/wewedd/build/image_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-72
+165        </provider>
+166
+167        <receiver
+167-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-16:40
+168            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
+168-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-97
+169            android:exported="false" />
+169-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
+170        <receiver
+170-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-26:20
+171            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+171-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-101
+172            android:exported="false" >
+172-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
+173            <intent-filter>
+173-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-25:29
+174                <action android:name="android.intent.action.BOOT_COMPLETED" />
+174-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-79
+174-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:21:25-76
+175                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+175-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:22:17-84
+175-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:22:25-81
+176                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+176-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:23:17-82
+176-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:23:25-79
+177                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+177-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:24:17-82
+177-->[:flutter_local_notifications] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:24:25-79
+178            </intent-filter>
+179        </receiver>
+180
+181        <activity
+181-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:47
+182            android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
+182-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-104
+183            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+183-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-137
+184            android:exported="false"
+184-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-37
+185            android:theme="@style/AppTheme" />
+185-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-44
+186        <activity
+186-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:19:9-22:55
+187            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivity"
+187-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-112
+188            android:exported="false"
+188-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-37
+189            android:theme="@style/ThemeTransparent" />
+189-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-52
+190        <activity
+190-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-26:55
+191            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivity"
+191-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-106
+192            android:exported="false"
+192-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-37
+193            android:theme="@style/ThemeTransparent" />
+193-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-52
+194        <activity
+194-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:27:9-31:55
+195            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
+195-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-126
+196            android:exported="false"
+196-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-37
+197            android:launchMode="singleInstance"
+197-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-48
+198            android:theme="@style/ThemeTransparent" />
+198-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-52
+199        <activity
+199-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:32:9-36:55
+200            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.TrustedWebActivitySingleInstance"
+200-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-120
+201            android:exported="false"
+201-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:34:13-37
+202            android:launchMode="singleInstance"
+202-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-48
+203            android:theme="@style/ThemeTransparent" />
+203-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-52
+204
+205        <receiver
+205-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:38:9-41:40
+206            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ActionBroadcastReceiver"
+206-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-111
+207            android:enabled="true"
+207-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:40:13-35
+208            android:exported="false" />
+208-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:41:13-37
+209
+210        <meta-data
+210-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:43:9-45:36
+211            android:name="io.flutter.embedded_views_preview"
+211-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:44:13-61
+212            android:value="true" />
+212-->[:flutter_inappwebview] /Users/dhruvil/Documents/GitHub/wewedd/build/flutter_inappwebview/intermediates/merged_manifest/debug/AndroidManifest.xml:45:13-33
+213
+214        <activity
+214-->[:url_launcher_android] /Users/dhruvil/Documents/GitHub/wewedd/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-11:74
+215            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+215-->[:url_launcher_android] /Users/dhruvil/Documents/GitHub/wewedd/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-74
+216            android:exported="false"
+216-->[:url_launcher_android] /Users/dhruvil/Documents/GitHub/wewedd/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-37
+217            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+217-->[:url_launcher_android] /Users/dhruvil/Documents/GitHub/wewedd/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-71
+218
+219        <uses-library
+219-->[androidx.window:window:1.0.0-beta04] /Users/dhruvil/.gradle/caches/transforms-3/a779ed1c736191d0843331ae67c675b4/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+220            android:name="androidx.window.extensions"
+220-->[androidx.window:window:1.0.0-beta04] /Users/dhruvil/.gradle/caches/transforms-3/a779ed1c736191d0843331ae67c675b4/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+221            android:required="false" />
+221-->[androidx.window:window:1.0.0-beta04] /Users/dhruvil/.gradle/caches/transforms-3/a779ed1c736191d0843331ae67c675b4/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+222        <uses-library
+222-->[androidx.window:window:1.0.0-beta04] /Users/dhruvil/.gradle/caches/transforms-3/a779ed1c736191d0843331ae67c675b4/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+223            android:name="androidx.window.sidecar"
+223-->[androidx.window:window:1.0.0-beta04] /Users/dhruvil/.gradle/caches/transforms-3/a779ed1c736191d0843331ae67c675b4/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+224            android:required="false" />
+224-->[androidx.window:window:1.0.0-beta04] /Users/dhruvil/.gradle/caches/transforms-3/a779ed1c736191d0843331ae67c675b4/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+225
+226        <receiver
+226-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:32:9-39:20
+227            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+227-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:33:13-78
+228            android:exported="true"
+228-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:34:13-36
+229            android:permission="com.google.android.c2dm.permission.SEND" >
+229-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:35:13-73
+230            <intent-filter>
+230-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-30:29
+231                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+231-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-81
+231-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:29:25-78
+232            </intent-filter>
+233        </receiver>
+234        <!--
+235             FirebaseMessagingService performs security checks at runtime,
+236             but set to not exported to explicitly avoid allowing another app to call it.
+237        -->
+238        <service
+238-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:45:9-52:19
+239            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+239-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:46:13-82
+240            android:directBootAware="true"
+240-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:47:13-43
+241            android:exported="false" >
+241-->[com.google.firebase:firebase-messaging:23.0.8] /Users/dhruvil/.gradle/caches/transforms-3/7550db648f1a22bc3be17ffebf68dfe3/transformed/jetified-firebase-messaging-23.0.8/AndroidManifest.xml:48:13-37
+242            <intent-filter android:priority="-500" >
+242-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-21:29
+243                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+243-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:20:17-78
+243-->[:firebase_messaging] /Users/dhruvil/Documents/GitHub/wewedd/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:20:25-75
+244            </intent-filter>
+245        </service>
+246
+247        <provider
+247-->[com.google.firebase:firebase-common:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/d6f19fbbbb594dc2799b852d0fffe033/transformed/jetified-firebase-common-20.1.2/AndroidManifest.xml:26:9-31:39
+248            android:name="com.google.firebase.provider.FirebaseInitProvider"
+248-->[com.google.firebase:firebase-common:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/d6f19fbbbb594dc2799b852d0fffe033/transformed/jetified-firebase-common-20.1.2/AndroidManifest.xml:27:13-77
+249            android:authorities="com.neharishaadi.wedding.firebaseinitprovider"
+249-->[com.google.firebase:firebase-common:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/d6f19fbbbb594dc2799b852d0fffe033/transformed/jetified-firebase-common-20.1.2/AndroidManifest.xml:28:13-72
+250            android:directBootAware="true"
+250-->[com.google.firebase:firebase-common:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/d6f19fbbbb594dc2799b852d0fffe033/transformed/jetified-firebase-common-20.1.2/AndroidManifest.xml:29:13-43
+251            android:exported="false"
+251-->[com.google.firebase:firebase-common:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/d6f19fbbbb594dc2799b852d0fffe033/transformed/jetified-firebase-common-20.1.2/AndroidManifest.xml:30:13-37
+252            android:initOrder="100" />
+252-->[com.google.firebase:firebase-common:20.1.2] /Users/dhruvil/.gradle/caches/transforms-3/d6f19fbbbb594dc2799b852d0fffe033/transformed/jetified-firebase-common-20.1.2/AndroidManifest.xml:31:13-36
+253
+254        <activity
+254-->[com.google.android.gms:play-services-base:18.0.1] /Users/dhruvil/.gradle/caches/transforms-3/cda1a9838b88c60f16c7028ff0b4e424/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+255            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+255-->[com.google.android.gms:play-services-base:18.0.1] /Users/dhruvil/.gradle/caches/transforms-3/cda1a9838b88c60f16c7028ff0b4e424/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+256            android:exported="false"
+256-->[com.google.android.gms:play-services-base:18.0.1] /Users/dhruvil/.gradle/caches/transforms-3/cda1a9838b88c60f16c7028ff0b4e424/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+257            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+257-->[com.google.android.gms:play-services-base:18.0.1] /Users/dhruvil/.gradle/caches/transforms-3/cda1a9838b88c60f16c7028ff0b4e424/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+258
+259        <receiver
+259-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:29:9-33:20
+260            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+260-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:30:13-85
+261            android:enabled="true"
+261-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:31:13-35
+262            android:exported="false" >
+262-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:32:13-37
+263        </receiver>
+264
+265        <service
+265-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:35:9-38:40
+266            android:name="com.google.android.gms.measurement.AppMeasurementService"
+266-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:36:13-84
+267            android:enabled="true"
+267-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:37:13-35
+268            android:exported="false" />
+268-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:38:13-37
+269        <service
+269-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:39:9-43:72
+270            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+270-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:40:13-87
+271            android:enabled="true"
+271-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:41:13-35
+272            android:exported="false"
+272-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:42:13-37
+273            android:permission="android.permission.BIND_JOB_SERVICE" />
+273-->[com.google.android.gms:play-services-measurement:21.1.1] /Users/dhruvil/.gradle/caches/transforms-3/4f00eab84be9124255e929f83be341a8/transformed/jetified-play-services-measurement-21.1.1/AndroidManifest.xml:43:13-69
+274
+275        <meta-data
+275-->[com.google.android.gms:play-services-basement:18.1.0] /Users/dhruvil/.gradle/caches/transforms-3/9f07b65d4c5501229580cfe60ae9ef2a/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+276            android:name="com.google.android.gms.version"
+276-->[com.google.android.gms:play-services-basement:18.1.0] /Users/dhruvil/.gradle/caches/transforms-3/9f07b65d4c5501229580cfe60ae9ef2a/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+277            android:value="@integer/google_play_services_version" />
+277-->[com.google.android.gms:play-services-basement:18.1.0] /Users/dhruvil/.gradle/caches/transforms-3/9f07b65d4c5501229580cfe60ae9ef2a/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+278
+279        <service
+279-->[com.google.android.datatransport:transport-backend-cct:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/8cb50c92a44aeea0000c8d6726755185/transformed/jetified-transport-backend-cct-3.1.7/AndroidManifest.xml:29:9-35:19
+280            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+280-->[com.google.android.datatransport:transport-backend-cct:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/8cb50c92a44aeea0000c8d6726755185/transformed/jetified-transport-backend-cct-3.1.7/AndroidManifest.xml:30:13-103
+281            android:exported="false" >
+281-->[com.google.android.datatransport:transport-backend-cct:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/8cb50c92a44aeea0000c8d6726755185/transformed/jetified-transport-backend-cct-3.1.7/AndroidManifest.xml:31:13-37
+282            <meta-data
+282-->[com.google.android.datatransport:transport-backend-cct:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/8cb50c92a44aeea0000c8d6726755185/transformed/jetified-transport-backend-cct-3.1.7/AndroidManifest.xml:32:13-34:39
+283                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+283-->[com.google.android.datatransport:transport-backend-cct:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/8cb50c92a44aeea0000c8d6726755185/transformed/jetified-transport-backend-cct-3.1.7/AndroidManifest.xml:33:17-94
+284                android:value="cct" />
+284-->[com.google.android.datatransport:transport-backend-cct:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/8cb50c92a44aeea0000c8d6726755185/transformed/jetified-transport-backend-cct-3.1.7/AndroidManifest.xml:34:17-36
+285        </service>
+286        <service
+286-->[com.google.android.datatransport:transport-runtime:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/b37166ee542656749915a9b88fc87686/transformed/jetified-transport-runtime-3.1.7/AndroidManifest.xml:26:9-30:19
+287            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+287-->[com.google.android.datatransport:transport-runtime:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/b37166ee542656749915a9b88fc87686/transformed/jetified-transport-runtime-3.1.7/AndroidManifest.xml:27:13-117
+288            android:exported="false"
+288-->[com.google.android.datatransport:transport-runtime:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/b37166ee542656749915a9b88fc87686/transformed/jetified-transport-runtime-3.1.7/AndroidManifest.xml:28:13-37
+289            android:permission="android.permission.BIND_JOB_SERVICE" >
+289-->[com.google.android.datatransport:transport-runtime:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/b37166ee542656749915a9b88fc87686/transformed/jetified-transport-runtime-3.1.7/AndroidManifest.xml:29:13-69
+290        </service>
+291
+292        <receiver
+292-->[com.google.android.datatransport:transport-runtime:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/b37166ee542656749915a9b88fc87686/transformed/jetified-transport-runtime-3.1.7/AndroidManifest.xml:32:9-34:40
+293            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+293-->[com.google.android.datatransport:transport-runtime:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/b37166ee542656749915a9b88fc87686/transformed/jetified-transport-runtime-3.1.7/AndroidManifest.xml:33:13-132
+294            android:exported="false" />
+294-->[com.google.android.datatransport:transport-runtime:3.1.7] /Users/dhruvil/.gradle/caches/transforms-3/b37166ee542656749915a9b88fc87686/transformed/jetified-transport-runtime-3.1.7/AndroidManifest.xml:34:13-37
+295
+296        <provider
+296-->[androidx.emoji2:emoji2:1.2.0] /Users/dhruvil/.gradle/caches/transforms-3/1222b9654e1469555eeb5419b440abe0/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+297            android:name="androidx.startup.InitializationProvider"
+297-->[androidx.emoji2:emoji2:1.2.0] /Users/dhruvil/.gradle/caches/transforms-3/1222b9654e1469555eeb5419b440abe0/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+298            android:authorities="com.neharishaadi.wedding.androidx-startup"
+298-->[androidx.emoji2:emoji2:1.2.0] /Users/dhruvil/.gradle/caches/transforms-3/1222b9654e1469555eeb5419b440abe0/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+299            android:exported="false" >
+299-->[androidx.emoji2:emoji2:1.2.0] /Users/dhruvil/.gradle/caches/transforms-3/1222b9654e1469555eeb5419b440abe0/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+300            <meta-data
+300-->[androidx.emoji2:emoji2:1.2.0] /Users/dhruvil/.gradle/caches/transforms-3/1222b9654e1469555eeb5419b440abe0/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+301                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+301-->[androidx.emoji2:emoji2:1.2.0] /Users/dhruvil/.gradle/caches/transforms-3/1222b9654e1469555eeb5419b440abe0/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+302                android:value="androidx.startup" />
+302-->[androidx.emoji2:emoji2:1.2.0] /Users/dhruvil/.gradle/caches/transforms-3/1222b9654e1469555eeb5419b440abe0/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+303            <meta-data
+303-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/dhruvil/.gradle/caches/transforms-3/18ff15174a008ec3ca75383b9ec6a22d/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+304                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+304-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/dhruvil/.gradle/caches/transforms-3/18ff15174a008ec3ca75383b9ec6a22d/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+305                android:value="androidx.startup" />
+305-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/dhruvil/.gradle/caches/transforms-3/18ff15174a008ec3ca75383b9ec6a22d/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+306        </provider>
+307    </application>
+308
+309</manifest>

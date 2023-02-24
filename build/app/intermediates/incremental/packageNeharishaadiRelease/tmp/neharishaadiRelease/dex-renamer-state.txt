@@ -1,0 +1,4 @@
+#Sat Feb 25 00:32:53 IST 2023
+base.0=/Users/dhruvil/Documents/GitHub/wewedd/build/app/intermediates/dex/neharishaadiRelease/minifyNeharishaadiReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
