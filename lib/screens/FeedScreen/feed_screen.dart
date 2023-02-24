@@ -279,11 +279,14 @@ class _FeedScreenState extends State<FeedScreen> {
                           onTap: () {
                             nextScreen(context, LeaderboardScreen());
                           },
-                          child: SvgPicture.asset(
-                            'assets/Group.svg',
-                            height: 42,
-                            width: 42,
-                          ),
+                          child: Icon(Icons.group,color: theme?Colors.white:Colors.black,),
+                          // child: Image.asset(
+                          //   theme
+                          //       ? 'icons/group_black.png'
+                          //       : 'icons/group_white.png',
+                          //   // height: 42,
+                          //   // width: 42,
+                          // ),
                         ),
                       ),
                       Padding(

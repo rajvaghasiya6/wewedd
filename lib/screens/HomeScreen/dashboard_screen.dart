@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:slide_countdown/slide_countdown.dart';
+import 'package:wedding/screens/webview_screen/webview_screen_rsvp.dart';
 
 import '../../general/color_constants.dart';
 import '../../general/navigation.dart';
@@ -1007,39 +1008,47 @@ class _DashboardScreenState extends State<DashboardScreen>
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 8),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          border: Border.all(
-                                              color: theme
-                                                  ? lightBlack
-                                                  : timeGrey.withOpacity(0.07),
-                                              width: 1)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 16, horizontal: 15),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "RSVP",
-                                              style: poppinsBold.copyWith(
-                                                  color: theme ? white : grey,
-                                                  fontSize: 15),
-                                            ),
-                                            Icon(Icons.keyboard_arrow_right,
-                                                color: theme ? white : grey),
-                                          ],
+                              child: InkWell(onTap:(){if(dashboardData.marriageId!=null||dashboardData.marriageId!=''){
+                                nextScreen(context, WebViewContainer(marriage_id: dashboardData.marriageId,));
+                              }else{
+                                nextScreen(context, WebViewBlankRSVP());
+                                        
+                              }}
+                              ,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            border: Border.all(
+                                                color: theme
+                                                    ? lightBlack
+                                                    : timeGrey.withOpacity(0.07),
+                                                width: 1)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 16, horizontal: 15),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "RSVP",
+                                                style: poppinsBold.copyWith(
+                                                    color: theme ? white : grey,
+                                                    fontSize: 15),
+                                              ),
+                                              Icon(Icons.keyboard_arrow_right,
+                                                  color: theme ? white : grey),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(
