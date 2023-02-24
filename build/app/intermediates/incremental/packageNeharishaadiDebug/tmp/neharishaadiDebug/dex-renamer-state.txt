@@ -1,19 +1,35 @@
+<<<<<<< Updated upstream
 #Thu Jan 19 23:32:41 IST 2023
+=======
+#Fri Feb 24 22:24:43 IST 2023
+>>>>>>> Stashed changes
 path.4=2/classes.dex
 path.3=1/classes.dex
 path.2=0/classes.dex
 path.1=0/classes.dex
 path.5=classes2.dex
 path.0=classes.dex
+<<<<<<< Updated upstream
 base.4=C\:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\app\\intermediates\\dex\\neharishaadiDebug\\mergeProjectDexNeharishaadiDebug\\2\\classes.dex
 base.3=C\:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\app\\intermediates\\dex\\neharishaadiDebug\\mergeProjectDexNeharishaadiDebug\\1\\classes.dex
 base.2=C\:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\app\\intermediates\\dex\\neharishaadiDebug\\mergeProjectDexNeharishaadiDebug\\0\\classes.dex
 base.1=C\:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\app\\intermediates\\dex\\neharishaadiDebug\\mergeLibDexNeharishaadiDebug\\0\\classes.dex
 base.0=C\:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\app\\intermediates\\dex\\neharishaadiDebug\\mergeExtDexNeharishaadiDebug\\classes.dex
+=======
+base.4=/Users/dhruvil/Documents/GitHub/wewedd/build/app/intermediates/dex/neharishaadiDebug/mergeProjectDexNeharishaadiDebug/2/classes.dex
+base.3=/Users/dhruvil/Documents/GitHub/wewedd/build/app/intermediates/dex/neharishaadiDebug/mergeProjectDexNeharishaadiDebug/1/classes.dex
+base.2=/Users/dhruvil/Documents/GitHub/wewedd/build/app/intermediates/dex/neharishaadiDebug/mergeProjectDexNeharishaadiDebug/0/classes.dex
+base.1=/Users/dhruvil/Documents/GitHub/wewedd/build/app/intermediates/dex/neharishaadiDebug/mergeLibDexNeharishaadiDebug/0/classes.dex
+base.0=/Users/dhruvil/Documents/GitHub/wewedd/build/app/intermediates/dex/neharishaadiDebug/mergeExtDexNeharishaadiDebug/classes.dex
+>>>>>>> Stashed changes
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
 renamed.5=classes6.dex
 renamed.4=classes5.dex
+<<<<<<< Updated upstream
 base.5=C\:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\build\\app\\intermediates\\dex\\neharishaadiDebug\\mergeExtDexNeharishaadiDebug\\classes2.dex
+=======
+base.5=/Users/dhruvil/Documents/GitHub/wewedd/build/app/intermediates/dex/neharishaadiDebug/mergeExtDexNeharishaadiDebug/classes2.dex
+>>>>>>> Stashed changes

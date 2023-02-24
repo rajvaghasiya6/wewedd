@@ -1,10 +1,17 @@
 {
     "logs": [
         {
+<<<<<<< Updated upstream
             "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\android\\app\\build\\intermediates\\incremental\\mergeNeharishaadiDebugResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\9151440e432764aef23216ee3ffc1fd0\\transformed\\appcompat-1.5.1\\res\\values-v23\\values-v23.xml",
+=======
+            "outputFile": "/Users/dhruvil/Documents/GitHub/wewedd/android/app/build/intermediates/incremental/mergeNeharishaadiDebugResources/merged.dir/values-v23/values-v23.xml",
+            "map": [
+                {
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/e5f33c5d2b865005e9243aaec09c25f8/transformed/appcompat-1.5.1/res/values-v23/values-v23.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

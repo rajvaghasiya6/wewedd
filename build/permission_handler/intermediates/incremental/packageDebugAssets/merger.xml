@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
 <merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\permission_handler-8.1.4+2\android\src\main\assets"/><source path="C:\Users\rajva\OneDrive\Documents\GitHub\wewedd\build\permission_handler\intermediates\shader_assets\debug\out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\permission_handler-8.1.4+2\android\src\debug\assets"/></dataSet></merger>
+=======
+<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/dhruvil/.pub-cache/hosted/pub.dev/permission_handler-8.1.4+2/android/src/main/assets"/><source path="/Users/dhruvil/Documents/GitHub/wewedd/build/permission_handler/intermediates/shader_assets/debug/out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/dhruvil/.pub-cache/hosted/pub.dev/permission_handler-8.1.4+2/android/src/debug/assets"/></dataSet></merger>
+>>>>>>> Stashed changes

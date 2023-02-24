@@ -1,6 +1,7 @@
 {
     "logs": [
         {
+<<<<<<< Updated upstream
             "outputFile": "C:\\Users\\rajva\\OneDrive\\Documents\\GitHub\\wewedd\\android\\app\\build\\intermediates\\incremental\\mergeNeharishaadiDebugResources\\merged.dir\\values-el\\values-el.xml",
             "map": [
                 {
@@ -39,6 +40,12 @@
                 },
                 {
                     "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\9ae3fc7c9104ef1ad86e0da5c71280c6\\transformed\\jetified-play-services-base-18.0.1\\res\\values-el\\values.xml",
+=======
+            "outputFile": "/Users/dhruvil/Documents/GitHub/wewedd/android/app/build/intermediates/incremental/mergeNeharishaadiDebugResources/merged.dir/values-el/values-el.xml",
+            "map": [
+                {
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/e5f33c5d2b865005e9243aaec09c25f8/transformed/appcompat-1.5.1/res/values-el/values-el.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,7 +62,45 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
                     "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\f5d891b7855a21f2f6bda3a6962063d0\\transformed\\browser-1.4.0\\res\\values-el\\values-el.xml",
+=======
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/285edc5760f62f683a53d66e9e1a05e8/transformed/jetified-exoplayer-core-2.18.1/res/values-el/values-el.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,126,184,242,305,379,455,554,649",
+                        "endColumns": "70,57,57,62,73,75,98,94,66",
+                        "endOffsets": "121,179,237,300,374,450,549,644,711"
+                    },
+                    "to": {
+                        "startLines": "48,49,50,51,52,53,54,55,56",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "5362,5433,5491,5549,5612,5686,5762,5861,5956",
+                        "endColumns": "70,57,57,62,73,75,98,94,66",
+                        "endOffsets": "5428,5486,5544,5607,5681,5757,5856,5951,6018"
+                    }
+                },
+                {
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/9f07b65d4c5501229580cfe60ae9ef2a/transformed/jetified-play-services-basement-18.1.0/res/values-el/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "159",
+                        "endOffsets": "354"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "3955",
+                        "endColumns": "163",
+                        "endOffsets": "4114"
+                    }
+                },
+                {
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/683614ea9ecb97599058e83ab3b3c133/transformed/browser-1.4.0/res/values-el/values-el.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -72,20 +117,41 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
                     "source": "C:\\Users\\rajva\\.gradle\\caches\\transforms-3\\7ad3d862d01a3b033089bd9289a20d21\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-el\\values-el.xml",
+=======
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/09842c02e971036f1003cae5f5e171f6/transformed/core-1.8.0/res/values-el/values-el.xml",
+>>>>>>> Stashed changes
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,126,184,242,305,379,455,554,649",
-                        "endColumns": "70,57,57,62,73,75,98,94,66",
-                        "endOffsets": "121,179,237,300,374,450,549,644,711"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "48,49,50,51,52,53,54,55,56",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "5362,5433,5491,5549,5612,5686,5762,5861,5956",
-                        "endColumns": "70,57,57,62,73,75,98,94,66",
-                        "endOffsets": "5428,5486,5544,5607,5681,5757,5856,5951,6018"
+                        "startLines": "61",
+                        "startColumns": "4",
+                        "startOffsets": "6451",
+                        "endColumns": "100",
+                        "endOffsets": "6547"
+                    }
+                },
+                {
+                    "source": "/Users/dhruvil/.gradle/caches/transforms-3/cda1a9838b88c60f16c7028ff0b4e424/transformed/jetified-play-services-base-18.0.1/res/values-el/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,300,482,610,717,894,1015,1129,1230,1415,1519,1685,1810,1984,2125,2190,2248",
+                        "endColumns": "106,181,127,106,176,120,113,100,184,103,165,124,173,140,64,57,78",
+                        "endOffsets": "299,481,609,716,893,1014,1128,1229,1414,1518,1684,1809,1983,2124,2189,2247,2326"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2886,2997,3183,3315,3426,3607,3732,3850,4119,4308,4416,4586,4715,4893,5038,5107,5169",
+                        "endColumns": "110,185,131,110,180,124,117,104,188,107,169,128,177,144,68,61,82",
+                        "endOffsets": "2992,3178,3310,3421,3602,3727,3845,3950,4303,4411,4581,4710,4888,5033,5102,5164,5247"
                     }
                 },
                 {
